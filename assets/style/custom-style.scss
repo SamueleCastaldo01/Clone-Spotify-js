@@ -133,7 +133,17 @@ $utilities: map-merge($utilities,
       ),
     ));
     
+.bg-linear-gradient{
+  background:linear-gradient(to right, #000000, #1E1E1E);
+}
 
+.position-top-negative{
+  top:-35px
+}
+
+.position-left-nextIcon{
+  left:-25em
+}
 
 
 

@@ -2505,7 +2505,7 @@ textarea.form-control-lg {
   height: 0.5rem;
   color: transparent;
   cursor: pointer;
-  background-color: var(--bs-secondary-bg);
+  background-color: var(--bs-primary-bg);
   border-color: transparent;
   border-radius: 1rem;
 }
@@ -2534,7 +2534,7 @@ textarea.form-control-lg {
   height: 0.5rem;
   color: transparent;
   cursor: pointer;
-  background-color: var(--bs-secondary-bg);
+  background-color: var(--bs-primary-bg);
   border-color: transparent;
   border-radius: 1rem;
 }
