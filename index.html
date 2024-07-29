@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="it">
+<html lang="it" data-bs-theme="dark">
 
 <head>
     <meta charset="utf-8" />
@@ -18,8 +18,8 @@
 
     <main>
         <div class="container-fluid">
-            <div class="row" >
-                <div class="col-3 bg-black d-none d-md-flex px-3 pt-2 d-flex flex-column">
+            <div style="height: 90vh;" class="row" >
+                <div class="col-3 bg-black d-none d-md-flex px-3 pt-2 d-flex flex-column overflow-scroll overflow-x-hidden">
                     <p class="fs-4 fw-semibold mb-2">...</p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/house-door-fill.svg" alt="homeIcon"
                             class="me-3">Home</p>
@@ -29,9 +29,7 @@
                             alt="libraryIcon" class="me-3">La tua libreria</p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/plus-square-fill.svg"
                             alt="playIcon" class="me-3">Crea Playlist</p>
-                    <p class="d-flex align-items-center mb-2"><img src="assets/icons/bag-heart-fill.svg" alt="heartIcon" class="me-3">Brani che ti piacciono
-                      </p>
-
+                    <p class="d-flex align-items-center mb-2"><img src="assets/icons/bag-heart-fill.svg" alt="heartIcon" class="me-3">Brani che ti piacciono</p>
                    
 
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/bookmark-fill.svg"
@@ -41,10 +39,10 @@
                         <!-- Div che conterrà la lista delle playlist -->
                     </div>
                 </div>
-                <div class="col-7 border border-1 border-white px-5 pt-5">
+                <div class="col-12 border border-1 border-white px-5 pt-5 col-md-7 overflow-scroll overflow-x-hidden">
                     <div id="carouselExample" class="carousel slide bg-linear-gradient">
-                        <div class="carousel-inner" id="">
-                            <div class="carousel-item active">
+                        <div class="carousel-inner" id="carousel">
+                            <!-- <div class="carousel-item active">
                                 <div class="row p-3">
                                     <div class="col-3 mt-3"><img src="assets/imgs/search/image-10.jpg" alt="imgprova"
                                             class="w-100"></div>
@@ -63,50 +61,51 @@
                                       <button disabled class="btn text-gray2 bg-grayground fs-supersmall rounded-5  border-0">NASCONDI ANNUNCI</button>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                             <!-- <div class="carousel-item ">
                                 <img src="..." class="d-block w-100" alt="...">
                             </div> -->
                         </div>
                         <button class="carousel-control-prev " type="button" data-bs-target="#carouselExample"
                             data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon position-absolute position-top-negative w-25 bg-black rounded-circle" aria-hidden="true"></span>
+                            <span class="carousel-control-prev-icon  w-25 bg-black rounded-circle" aria-hidden="true"></span>
                         </button>
                         <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
                             data-bs-slide="next">
-                            <span class="carousel-control-next-icon position-absolute position-top-negative position-left-nextIcon w-25 bg-black rounded-circle" aria-hidden="true"></span>
+                            <span class="carousel-control-next-icon  w-25 bg-black rounded-circle" aria-hidden="true"></span>
                         </button>
                     </div>
                 </div>
-                <div class="col-2 bg-black d-none d-md-inline border border-1 border-white">
-                    <div class="row">
-                        <div class="col-1">
+                <div class="col-2 bg-black d-none d-md-flex border border-1 border-white flex-column align-content-start overflow-scroll overflow-x-hidden">
+                 <div class="d-flex justify-content-between"> <h6 class="my-2">Attività amici</h6> <span><i class="bi bi-person-add "></i><i class="bi bi-x "></i></span></div>
+                    <div class="row h-5">
+                        <div class="col-2">
                             <img src="./assets/imgs/main/image-1.jpg" alt="foto profilo utente" class="rounded-circle h-10">
                         </div>
-                        <div class="col-10">
-                            <p class="d-flex justify-content-between my-0"> <span class=" fw-bold">Charlie Hookham </span> <span>4 ore</span></p>
-                            <p class="d-flex my-0"><span>In Camera </span></p><i class="bi bi-dot "><span>Yumi Zouma</span></i>
-                            <p class="d-flex"><i class="bi bi-disc"></i>EP ||| </p>
+                        <div class="col-10 ">
+                            <p class="d-flex justify-content-between my-0 fs-11"> <span class=" fw-bold">Charlie Hookham </span> <span>4 ore</span></p>
+                            <p class="my-0 fs-11 d-flex"><span>In Camera </span><i class="bi bi-dot "></i><span>Yumi Zouma</span></p>
+                            <p class=" fs-11"><i class="bi bi-disc"></i>EP ||| </p>
                         </div>
                     </div>
-                    <div class="row fs-0 ">
-                      <div class="col-1">
-                          <img src="./assets/imgs/main/image-1.jpg" alt="foto profilo utente" class="rounded-circle h-10">
+                    <div class="row h-5">
+                      <div class="col-2">
+                          <img src="./assets/imgs/main/image-11.jpg" alt="foto profilo utente" class="rounded-circle h-10">
                       </div>
-                      <div class="col-10 fs-0">
-                          <p class="d-flex justify-content-between my-0"> <span class=" fw-bold">Lightdark02</span> <span>8 ore</span></p>
-                          <p class="d-flex my-0"><span>In Camera </span></p><i class="bi bi-dot "><span>Yumi Zouma</span></i>
-                          <p class="d-flex"><i class="bi bi-disc"></i>EP ||| </p>
+                      <div class="col-10 ">
+                          <p class="d-flex justify-content-between my-0 fs-11"> <span class=" fw-bold">Lightdark02</span> <span>8 ore</span></p>
+                          <p class="d-flex my-0 fs-11"><span>Aimend to Kill</span><i class="bi bi-dot"></i><span>Jade LeMac</span></p>
+                          <p class="fs-11"><i class="bi bi-disc"></i>Aimend to Kill </p>
                       </div>
                   </div>
-                   <div class="row my-0">
-                    <div class="col-1">
-                        <img src="./assets/imgs/main/image-1.jpg" alt="foto profilo utente" class="rounded-circle h-10">
+                   <div class="row h-5">
+                    <div class="col-2">
+                        <img src="./assets/imgs/main/image-12.jpg" alt="foto profilo utente" class="rounded-circle h-10">
                     </div>
                     <div class="col-10">
-                        <p class="d-flex justify-content-between my-0"> <span class=" fw-bold">Charlie Hookham </span> <span>4 ore</span></p>
-                        <p class="d-flex my-0"><span>In Camera </span></p><i class="bi bi-dot "><span>Yumi Zouma</span></i>
-                        <p class="d-flex"><i class="bi bi-disc"></i>EP ||| </p>
+                        <p class="d-flex justify-content-between my-0 fs-11"> <span class=" fw-bold">Valeria Traverso</span> <span>3 giorni</span></p>
+                        <p class="d-flex my-0 fs-11"><span>New Kings </span><i class="bi bi-dot "></i><span class="fs-11">Sleeping Wolf</span></p>
+                        <p class="fs-11"><i class="bi bi-music-note-beamed"></i>Twint Badass Mood</p>
                     </div>
                 </div>
               </div>
@@ -121,10 +120,10 @@
     <footer class="sticky-bottom"></footer>
 
     <!--Player  -->
-    <div class="divPlayer bg-grayMain align-items-center p-3 algin-items-center border border-white border-top-3 position-fixed bottom-0 w-100">
+    <div class="divPlayer bg-grayMain align-items-center p-3 border border-1 position-fixed bottom-0 w-100">
         <div class="row">
             
-            <div class="col-3 justify-content-center align-items-center text-start">
+            <div class="col-3 d-flex justify-content-st align-items-center text-start">
                 <div class="d-flex align-items-center">
                     <div>
                         <img class="divImgPlayer" src="assets/imgs/search/image-1.jpeg" alt="image player">
@@ -142,7 +141,7 @@
 
             </div>
             <div class="col-6 d-flex flex-column justify-content-center align-items-center z-10">
-                <div class="d-flex justify-content-center align-items-center mb-1">
+                <div class="d-flex justify-content-center align-items-center mb-2">
                     <i class="bi bi-shuffle"></i>
                     <span class="material-symbols-outlined ms-3">
                         skip_previous
@@ -153,10 +152,14 @@
                     </span>
                     <i class="bi bi-repeat ms-3"></i>
                 </div>
+                <div class="w-100 d-flex align-items-center">
+                    <p class="m-0 me-1">0:00</p>
+                    <input type="range" class="slider w-90">
+                    <p class="m-0 ms-1">3:00</p>
+                </div>
                 
-                <input type="range" class="slider w-90">
             </div>
-            <div class="col-3 text-end d-flex align-items-center">
+            <div class="col-3 d-flex justify-content-end align-items-center">
                 <i class="bi bi-mic-fill mx-1"></i>
                 <i class="bi bi-menu-button-wide-fill mx-1"></i>
                 <i class="bi bi-speaker mx-1"></i>
@@ -168,6 +171,8 @@
             </div>
         </div>
     </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

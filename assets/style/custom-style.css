@@ -929,6 +929,14 @@ progress {
   width: 100%;
 }
 
+.scroll-hidden {
+  overflow: hidden;
+  overflow-y: scroll; /* Permette lo scorrimento verticale senza mostrare la barra di scorrimento */
+  -ms-overflow-style: none;  /* Nasconde la barra di scorrimento in Internet Explorer e Edge */
+  scrollbar-width: none;  /* Nasconde la barra di scorrimento in Firefox */
+}
+
+
 .offset-1 {
   margin-left: 8.33333333%;
 }
@@ -9710,6 +9718,10 @@ textarea.form-control-lg {
 
 .fs-10 {
   font-size: calc(1.575rem + 3.9vw) !important;
+}
+
+.fs-11 {
+  font-size: 0.5rem !important;
 }
 
 .fst-italic {
