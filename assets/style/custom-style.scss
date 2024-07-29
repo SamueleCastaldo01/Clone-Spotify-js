@@ -1,7 +1,8 @@
 @import "scss/functions";
 @import "scss/variables";
+@import "player";
 
-$new-primary: #7550FE;
+$new-primary: #1ED760;
 $new-success: #1ACB98;
 $new-warning: #FFAA46;
 
@@ -9,9 +10,9 @@ $new-theme-colors: (
   "primary":$new-primary,
   "success":$new-success,
   "warning":$new-warning,
-  "grayground":#141414,
-  "gray2":#666666,
-  "grayold" :#333333,
+  "grayground": #000000,
+  "grayMain": #212121,
+  "grayCard" :#2C2C2C,
   "chit":#4498E7
 );
 
