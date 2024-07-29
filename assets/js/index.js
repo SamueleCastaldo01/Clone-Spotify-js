@@ -25,7 +25,7 @@ const albumData = function(album) {
                                             class="w-100"></div>
                                     <div class="col-7">
                                         <h6 class="fs-supersmall">ALBUM</h6>
-                                        <h1>${element.title}</h1>
+                                        <h1>${element.title_short}</h1>
                                         <p class="fs-small">${element.album.title}</p>
                                         <p class="fs-small mb-0">${convertDuration(element.duration)}</p>
                                         <div class="w-100 d-flex align-items-center ">
