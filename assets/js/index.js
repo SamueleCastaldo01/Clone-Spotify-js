@@ -6,7 +6,11 @@ const cardsAlbumRow = document.getElementById('cardsAlbum')
 let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel player, quando seleziono un album
 let indexCurrentTrack = 0;
 let tracks;
-let ini = false;
+
+const shuffleButton = document.getElementById('shuffleButton');
+let flagShuffle = false;
+let flagLoop = false;
+
 
 window.onload = function () {
     initTracks()
@@ -22,10 +26,7 @@ const player = function () {
     const playIcon = document.getElementById('play');
     const resetButton = document.getElementById('resetButton');
     const volumeControl = document.getElementById('volumeControl');
-    const shuffleButton = document.getElementById('shuffleButton');
     const loopButton = document.getElementById('loopButton');
-
-
     //vado a prendere la durata della canzone
     rangeAudio.value = 0
     rangeAudio.max = Math.floor(audio.duration);
@@ -91,26 +92,7 @@ const player = function () {
     }
 
 
-    // Gestore di evento per il clic sull'icona di riproduzione
-    playIcon.addEventListener('click', () => {
-        if (audio.paused) {
-            audio.play(); // Riproduce l'audio se è in pausa
-            playIcon.classList.remove('bi-play-circle-fill');
-            playIcon.classList.add('bi-pause-circle-fill');
-        } else {
-            audio.pause(); // Pausa l'audio se è in riproduzione
-            playIcon.classList.remove('bi-pause-circle-fill');
-            playIcon.classList.add('bi-play-circle-fill');
-        }
-    });
-
-
-    // Definisci la funzione da eseguire quando viene premuto il tasto spazio
-function handleSpacebarPress(event) {
-
-    if (event.key === ' ' || event.key === 'Spacebar') {
-        event.preventDefault(); // Previene il comportamento predefinito (es. scorrimento della pagina)
-        console.log('Barra spaziatrice premuta!');
+    function pausePLay() {
         if (audio.paused) {
             audio.play(); // Riproduce l'audio se è in pausa
             playIcon.classList.remove('bi-play-circle-fill');
@@ -121,10 +103,44 @@ function handleSpacebarPress(event) {
             playIcon.classList.add('bi-play-circle-fill');
         }
     }
-}
+
+    // Gestore di evento per il clic sull'icona di riproduzione
+    playIcon.addEventListener('click', () => {
+        pausePLay()
+    });
 
 
+    // Definisci la funzione da eseguire quando viene premuto il tasto spazio
+    function handleSpacebarPress(event) {
+        if (event.key === ' ' || event.key === 'Spacebar') {
+            event.preventDefault(); // Previene il comportamento predefinito (es. scorrimento della pagina)
+            pausePLay()
+        }
+    }
     document.addEventListener('keydown', handleSpacebarPress);
+
+
+    shuffleButton.addEventListener('click', () => {
+        if(flagShuffle === false) {
+            tracks = shuffle(tracks); // Mescola l'array tracks
+            shuffleButton.style.color = "#1ED760"
+            flagShuffle = true
+        } else {
+            flagShuffle = false
+            shuffleButton.style.color = "white"
+        }
+    })
+
+
+    loopButton.addEventListener('click', () => {
+        if(flagLoop === false) {
+            loopButton.style.color = "#1ED760"
+            flagLoop = true
+        } else {
+            flagLoop = false
+            loopButton.style.color = "white"
+        }
+    })
 
 }
 
@@ -246,6 +262,8 @@ function createAlbumCards(track) {
 
 // Funzione per gestire la riproduzione delle tracce, qui avrò tutte le tracce. Si attiva quando premo l'immagine
 function playerTracks(index) {
+    flagShuffle = false;
+    shuffleButton.style.color = "white"
     indexCurrentTrack = 0;
     tracks = trackDataArray[index];
     console.log(tracks);
@@ -323,4 +341,17 @@ const convertDuration = function (seconds) {
     const minutes = Math.floor(seconds / 60) < 10 ? "0" + Math.floor(seconds / 60) : Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60 < 10 ? "0" + seconds % 60 : seconds % 60;
     return `${minutes}:${remainingSeconds}`
+}
+
+
+
+
+
+// Definisci la funzione di mescolamento (Fisher-Yates shuffle)
+function shuffle(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]]; // Scambia gli elementi
+    }
+    return array;
 }
