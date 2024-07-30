@@ -163,14 +163,6 @@ $utilities: map-merge($utilities,
   border-bottom-left-radius: 15px
 }
 
-.scaleHover {
-  transition: transform 0.3s linear 0s;
-}
-
-.scaleHover:hover {
-  transform: scale(1.1)
-}
-
 // $headings-font-family: "Inter", sans-serif;
 
 @import "scss/bootstrap.scss";
