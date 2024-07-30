@@ -174,9 +174,6 @@ function buildCarousel(datasetArray) {
     });
 }
 
-
-
-
 // Funzione per creare le card____________________________________________
 function createAlbumCards(track) {
     // Aggiungi il track al trackDataArray e ottieni l'indice
