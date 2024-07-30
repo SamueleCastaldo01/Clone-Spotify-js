@@ -221,6 +221,27 @@ function buildCarousel(datasetArray) {
     });
 }
 
+function  playerCarousel(element) {
+    indexCurrentTrack = 0;
+    const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
+    playIcon.classList.remove('bi-play-circle-fill');
+    playIcon.classList.add('bi-pause-circle-fill');
+    const titlePlayer = document.getElementById('titlePlayer')  //vado a prendere gli elementi da cambiare all'interno del player
+    const artistPlayer = document.getElementById('artistPlayer')
+    const imgPlayer = document.getElementById('imgPlayer')
+
+    const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
+    const sourceElement = audioElement.querySelector('source');
+
+    sourceElement.src = element.preview; //imposta il nuvo URL
+    titlePlayer.innerText = element.title_short   //cambia nel cose nel DOM del palyer
+    artistPlayer.innerText = element.artist.name
+    imgPlayer.src = element.album.cover_small
+
+    audioElement.load();
+    audioElement.play(); 
+}
+
 
 
 
