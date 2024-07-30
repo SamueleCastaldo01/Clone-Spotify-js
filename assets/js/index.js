@@ -186,8 +186,8 @@ function createAlbumCards(track) {
             </div>        
             
             <div class="card-body d-none">
-                <h5 class="card-title my-2"><a href = "album.html/${track[0].album.id}"  class="text-decoration-none text-white">${track[0].album.title}</a></h5>
-                <p class="card-text mb-4 fs-small "><a href = "artist.html/${track[0].artist.id}" class="text-decoration-none text-white">${track[0].artist.name}</a></p>
+                <h5 class="card-title my-2"><a href = "./albumdetails.html?${track[0].album.id}"  class="text-decoration-none text-white">${track[0].album.title}</a></h5>
+                <p class="card-text mb-4 fs-small "><a href = "./artista.html?${track[0].artist.id}" class="text-decoration-none text-white">${track[0].artist.name}</a></p>
             </div>
         </div>`
        
