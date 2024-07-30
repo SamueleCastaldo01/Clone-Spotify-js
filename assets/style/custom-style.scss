@@ -170,7 +170,7 @@ $utilities: map-merge($utilities,
 }
 
 .scaleHover:hover {
-  transform: scale(1.1);
+  transform: scale(1.05);
  background-color: #313030;
  z-index:2
 }
@@ -182,8 +182,39 @@ $utilities: map-merge($utilities,
 
 .scaleHover:hover .circle-button{
   display: block !important;
+}
+@keyframes slideInTop {
+  0% {
+    transform: translateY(10px); 
+    opacity: 0; 
+  }
+  50%{
+    transform: translateY(5px); 
+    opacity: 0.7; 
+  }
+  100% {
+    transform: translateY(0px); 
+    opacity: 1; 
+    
+}
+}
+
+.position-relative:hover .circle-button {
+  display: block; /* Mostra il pulsante */
+  animation-name: slideInTop;
+  animation-timing-function: ease-in;
+  animation-duration:0.2s; 
+  animation-iteration-count:1 ;
 
 }
+.circle-button{
+  height: 50px;
+  width: 50px;
+ 
+  
+}
+
+
 
 .truncateText{
   white-space: nowrap;
