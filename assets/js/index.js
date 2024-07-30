@@ -2,6 +2,10 @@ const albumsId = ["11205422", "534017402", "544892012", "420845567", "6327742", 
 const carouselRow = document.getElementById('carousel');
 const cardsAlbumRow = document.getElementById('cardsAlbum')
 
+let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel player, quando seleziono un album
+let indexCurrentTrack = 0;
+let tracks;
+
 window.onload = function () {
     player();
     buildCarouselItems()
@@ -43,6 +47,9 @@ const player = function () {
     // Quando si resetta, finisce, passa a valore zero si resetta
     audio.addEventListener('ended', () => {
         rangeAudio.value = 0;
+        if(tracks.length >1) {
+            playTrack()
+        }
     });
 
 
@@ -151,30 +158,75 @@ function buildCarousel(datasetArray) {
     });
 }
 
+
+
+
 // Funzione per creare le card
-function createAlbumCards(albums) {
+function createAlbumCards(track) {
+    // Aggiungi il track al trackDataArray e ottieni l'indice
+    const trackIndex = trackDataArray.length;
+    trackDataArray.push(track);
+
     cardsAlbumRow.innerHTML += `
         <div class="col-3 mb-3 scaleHover"
           <div class="card w-25" ">
-            <img onclick="playerTracks()" src="${albums[0].album.cover_medium}" class="card-img-top" alt="img album">
+            <img id="btnTrack-${track[0].album.id}" src="${track[0].album.cover_medium}" class="card-img-top" alt="img album"  onclick="playerTracks(${trackIndex})">
             <div class="card-body ">
-                <h5 class="card-title"><a href = "album.html/${albums[0].album.id}">${albums[0].album.title}</a></h5>
-                <p class="card-text"><a href = "artist.html/${albums[0].artist.id}">${albums[0].artist.name}</a></p>
+                <h5 class="card-title"><a href = "album.html/${track[0].album.id}">${track[0].album.title}</a></h5>
+                <p class="card-text"><a href = "artist.html/${track[0].artist.id}">${track[0].artist.name}</a></p>
             </div>
         </div>`
+       
 }
+
+
+// Funzione per gestire la riproduzione delle tracce, qui avrò tutte le tracce
+function playerTracks(index) {
+    indexCurrentTrack = 0;
+    tracks = trackDataArray[index];
+    console.log(tracks);
+    playTrack()
+}
+
+
+ document.getElementById('nextTrack').addEventListener('click', () => {
+    playTrack()
+ })
+
+
+ function playTrack() {
+    const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
+    playIcon.classList.remove('bi-play-circle-fill');
+    playIcon.classList.add('bi-pause-circle-fill');
+
+    const titlePlayer = document.getElementById('titlePlayer')  //vado a prendere gli elementi da cambiare all'interno del player
+    const artistPlayer = document.getElementById('artistPlayer')
+    const imgPlayer = document.getElementById('imgPlayer')
+
+    const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
+    const sourceElement = audioElement.querySelector('source');
+
+    if(indexCurrentTrack >= tracks.length) {
+        indexCurrentTrack = 0;  // Resetta l'indice alla prima traccia
+    }
+
+    sourceElement.src = tracks[indexCurrentTrack].preview; //imposta il nuvo URL
+    titlePlayer.innerText = tracks[indexCurrentTrack].title_short   //cambia nel cose nel DOM del palyer
+    artistPlayer.innerText = tracks[indexCurrentTrack].artist.name
+    imgPlayer.src = tracks[indexCurrentTrack].album.cover_small
+
+    indexCurrentTrack ++; //aggiorna l'index per poi andare alla prossima traccia, quando si preme il pulsante
+
+    // Ricarica l'audio e riproduci
+    audioElement.load();
+    audioElement.play();
+ }
+
+
+
 
 const convertDuration = function (seconds) {
     const minutes = Math.floor(seconds / 60)
     const remainingSeconds = seconds % 60
     return `${minutes}:${remainingSeconds}`
-}
-
-
-
-const arrayPlayer = [];
-
-
-function playerTracks(tracks) {
-    console.log("sono entrato")
 }
