@@ -178,7 +178,7 @@ function createAlbumCards(track) {
     trackDataArray.push(track);
 
     cardsAlbumRow.innerHTML += `
-        <div class="col-12 col-md-3 mb-3 rounded scaleHover"
+        <div class="col-12 col-md-3 mb-1 rounded scaleHover"
           <div class="card w-25 " >
           <div class="position-relative">
             <img src="${track[0].album.cover_medium}" class="card-img-top rounded mt-2" alt="img album" onclick="playerTracks(${trackIndex})">  
