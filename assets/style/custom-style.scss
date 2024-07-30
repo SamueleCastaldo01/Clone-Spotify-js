@@ -134,17 +134,33 @@ $utilities: map-merge($utilities,
         ),
       ),
     ));
-    
-.bg-linear-gradient{
-  background:linear-gradient(to right, #000000, #1E1E1E);
+
+.bg-linear-gradient {
+  background: linear-gradient(to right, #000000, #1E1E1E);
 }
 
-.position-top-negative{
-  top:-35px
+.position-top-negative {
+  top: -35px
 }
 
-.position-left-nextIcon{
-  left:-25em
+.position-left-nextIcon {
+  left: -25em
+}
+
+.radius-top-left {
+  border-top-left-radius: 15px;
+}
+
+.radius-top-right {
+  border-top-right-radius:15px
+}
+
+.radius-bottom-right {
+  border-bottom-right-radius:15px
+}
+
+.radius-bottom-left {
+  border-bottom-left-radius: 15px
 }
 
 

@@ -7,6 +7,13 @@
   height: 5px;
 }
 
+.divPlayer i {
+  cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
 .bg-linear-gradient {
   background: linear-gradient(to right, #000000, #1E1E1E);
 }
@@ -17,6 +24,22 @@
 
 .position-left-nextIcon {
   left: -25em;
+}
+
+.radius-top-left {
+  border-top-left-radius: 15px;
+}
+
+.radius-top-right {
+  border-top-right-radius: 15px;
+}
+
+.radius-bottom-right {
+  border-bottom-right-radius: 15px;
+}
+
+.radius-bottom-left {
+  border-bottom-left-radius: 15px;
 }
 
 /*!
@@ -689,6 +712,40 @@ progress {
   }
 }
 
+.display-7 {
+  font-size: calc(1.325rem + 0.9vw);
+  font-weight: 300;
+  line-height: 1.2;
+}
+@media (min-width: 1200px) {
+  .display-7 {
+    font-size: 2rem;
+  }
+}
+
+.display-8 {
+  font-size: calc(1.275rem + 0.3vw);
+  font-weight: 300;
+  line-height: 1.2;
+}
+@media (min-width: 1200px) {
+  .display-8 {
+    font-size: 1.5rem;
+  }
+}
+
+.display-9 {
+  font-size: 1rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.display-10 {
+  font-size: 0.5rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
 .list-unstyled {
   padding-left: 0;
   list-style: none;
@@ -928,14 +985,6 @@ progress {
   flex: 0 0 auto;
   width: 100%;
 }
-
-.scroll-hidden {
-  overflow: hidden;
-  overflow-y: scroll; /* Permette lo scorrimento verticale senza mostrare la barra di scorrimento */
-  -ms-overflow-style: none;  /* Nasconde la barra di scorrimento in Internet Explorer e Edge */
-  scrollbar-width: none;  /* Nasconde la barra di scorrimento in Firefox */
-}
-
 
 .offset-1 {
   margin-left: 8.33333333%;
@@ -9721,7 +9770,7 @@ textarea.form-control-lg {
 }
 
 .fs-11 {
-  font-size: 0.5rem !important;
+  font-size: 0.8rem !important;
 }
 
 .fst-italic {
