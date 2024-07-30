@@ -150,13 +150,3 @@ const convertDuration = function (seconds) {
     return `${minutes}:${remainingSeconds}`
 }
 albumData('75621062');
-
-
-
-// Funzione per formattare il tempo
-function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-}
-
