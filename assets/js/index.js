@@ -136,7 +136,7 @@ function buildCarousel(datasetArray) {
                 <h1>${element.title_short}</h1>
                 <p class="fs-small">${element.album.title}</p>
                 <p class="fs-small mb-0">${convertDuration(element.duration)}</p>
-                <div class="w-100 d-flex align-items-center ">
+                <div class="w-100 d-flex align-items-center">
                     <button class="btn btn-sm bg-primary rounded-5 px-4 py-2 me-3 h-25 fw-bold text-black">Play</button>
                     <button class="btn btn-sm bg-black text-white rounded-5 px-4 py-2 me-3 h-25 border border-white border-1">Salva</button>
                     <p class="fs-1">...</p>
@@ -157,13 +157,13 @@ function createAlbumCards(albums) {
         <div class="col-3 mb-3 scaleHover rounded"
           <div class="card w-25 " >
           <div class="position-relative">
-            <img src="${albums[0].album.cover_medium}" class="card-img-top rounded pt-2 " alt="img album">  
+            <img src="${albums[0].album.cover_medium}" class="card-img-top rounded mt-2" alt="img album">  
             <button type="button" class="btn btn-primary circle-button position-absolute bottom-0 end-0 translate-middle d-none rounded-circle"><i class="bi bi-play-fill "></i></button>
             </div>        
             
             <div class="card-body d-none">
-                <h5 class="card-title"><a href = "album.html/${albums[0].album.id}"  class="text-decoration-none text-white">${albums[0].album.title}</a></h5>
-                <p class="card-text mb-4 "><a href = "artist.html/${albums[0].artist.id}" class="text-decoration-none text-white">${albums[0].artist.name}</a></p>
+                <h5 class="card-title my-2"><a href = "album.html/${albums[0].album.id}"  class="text-decoration-none text-white">${albums[0].album.title}</a></h5>
+                <p class="card-text mb-4 fs-small "><a href = "artist.html/${albums[0].artist.id}" class="text-decoration-none text-white">${albums[0].artist.name}</a></p>
                      
             </div>
         </div>`
