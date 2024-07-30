@@ -5,6 +5,7 @@
 $new-primary: #1ED760;
 $new-success: #1ACB98;
 $new-warning: #FFAA46;
+$new-dark: #313030;
 
 $new-theme-colors: (
   "primary":$new-primary,
@@ -13,7 +14,8 @@ $new-theme-colors: (
   "grayground": #000000,
   "grayMain": #212121,
   "grayCard" :#2C2C2C,
-  "chit":#4498E7
+  "chit":#4498E7,
+  "dark":$new-dark
 );
 
 $theme-colors: map-merge($theme-colors, $new-theme-colors);
@@ -170,9 +172,6 @@ $utilities: map-merge($utilities,
 .scaleHover:hover {
   transform: scale(1.1);
  background-color: #313030;
-
-  
-  
 }
 
 .scaleHover:hover .card-body {

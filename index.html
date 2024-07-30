@@ -23,11 +23,11 @@
                     class="col-3 bg-black d-none d-md-flex px-3 pt-2 d-flex flex-column position-sticky top-0 left-0 overflow-hidden" style="height:100vh">
                     <p class="fs-4 fw-semibold mb-2">...</p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/house-door-fill.svg" alt="homeIcon"
-                            class="me-3"><a href="index.html">Home</a></p>
+                            class="me-3"><a href="index.html" class="text-decoration-none text-light">Home</a></p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/search.svg" alt="searchIcon"
-                            class="me-3">Cerca</p>
+                            class="me-3"><a href="#" class="text-decoration-none text-light">Cerca</a></p>
                     <p class="d-flex align-items-center mb-5"><img src="assets/icons/music-note-list.svg"
-                            alt="libraryIcon" class="me-3"><a href="#">La tua libreria</a></p>
+                            alt="libraryIcon" class="me-3"><a href="#" class="text-decoration-none text-light">La tua libreria</a></p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/plus-square-fill.svg"
                             alt="playIcon" class="me-3">Crea Playlist</p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/bag-heart-fill.svg" alt="heartIcon"
@@ -109,7 +109,7 @@
                             </div>
                             <div class="col-4 ">
                                 <div
-                                    class="row bg-body-secondary me-2 radius-top-left radius-bottom-left radius-top-right radius-bottom-right">
+                                    class="row bg-dark me-2 radius-top-left radius-bottom-left radius-top-right radius-bottom-right">
                                     <div
                                         class="col-4 p-0 d-flex flex-wrap radius-top-left overflow-hidden radius-bottom-left">
                                         <div class="w-50 p-0 ">
@@ -133,7 +133,7 @@
                             </div>
                             <div class="col-4 ">
                                 <div
-                                    class="row bg-body-secondary me-2 radius-top-left radius-bottom-left radius-top-right radius-bottom-right">
+                                    class="row bg-dark me-2 radius-top-left radius-bottom-left radius-top-right radius-bottom-right">
                                     <div
                                         class="col-4 p-0 d-flex flex-wrap radius-top-left overflow-hidden radius-bottom-left">
                                         <div class="w-50 p-0 ">
@@ -157,7 +157,7 @@
                             </div>
                             <div class="col-4 ">
                                 <div
-                                    class="row bg-body-secondary me-2 radius-top-left radius-bottom-left radius-top-right radius-bottom-right">
+                                    class="row bg-dark me-2 radius-top-left radius-bottom-left radius-top-right radius-bottom-right">
                                     <div
                                         class="col-4 p-0 d-flex flex-wrap radius-top-left overflow-hidden radius-bottom-left">
                                         <div class="w-50 p-0 ">
@@ -181,7 +181,7 @@
                             </div>
                             <div class="col-4 ">
                                 <div
-                                    class="row bg-body-secondary me-2 radius-top-left radius-bottom-left radius-top-right radius-bottom-right">
+                                    class="row bg-dark me-2 radius-top-left radius-bottom-left radius-top-right radius-bottom-right">
                                     <div
                                         class="col-4 p-0 d-flex flex-wrap radius-top-left overflow-hidden radius-bottom-left">
                                         <div class="w-50 p-0 ">
@@ -205,7 +205,7 @@
                             </div>
                             <div class="col-4 ">
                                 <div
-                                    class="row bg-body-secondary me-2 radius-top-left radius-bottom-left radius-top-right radius-bottom-right">
+                                    class="row bg-dark me-2 radius-top-left radius-bottom-left radius-top-right radius-bottom-right">
                                     <div
                                         class="col-4 p-0 d-flex flex-wrap radius-top-left overflow-hidden radius-bottom-left">
                                         <div class="w-50 p-0 ">
@@ -244,7 +244,7 @@
                             <i class="bi bi-x"></i>
                         </span>
                     </div>
-                    <div class="row h-5 mb-5">
+                    <div class="row h-10 mb-2 mb-md-5">
                         <div class="col-2">
                             <img src="./assets/imgs/main/image-1.jpg" alt="foto profilo utente"
                                 class="rounded-circle h-10">
@@ -257,7 +257,7 @@
                             <p class=" fs-11"><i class="bi bi-disc"></i>EP ||| </p>
                         </div>
                     </div>
-                    <div class="row h-5 mb-5">
+                    <div class="row h-10 mb-2 mb-lg-5">
                         <div class="col-2">
                             <img src="./assets/imgs/main/image-11.jpg" alt="foto profilo utente"
                                 class="rounded-circle h-10">
@@ -270,7 +270,7 @@
                             <p class="fs-11"><i class="bi bi-disc"></i>Aimend to Kill </p>
                         </div>
                     </div>
-                    <div class="row h-5 mb-3">
+                    <div class="row h-10 mb-3">
                         <div class="col-2">
                             <img src="./assets/imgs/main/image-12.jpg" alt="foto profilo utente"
                                 class="rounded-circle h-10">
@@ -296,8 +296,8 @@
 
     <!--Player  -->
     <div class="divPlayer bg-grayMain align-items-center p-3  position-fixed bottom-0 w-100">
-        <audio id="audio">
-            <source src="assets/music.mp3" type="audio/mpeg">
+        <audio id="audio"  crossorigin="anonymous">
+            <source src="https://cdn-preview-3.dzcdn.net/stream/c-311edfab6c168901d5b4a27004c05425-1.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
         <div class="row">
@@ -305,12 +305,12 @@
             <div class="col-3 d-flex justify-content-st align-items-center text-start">
                 <div class="d-flex align-items-center">
                     <div>
-                        <img class="divImgPlayer" src="assets/imgs/search/image-1.jpeg" alt="image player">
+                        <img id="imgPlayer" class="divImgPlayer" src="assets/imgs/search/image-1.jpeg" alt="image player">
                     </div>
 
                     <div class="ms-2">
-                        <h6 class="m-0">Titolo canzone</h6>
-                        <p class="m-0">Nome Artista</p>
+                        <h6 id="titlePlayer" class="m-0">Titolo canzone</h6>
+                        <p id="artistPlayer" class="m-0">Nome Artista</p>
                     </div>
                     <div class="ms-2">
                         <i class="bi bi-heart"></i>
@@ -326,7 +326,7 @@
                         skip_previous
                     </i>
                     <i id="play" class="bi bi-play-circle-fill ms-3 display-6"></i>
-                    <i class="material-symbols-outlined ms-3">
+                    <i id="nextTrack" class="material-symbols-outlined ms-3">
                         skip_next
                     </i>
                     <i class="bi bi-repeat ms-3"></i>
