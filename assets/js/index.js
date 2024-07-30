@@ -78,7 +78,6 @@ const player = function () {
     }
 
 
-
     // Gestore di evento per il clic sull'icona di riproduzione
     playIcon.addEventListener('click', () => {
         if (audio.paused) {
@@ -155,12 +154,12 @@ function buildCarousel(datasetArray) {
 // Funzione per creare le card
 function createAlbumCards(albums) {
     cardsAlbumRow.innerHTML += `
-        <div class="col-3"
+        <div class="col-3 mb-3 scaleHover"
           <div class="card w-25" ">
             <img src="${albums[0].album.cover_medium}" class="card-img-top" alt="img album">
-            <div class="card-body">
-            <h5 class="card-title"><a href = "album.html/${albums[0].album.id}">${albums[0].album.title}</a></h5>
-            <p class="card-text"><a href = "artist.html/${albums[0].artist.id}">${albums[0].artist.name}</a></p>
+            <div class="card-body d-none">
+                <h5 class="card-title"><a href = "album.html/${albums[0].album.id}">${albums[0].album.title}</a></h5>
+                <p class="card-text"><a href = "artist.html/${albums[0].artist.id}">${albums[0].artist.name}</a></p>
             </div>
         </div>`
 }

@@ -152,15 +152,27 @@ $utilities: map-merge($utilities,
 }
 
 .radius-top-right {
-  border-top-right-radius:15px
+  border-top-right-radius: 15px
 }
 
 .radius-bottom-right {
-  border-bottom-right-radius:15px
+  border-bottom-right-radius: 15px
 }
 
 .radius-bottom-left {
   border-bottom-left-radius: 15px
+}
+
+.scaleHover {
+  transition: transform 0.3s linear 0s;
+}
+
+.scaleHover:hover {
+  transform: scale(1.1)
+}
+
+.scaleHover:hover .card-body {
+  display: block !important;
 }
 
 
