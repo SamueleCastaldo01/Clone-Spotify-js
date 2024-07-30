@@ -257,7 +257,7 @@ function createAlbumCards(track) {
           <div class="card w-25 " >
           <div class="position-relative">
             <img src="${track[0].album.cover_medium}" class="card-img-top rounded mt-2" alt="img album" >  
-            <button type="button" class="btn btn-primary circle-button position-absolute bottom-0 end-0 translate-middle d-none rounded-circle"><i class="bi bi-play-fill " onclick="playerTracks(${trackIndex})"></i></button>
+            <button type="button" class="btn btn-primary circle-button position-absolute bottom-10 end-5  d-none rounded-circle "><i class="bi bi-play-fill fs-4" onclick="playerTracks(${trackIndex})"></i></button>
             </div>        
             
             <div class="card-body d-none">

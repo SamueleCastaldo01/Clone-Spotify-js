@@ -78,13 +78,8 @@
   display: block; /* Mostra il pulsante */
   animation-name: slideInTop;
   animation-timing-function: ease-in;
-  animation-duration: 0.2s;
+  animation-duration: 0.3s;
   animation-iteration-count: 1;
-}
-
-.circle-button {
-  height: 50px;
-  width: 50px;
 }
 
 .truncateText {
