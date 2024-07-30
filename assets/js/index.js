@@ -2,6 +2,12 @@ const albumsId = ["11205422", "534017402", "544892012", "420845567", "6327742", 
 const carouselRow = document.getElementById('carousel');
 const cardsAlbumRow = document.getElementById('cardsAlbum')
 
+
+let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel player, quando seleziono un album
+let indexCurrentTrack = 0;
+let tracks;
+
+
 window.onload = function () {
     player();
     buildCarouselItems()
@@ -172,12 +178,16 @@ function createAlbumCards(track) {
     trackDataArray.push(track);
 
     cardsAlbumRow.innerHTML += `
-        <div class="col-3 mb-3 scaleHover"
-          <div class="card w-25" ">
-            <img src="${albums[0].album.cover_medium}" class="card-img-top" alt="img album">
-            <div class="card-body ">
-                <h5 class="card-title"><a href = "album.html/${albums[0].album.id}">${albums[0].album.title}</a></h5>
-                <p class="card-text"><a href = "artist.html/${albums[0].artist.id}">${albums[0].artist.name}</a></p>
+        <div class="col-12 col-md-3 mb-3 rounded"
+          <div class="card w-25 " >
+          <div class="position-relative">
+            <img src="${track[0].album.cover_medium}" class="card-img-top rounded mt-2" alt="img album" onclick="playerTracks(${trackIndex})">  
+            <button type="button" class="btn btn-primary circle-button position-absolute bottom-0 end-0 translate-middle d-none rounded-circle"><i class="bi bi-play-fill "></i></button>
+            </div>        
+            
+            <div class="card-body d-none">
+                <h5 class="card-title my-2"><a href = "album.html/${track[0].album.id}"  class="text-decoration-none text-white">${track[0].album.title}</a></h5>
+                <p class="card-text mb-4 fs-small "><a href = "artist.html/${track[0].artist.id}" class="text-decoration-none text-white">${track[0].artist.name}</a></p>
             </div>
         </div>`
        
