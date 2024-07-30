@@ -86,21 +86,20 @@ audio.addEventListener('loadedmetadata', () => {
 
 
 
-const albumData = function(album) {
+const Albumes = function(album) {
     const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/album/${album}`;
-    const carouselRow = document.getElementById('carousel');
+    const carouselRow = document.getElementById('albumPrint');
     
     fetch(apiKey)
     .then((response) => {
         if (response.ok) {
             return response.json();
         } else {
-            throw new Error('No Album No party');
+            throw new Error('No Album');
         }
     })
     .then((dataAlbum) => {
         console.log('Data Album', dataAlbum);
-        // const arrayAlbum = Array.from(dataAlbum)
         const albumtracks = Array.from(dataAlbum.tracks.data);
 
         // arrayAlbum.forEach((album) => {
@@ -112,7 +111,7 @@ const albumData = function(album) {
                     <div class="col-3 mt-3"><img src="${element.album.cover_medium}" alt="imgprova"
                         class="w-100"></div>
                     <div class="col-7">
-                        <h6 class="fs-supersmall">ALBUM</h6>
+                        <h6 class="fs-small">ALBUM</h6>
                         <h1>${element.title_short}</h1>
                         <p class="fs-small">${element.album.title}</p>
                         <p class="fs-small mb-0">${convertDuration(element.duration)}</p>
@@ -147,4 +146,3 @@ const convertDuration = function(seconds){
     const remainingSeconds = seconds %60
     return `${minutes}:${remainingSeconds}`
 }
-albumData('75621062');
