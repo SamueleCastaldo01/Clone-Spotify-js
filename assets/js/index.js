@@ -22,6 +22,8 @@ const player = function () {
     const playIcon = document.getElementById('play');
     const resetButton = document.getElementById('resetButton');
     const volumeControl = document.getElementById('volumeControl');
+    const shuffleButton = document.getElementById('shuffleButton');
+    const loopButton = document.getElementById('loopButton');
 
 
     //vado a prendere la durata della canzone
@@ -102,8 +104,33 @@ const player = function () {
         }
     });
 
+
+    // Definisci la funzione da eseguire quando viene premuto il tasto spazio
+function handleSpacebarPress(event) {
+
+    if (event.key === ' ' || event.key === 'Spacebar') {
+        event.preventDefault(); // Previene il comportamento predefinito (es. scorrimento della pagina)
+        console.log('Barra spaziatrice premuta!');
+        if (audio.paused) {
+            audio.play(); // Riproduce l'audio se è in pausa
+            playIcon.classList.remove('bi-play-circle-fill');
+            playIcon.classList.add('bi-pause-circle-fill');
+        } else {
+            audio.pause(); // Pausa l'audio se è in riproduzione
+            playIcon.classList.remove('bi-pause-circle-fill');
+            playIcon.classList.add('bi-play-circle-fill');
+        }
+    }
 }
 
+
+    document.addEventListener('keydown', handleSpacebarPress);
+
+}
+
+
+
+//-------------------------------------------------------
 const albumData = function (type, album) {
     const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/${type}/${album}`;
 
@@ -128,12 +155,15 @@ const albumData = function (type, album) {
         });
 }
 
+
 function buildCarouselItems() {
     albumsId.forEach(e => {
         albumData("album", e);
     })
 }
 
+
+//----------------------------------------------------------------------
 function buildCarousel(datasetArray) {
     function truncate(text, maxLength) {
         if (text.length > maxLength) {
@@ -144,32 +174,51 @@ function buildCarousel(datasetArray) {
     
     datasetArray.forEach((element) => {
         const active = document.querySelectorAll(".carousel-item").length < 1 ? "active" : "";
+        const escapedElement = JSON.stringify(element).replace(/"/g, '&quot;'); // Serve per portarmi l'array nella funzione per gestire il lettore
         carouselRow.innerHTML += `
-    <div class="carousel-item ${active}">
-        <div class="row p-3 pb-0">
-            <div class="col-3 mt-3"><img src="${element.album.cover_medium}" alt="imgprova"
-                class="w-100"></div>
-            <div class="col-7">
-                <h6 class="fs-supersmall">ALBUM</h6>
-                <h1>${truncate(element.title_short, 17)} </h1>
-                <p class="fs-small">${element.album.title}</p>
-                <p class="fs-small mb-0">${convertDuration(element.duration)}</p>
-                <div class="w-100 d-flex align-items-center">
-                    <button class="btn btn-sm bg-primary rounded-5 px-4 py-2 me-3 h-25 fw-bold text-black">Play</button>
-                    <button class="btn btn-sm bg-black text-white rounded-5 px-4 py-2 me-3 h-25 border border-white border-1">Salva</button>
-                    <p class="fs-1">...</p>
+            <div class="carousel-item ${active}">
+                <div class="row p-3 pb-0">
+                    <div class="col-3 mt-3"><img src="${element.album.cover_medium}" alt="imgprova" class="w-100"></div>
+                    <div class="col-7">
+                        <h6 class="fs-supersmall">ALBUM</h6>
+                        <h1>${truncate(element.title_short, 17)}</h1>
+                        <p class="fs-small">${element.album.title}</p>
+                        <p class="fs-small mb-0">${convertDuration(element.duration)}</p>
+                        <div class="w-100 d-flex align-items-center">
+                            <button onclick='playerCarousel(${escapedElement})' class="btn btn-sm bg-primary rounded-5 px-4 py-2 me-3 h-25 fw-bold text-black">Play</button>
+                            <button class="btn btn-sm bg-black text-white rounded-5 px-4 py-2 me-3 h-25 border border-white border-1">Salva</button>
+                            <p class="fs-1">...</p>
+                        </div>
+                    </div>
+                    <div class="col-2">
+                        <button disabled class="btn text-gray2 bg-grayground fs-supersmall rounded-5 border-0">NASCONDI ANNUNCI</button>
+                    </div>
                 </div>
             </div>
-            <div class="col-2">
-                <button disabled class="btn text-gray2 bg-grayground fs-supersmall rounded-5  border-0">NASCONDI ANNUNCI</button>
-            </div>
-        </div>
-    </div>
-`;
+        `;
     });
 }
 
+function  playerCarousel(element) {
+    indexCurrentTrack = 0;
+    const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
+    playIcon.classList.remove('bi-play-circle-fill');
+    playIcon.classList.add('bi-pause-circle-fill');
+    const titlePlayer = document.getElementById('titlePlayer')  //vado a prendere gli elementi da cambiare all'interno del player
+    const artistPlayer = document.getElementById('artistPlayer')
+    const imgPlayer = document.getElementById('imgPlayer')
 
+    const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
+    const sourceElement = audioElement.querySelector('source');
+
+    sourceElement.src = element.preview; //imposta il nuvo URL
+    titlePlayer.innerText = element.title_short   //cambia nel cose nel DOM del palyer
+    artistPlayer.innerText = element.artist.name
+    imgPlayer.src = element.album.cover_small
+
+    audioElement.load();
+    audioElement.play(); 
+}
 
 
 // Funzione per creare le card____________________________________________
