@@ -1,3 +1,4 @@
+const albumsId = ["11205422", "534017402", "544892012", "420845567", "6327742", "112217392", "6157080", "74872972" ];
 
 const player = function () {
     const audio = document.getElementById('audio');
@@ -85,6 +86,7 @@ const player = function () {
     });
 
 }
+
 
 
 
