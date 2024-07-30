@@ -2,10 +2,6 @@ const albumsId = ["11205422", "534017402", "544892012", "420845567", "6327742", 
 const carouselRow = document.getElementById('carousel');
 const cardsAlbumRow = document.getElementById('cardsAlbum')
 
-let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel player, quando seleziono un album
-let indexCurrentTrack = 0;
-let tracks;
-
 window.onload = function () {
     player();
     buildCarouselItems()
@@ -132,6 +128,13 @@ function buildCarouselItems() {
 }
 
 function buildCarousel(datasetArray) {
+    function truncate(text, maxLength) {
+        if (text.length > maxLength) {
+            return text.slice(0, maxLength) + '...';
+        }
+        return text;
+    }
+    
     datasetArray.forEach((element) => {
         const active = document.querySelectorAll(".carousel-item").length < 1 ? "active" : "";
         carouselRow.innerHTML += `
@@ -141,10 +144,10 @@ function buildCarousel(datasetArray) {
                 class="w-100"></div>
             <div class="col-7">
                 <h6 class="fs-supersmall">ALBUM</h6>
-                <h1>${element.title_short}</h1>
+                <h1>${truncate(element.title_short, 17)} </h1>
                 <p class="fs-small">${element.album.title}</p>
                 <p class="fs-small mb-0">${convertDuration(element.duration)}</p>
-                <div class="w-100 d-flex align-items-center ">
+                <div class="w-100 d-flex align-items-center">
                     <button class="btn btn-sm bg-primary rounded-5 px-4 py-2 me-3 h-25 fw-bold text-black">Play</button>
                     <button class="btn btn-sm bg-black text-white rounded-5 px-4 py-2 me-3 h-25 border border-white border-1">Salva</button>
                     <p class="fs-1">...</p>
@@ -171,10 +174,10 @@ function createAlbumCards(track) {
     cardsAlbumRow.innerHTML += `
         <div class="col-3 mb-3 scaleHover"
           <div class="card w-25" ">
-            <img id="btnTrack-${track[0].album.id}" src="${track[0].album.cover_medium}" class="card-img-top" alt="img album"  onclick="playerTracks(${trackIndex})">
+            <img src="${albums[0].album.cover_medium}" class="card-img-top" alt="img album">
             <div class="card-body ">
-                <h5 class="card-title"><a href = "album.html/${track[0].album.id}">${track[0].album.title}</a></h5>
-                <p class="card-text"><a href = "artist.html/${track[0].artist.id}">${track[0].artist.name}</a></p>
+                <h5 class="card-title"><a href = "album.html/${albums[0].album.id}">${albums[0].album.title}</a></h5>
+                <p class="card-text"><a href = "artist.html/${albums[0].artist.id}">${albums[0].artist.name}</a></p>
             </div>
         </div>`
        
@@ -227,7 +230,7 @@ function playerTracks(index) {
 
 
 const convertDuration = function (seconds) {
-    const minutes = Math.floor(seconds / 60)
-    const remainingSeconds = seconds % 60
+    const minutes = Math.floor(seconds / 60) < 10 ? "0" + Math.floor(seconds / 60) : Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60 < 10 ? "0" + seconds % 60 : seconds % 60;
     return `${minutes}:${remainingSeconds}`
 }
