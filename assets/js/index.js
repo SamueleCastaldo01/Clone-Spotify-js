@@ -187,8 +187,8 @@ function createAlbumCards(track) {
         <div class="col-12 col-md-3 mb-3 rounded scaleHover"
           <div class="card w-25 " >
           <div class="position-relative">
-            <img src="${track[0].album.cover_medium}" class="card-img-top rounded mt-2" alt="img album" onclick="playerTracks(${trackIndex})">  
-            <button type="button" class="btn btn-primary circle-button position-absolute bottom-0 end-0 translate-middle d-none rounded-circle"><i class="bi bi-play-fill "></i></button>
+            <img src="${track[0].album.cover_medium}" class="card-img-top rounded mt-2" alt="img album" >  
+            <button type="button" class="btn btn-primary circle-button position-absolute bottom-0 end-0 translate-middle d-none rounded-circle"><i class="bi bi-play-fill " onclick="playerTracks(${trackIndex})"></i></button>
             </div>        
             
             <div class="card-body d-none">
