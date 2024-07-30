@@ -7,8 +7,10 @@ let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel
 let indexCurrentTrack = 0;
 let tracks;
 let ini = false;
+let ini = false;
 
 window.onload = function () {
+    initTracks()
     initTracks()
     player();
     buildCarouselItems()
@@ -173,6 +175,7 @@ function buildCarousel(datasetArray) {
 
 
 // Funzione per creare le card____________________________________________
+// Funzione per creare le card____________________________________________
 function createAlbumCards(track) {
     // Aggiungi il track al trackDataArray e ottieni l'indice
     const trackIndex = trackDataArray.length;
@@ -196,6 +199,7 @@ function createAlbumCards(track) {
 
 
 // Funzione per gestire la riproduzione delle tracce, qui avrò tutte le tracce. Si attiva quando premo l'immagine
+// Funzione per gestire la riproduzione delle tracce, qui avrò tutte le tracce. Si attiva quando premo l'immagine
 function playerTracks(index) {
     indexCurrentTrack = 0;
     tracks = trackDataArray[index];
@@ -204,6 +208,7 @@ function playerTracks(index) {
 }
 
 
+ document.getElementById('nextTrack').addEventListener('click', () => { //evento quando vado alla canzone successiva
  document.getElementById('nextTrack').addEventListener('click', () => { //evento quando vado alla canzone successiva
     playTrack()
  })
@@ -237,9 +242,47 @@ function playerTracks(index) {
 
 //-----------------------------------------------------------
 function playTrack() {
+ //Qui vado a prendere un album. Album iniziale
+ function initTracks() {
+    albumDataIni("album", "6327742");
+ }
+
+ function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
+    const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/${type}/${albumId}`;
+
+    fetch(apiKey)
+        .then((response) => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('No Album No party');
+            }
+        })
+        .then((dataAlbum) => {
+            const albumtracks = Array.from(dataAlbum.tracks.data);
+            tracks = albumtracks
+            playPlayTrack()
+        })
+        .catch((error) => {
+            console.error('Errore:', error);
+        });
+}
+
+
+//-----------------------------------------------------------
+function playTrack() {
     const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
     playIcon.classList.remove('bi-play-circle-fill');
     playIcon.classList.add('bi-pause-circle-fill');
+    const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
+
+    playPlayTrack()
+    // Ricarica l'audio e riproduci
+    audioElement.load();
+    audioElement.play(); 
+ }
+
+ function playPlayTrack() {
     const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
 
     playPlayTrack()
