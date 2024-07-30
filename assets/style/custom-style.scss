@@ -171,11 +171,6 @@ $utilities: map-merge($utilities,
   transform: scale(1.1)
 }
 
-.scaleHover:hover .card-body {
-  display: block !important;
-}
-
-
 // $headings-font-family: "Inter", sans-serif;
 
 @import "scss/bootstrap.scss";

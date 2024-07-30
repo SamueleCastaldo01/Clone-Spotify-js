@@ -157,7 +157,7 @@ function createAlbumCards(albums) {
         <div class="col-3 mb-3 scaleHover"
           <div class="card w-25" ">
             <img src="${albums[0].album.cover_medium}" class="card-img-top" alt="img album">
-            <div class="card-body d-none">
+            <div class="card-body ">
                 <h5 class="card-title"><a href = "album.html/${albums[0].album.id}">${albums[0].album.title}</a></h5>
                 <p class="card-text"><a href = "artist.html/${albums[0].artist.id}">${albums[0].artist.name}</a></p>
             </div>
