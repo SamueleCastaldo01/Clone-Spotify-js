@@ -146,7 +146,7 @@ function buildCarousel(datasetArray) {
         const active = document.querySelectorAll(".carousel-item").length < 1 ? "active" : "";
         carouselRow.innerHTML += `
     <div class="carousel-item ${active}">
-        <div class="row p-3">
+        <div class="row p-3 pb-0">
             <div class="col-3 mt-3"><img src="${element.album.cover_medium}" alt="imgprova"
                 class="w-100"></div>
             <div class="col-7">
