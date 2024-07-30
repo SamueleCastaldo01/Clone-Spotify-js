@@ -1,4 +1,4 @@
-const albumsId = ["11205422", "534017402", "544892012", "420845567", "6327742", "112217392", "6157080", "74872972", "11205422", "534017402", "544892012", "420845567", "6327742", "112217392", "6157080", "74872972"];
+const albumsId = ["11205422", "534017402", "544892012", "420845567", "6327742", "112217392", "6157080", "74872972"];
 const carouselRow = document.getElementById('carousel');
 const cardsAlbumRow = document.getElementById('cardsAlbum')
 const loading = document.getElementById("loading");
@@ -200,7 +200,7 @@ function buildCarousel(datasetArray) {
         const escapedElement = JSON.stringify(element).replace(/"/g, '&quot;'); // Serve per portarmi l'array nella funzione per gestire il lettore
         carouselRow.innerHTML += `
             <div class="carousel-item ${active}">
-                <div class="row p-3 pb-0">
+                <div class="row p-3 pb-2">
                     <div class="col-3 mt-3"><img src="${element.album.cover_medium}" alt="imgprova" class="w-100"></div>
                     <div class="col-7">
                         <h6 class="fs-supersmall">ALBUM</h6>
