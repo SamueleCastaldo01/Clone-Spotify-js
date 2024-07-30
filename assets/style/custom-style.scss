@@ -163,6 +163,30 @@ $utilities: map-merge($utilities,
   border-bottom-left-radius: 15px
 }
 
+<<<<<<< Updated upstream
+=======
+.scaleHover {
+  transition: transform 0.3s linear 0s;
+}
+
+.scaleHover:hover {
+  transform: scale(1.1);
+ background-color: #313030;
+
+  
+  
+}
+
+.scaleHover:hover .card-body {
+  display: block !important;
+}
+
+.scaleHover:hover .circle-button{
+  display: block !important;
+
+}
+
+>>>>>>> Stashed changes
 // $headings-font-family: "Inter", sans-serif;
 
 @import "scss/bootstrap.scss";
