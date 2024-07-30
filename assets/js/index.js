@@ -46,9 +46,10 @@ const player = function () {
 
     // Quando si resetta, finisce, passa a valore zero si resetta
     audio.addEventListener('ended', () => {
-        rangeAudio.value = 0;
         if(tracks.length >1) {
             playTrack()
+        } else {
+            rangeAudio.value = 0;
         }
     });
 
