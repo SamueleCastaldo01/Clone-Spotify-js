@@ -157,7 +157,7 @@ function createAlbumCards(albums) {
         <div class="col-3 mb-3 scaleHover rounded"
           <div class="card w-25 " >
           <div class="position-relative">
-            <img src="${albums[0].album.cover_medium}" class="card-img-top  pt-2 " alt="img album">  
+            <img src="${albums[0].album.cover_medium}" class="card-img-top rounded pt-2 " alt="img album">  
             <button type="button" class="btn btn-primary circle-button position-absolute bottom-0 end-0 translate-middle d-none rounded-circle"><i class="bi bi-play-fill "></i></button>
             </div>        
             
