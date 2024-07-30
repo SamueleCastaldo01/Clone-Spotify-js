@@ -1,43 +1,41 @@
 
+const player = function () {
+    const audio = document.getElementById('audio');
+    const rangeAudio = document.getElementById('rangeAudio');
+    const currentDuration = document.getElementById('currentDuration');
+    const maxDuration = document.getElementById('maxDuration');
+    const playIcon = document.getElementById('play');
+    const resetButton = document.getElementById('resetButton');
+    const volumeControl = document.getElementById('volumeControl');
 
 
-const player = function() {
-const audio = document.getElementById('audio');
-const rangeAudio = document.getElementById('rangeAudio');
-const currentDuration = document.getElementById('currentDuration');
-const maxDuration = document.getElementById('maxDuration');
-const playIcon = document.getElementById('play');
-const resetButton = document.getElementById('resetButton');
-const volumeControl = document.getElementById('volumeControl');
-
-
-//vado a prendere la durata della canzone
-rangeAudio.value = 0
-rangeAudio.max = Math.floor(audio.duration);
-maxDuration.innerText = formatTime(audio.duration);
-
-
-// va a prendere la durata massima dell'audio
-audio.addEventListener('loadedmetadata', () => {
+    //vado a prendere la durata della canzone
+    rangeAudio.value = 0
     rangeAudio.max = Math.floor(audio.duration);
     maxDuration.innerText = formatTime(audio.duration);
-});
 
-// aggiorna il valore del rangr in base a quello corrente del audio
-audio.addEventListener('timeupdate', () => {
-    rangeAudio.value = Math.floor(audio.currentTime);
-    currentDuration.innerText = formatTime(audio.currentTime);
-});
 
-// quando l'input cambia
-rangeAudio.addEventListener('input', () => {
-    audio.currentTime = rangeAudio.value;
-});
+    // va a prendere la durata massima dell'audio
+    audio.addEventListener('loadedmetadata', () => {
+        rangeAudio.max = Math.floor(audio.duration);
+        maxDuration.innerText = formatTime(audio.duration);
+    });
 
-// Quando si resetta, finisce, passa a valore zero si resetta
-audio.addEventListener('ended', () => {
-    rangeAudio.value = 0;
-});
+    // aggiorna il valore del rangr in base a quello corrente del audio
+    audio.addEventListener('timeupdate', () => {
+        rangeAudio.value = Math.floor(audio.currentTime);
+        currentDuration.innerText = formatTime(audio.currentTime);
+    });
+
+    // quando l'input cambia
+    rangeAudio.addEventListener('input', () => {
+        audio.currentTime = rangeAudio.value;
+    });
+
+    // Quando si resetta, finisce, passa a valore zero si resetta
+    audio.addEventListener('ended', () => {
+        rangeAudio.value = 0;
+    });
 
 
     // Gestore dell'evento click per il pulsante di reset
@@ -51,40 +49,42 @@ audio.addEventListener('ended', () => {
     });
 
 
-// Gestore dell'evento input per il controllo del volume
-volumeControl.addEventListener('input', () => {
-    const volumeValue = parseFloat(volumeControl.value);
+    // Gestore dell'evento input per il controllo del volume
+    volumeControl.addEventListener('input', () => {
+        const volumeValue = parseFloat(volumeControl.value);
 
-    // Verifica che il valore sia nell'intervallo [0, 1]
-    if (volumeValue < 0 || volumeValue > 1) {
-        console.error('Volume value out of range:', volumeValue);
-    } else {
-        audio.volume = volumeValue;
-    }
-});
+        // Verifica che il valore sia nell'intervallo [0, 1]
+        if (volumeValue < 0 || volumeValue > 1) {
+            console.error('Volume value out of range:', volumeValue);
+        } else {
+            audio.volume = volumeValue;
+        }
+    });
 
 
-      // Funzione per formattare il tempo
+    // Funzione per formattare il tempo
     function formatTime(seconds) {
-    const minutes = Math.floor(seconds / 60);
-    const secs = Math.floor(seconds % 60);
-    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+        const minutes = Math.floor(seconds / 60);
+        const secs = Math.floor(seconds % 60);
+        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
     }
 
 
 
-// Gestore di evento per il clic sull'icona di riproduzione
-playIcon.addEventListener('click', () => {
-    if (audio.paused) {
-        audio.play(); // Riproduce l'audio se è in pausa
-        playIcon.classList.remove('bi-play-circle-fill');
-        playIcon.classList.add('bi-pause-circle-fill');
-    } else {
-        audio.pause(); // Pausa l'audio se è in riproduzione
-        playIcon.classList.remove('bi-pause-circle-fill');
-        playIcon.classList.add('bi-play-circle-fill');
-    }
-});
+    // Gestore di evento per il clic sull'icona di riproduzione
+    playIcon.addEventListener('click', () => {
+        if (audio.paused) {
+            audio.play(); // Riproduce l'audio se è in pausa
+            playIcon.classList.remove('bi-play-circle-fill');
+            playIcon.classList.add('bi-pause-circle-fill');
+        } else {
+            audio.pause(); // Pausa l'audio se è in riproduzione
+            playIcon.classList.remove('bi-pause-circle-fill');
+            playIcon.classList.add('bi-play-circle-fill');
+        }
+    });
+
+}
 
 
 
@@ -158,5 +158,5 @@ function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-    }
-    
+}
+
