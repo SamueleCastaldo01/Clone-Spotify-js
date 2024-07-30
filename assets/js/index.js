@@ -162,7 +162,7 @@ function buildCarousel(datasetArray) {
 // Funzione per creare le card
 function createAlbumCards(albums) {
     cardsAlbumRow.innerHTML += `
-        <div class="col-3 mb-3 scaleHover rounded"
+        <div class="col-12 col-md-3 mb-3 rounded"
           <div class="card w-25 " >
           <div class="position-relative">
             <img src="${albums[0].album.cover_medium}" class="card-img-top rounded mt-2" alt="img album" >  
