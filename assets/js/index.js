@@ -2,6 +2,7 @@ const albumsId = ["11205422", "534017402", "544892012", "420845567", "6327742", 
 const carouselRow = document.getElementById('carousel');
 const cardsAlbumRow = document.getElementById('cardsAlbum')
 const loading = document.getElementById("loading");
+const loader = document.getElementById("loader");
 
 
 let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel player, quando seleziono un album
@@ -340,6 +341,9 @@ function playPlayTrack() {
     titlePlayer.innerText = tracks[indexCurrentTrack].title_short   //cambia nel cose nel DOM del palyer
     artistPlayer.innerText = tracks[indexCurrentTrack].artist.name
     imgPlayer.src = tracks[indexCurrentTrack].album.cover_small
+    imgPlayer.classList.remove("d-none")
+    loader.style.display = "none";
+
 
     indexCurrentTrack++; //aggiorna l'index per poi andare alla prossima traccia, quando si preme il pulsante
 }
