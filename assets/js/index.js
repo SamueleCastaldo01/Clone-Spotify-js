@@ -1,3 +1,7 @@
+
+
+
+const player = function() {
 const audio = document.getElementById('audio');
 const rangeAudio = document.getElementById('rangeAudio');
 const currentDuration = document.getElementById('currentDuration');
@@ -5,6 +9,7 @@ const maxDuration = document.getElementById('maxDuration');
 const playIcon = document.getElementById('play');
 const resetButton = document.getElementById('resetButton');
 const volumeControl = document.getElementById('volumeControl');
+
 
 //vado a prendere la durata della canzone
 rangeAudio.value = 0
@@ -35,15 +40,15 @@ audio.addEventListener('ended', () => {
 });
 
 
-// Gestore dell'evento click per il pulsante di reset
-resetButton.addEventListener('click', () => {
-    audio.currentTime = 0; // Riporta la riproduzione all'inizio
-    if (audio.paused) {
-        audio.pause(); // Mette in pausa l'audio se è in riproduzione
-        playIcon.classList.remove('bi-pause-circle-fill');
-        playIcon.classList.add('bi-play-circle-fill');
-    }
-});
+    // Gestore dell'evento click per il pulsante di reset
+    resetButton.addEventListener('click', () => {
+        audio.currentTime = 0; // Riporta la riproduzione all'inizio
+        if (audio.paused) {
+            audio.pause(); // Mette in pausa l'audio se è in riproduzione
+            playIcon.classList.remove('bi-pause-circle-fill');
+            playIcon.classList.add('bi-play-circle-fill');
+        }
+    });
 
 
 // Gestore dell'evento input per il controllo del volume
@@ -59,12 +64,12 @@ volumeControl.addEventListener('input', () => {
 });
 
 
-// Funzione per formattare il tempo
-function formatTime(seconds) {
+      // Funzione per formattare il tempo
+    function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const secs = Math.floor(seconds % 60);
     return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-}
+    }
 
 
 
@@ -81,7 +86,6 @@ playIcon.addEventListener('click', () => {
     }
 });
 
-const albumsId = ["544892012", "75621062", "534017402", "6157080", "74872972", "420845567", "550559712", "142361932", "6327742", "122366", "11205422"];
 
 
 const albumData = function (album) {
@@ -146,3 +150,13 @@ const convertDuration = function (seconds) {
     return `${minutes}:${remainingSeconds}`
 }
 albumData('75621062');
+
+
+
+// Funzione per formattare il tempo
+function formatTime(seconds) {
+    const minutes = Math.floor(seconds / 60);
+    const secs = Math.floor(seconds % 60);
+    return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
+    }
+    
