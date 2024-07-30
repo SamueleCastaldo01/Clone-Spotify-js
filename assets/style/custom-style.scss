@@ -172,15 +172,23 @@ $utilities: map-merge($utilities,
 .scaleHover:hover {
   transform: scale(1.1);
  background-color: #313030;
+ z-index:2
 }
 
 .scaleHover:hover .card-body {
   display: block !important;
+  
 }
 
 .scaleHover:hover .circle-button{
   display: block !important;
 
+}
+
+.truncateText{
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis
 }
 
 // $headings-font-family: "Inter", sans-serif;

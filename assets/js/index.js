@@ -179,7 +179,7 @@ function createAlbumCards(track) {
     trackDataArray.push(track);
 
     cardsAlbumRow.innerHTML += `
-        <div class="col-12 col-md-3 mb-3 rounded scaleHover"
+        <div class="col-12 col-md-3 mb-1 rounded scaleHover"
           <div class="card w-25 " >
           <div class="position-relative">
             <img src="${track[0].album.cover_medium}" class="card-img-top rounded mt-2" alt="img album" onclick="playerTracks(${trackIndex})">  
@@ -187,8 +187,8 @@ function createAlbumCards(track) {
             </div>        
             
             <div class="card-body d-none">
-                <h5 class="card-title my-2"><a href = "album.html/${track[0].album.id}"  class="text-decoration-none text-white">${track[0].album.title}</a></h5>
-                <p class="card-text mb-4 fs-small "><a href = "artist.html/${track[0].artist.id}" class="text-decoration-none text-white">${track[0].artist.name}</a></p>
+                <h5 class="card-title my-2 truncateText"><a href = "./albumdetails.html?${track[0].album.id}"  class="text-decoration-none text-white">${track[0].album.title}</a></h5>
+                <p class="card-text mb-4 fs-small truncateText"><a href = "./artista.html?${track[0].artist.id}" class="text-decoration-none text-white">${track[0].artist.name}</a></p>
             </div>
         </div>`
        
@@ -267,7 +267,6 @@ function playTrack() {
 
     indexCurrentTrack ++; //aggiorna l'index per poi andare alla prossima traccia, quando si preme il pulsante
  }
-
 
 
 const convertDuration = function (seconds) {
