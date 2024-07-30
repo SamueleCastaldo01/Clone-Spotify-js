@@ -39,7 +39,7 @@
                         <!-- Div che conterrà la lista delle playlist -->
                     </div>
                 </div>
-                <div class="col-12  px-5 pt-5 col-md-7 " style="margin-bottom: 150px;">
+                <div class="col-12  px-5 pt-5 col-md-7 " style="margin-bottom: 15%;">
                     <div id="carouselExample" class="carousel slide bg-linear-gradient d-none d-md-flex">
                         <div class="carousel-inner" id="carousel">
                             <!-- <div class="carousel-item active">
@@ -235,7 +235,7 @@
                         </div>
                     </div>
 
-                    <div class="row mt-5" id="cardsAlbum">
+                    <div class="row mt-5 mb-0" id="cardsAlbum">
                         <p class="fw-semibold fs-4">Altro di ciò che ti piace</p>
                     </div>
 
@@ -246,7 +246,7 @@
                         <h6 class="my-3 ">Attività amici</h6> <span><i class="bi bi-person-add "></i><i
                                 class="bi bi-x "></i></span>
                     </div>
-                    <div class="row h-10 mb-2 mb-md-5">
+                    <div class="row h-10 mb-4 mb-md-3">
                         <div class="col-2 d-none d-lg-block">
                             <img src="./assets/imgs/main/image-1.jpg" alt="foto profilo utente"
                                 class="rounded-circle h-10">
@@ -256,10 +256,10 @@
                                 </span> <span class="fs-supersmall">4 ore</span></p>
                             <p class="my-0 fs-small truncateText"><span>In Camera </span><i class="bi bi-dot "></i><span>Yumi
                                     Zouma</span></p>
-                            <p class=" fs-small"><i class="bi bi-disc"></i>EP ||| </p>
+                            <p class=" fs-small truncateText"><i class="bi bi-disc"></i>EP ||| </p>
                         </div>
                     </div>
-                    <div class="row h-10 mb-2 mb-md-5 ">
+                    <div class="row h-10 mb-2 mb-md-2 ">
                         <div class="col-2 d-none d-lg-block">
                             <img src="./assets/imgs/main/image-11.jpg" alt="foto profilo utente"
                                 class="rounded-circle h-10">
@@ -269,10 +269,10 @@
                                     class=" fw-bold">Lightdark02</span> <span class="fs-supersmall" >8 ore</span></p>
                             <p class="d-flex my-0 fs-small truncateText"><span>Aimend to Kill</span><i class="bi bi-dot"></i><span>Jade
                                     LeMac</span></p>
-                            <p class="fs-11"><i class="bi bi-disc"></i>Aimend to Kill </p>
+                            <p class="fs-11 truncateText"><i class="bi bi-disc"></i>Aimend to Kill </p>
                         </div>
                     </div>
-                    <div class="row h-10 mb-3 mb-md-5">
+                    <div class="row h-10">
                         <div class="col-2 d-none d-lg-block">
                             <img src="./assets/imgs/main/image-12.jpg" alt="foto profilo utente"
                                 class="rounded-circle h-10">
@@ -282,7 +282,7 @@
                                     Traverso</span> <span class="fs-supersmall">3 giorni</span></p>
                             <p class="d-flex my-0 fs-small truncateText"><span>New Kings </span><i class="bi bi-dot "></i><span
                                     class="fs-11">Sleeping Wolf</span></p>
-                            <p class="fs-11"><i class="bi bi-music-note-beamed"></i>Twint Badass Mood</p>
+                            <p class="fs-11 truncateText"><i class="bi bi-music-note-beamed"></i>Twint Badass Mood</p>
                         </div>
                     </div>
                 </div>
@@ -294,13 +294,10 @@
          </div> -->
     </main>
 
-    <footer class="sticky-bottom d-flex py-5 px-10 ">
-    </footer>
-
     <!--Player  -->
-    <div class="divPlayer bg-grayMain align-items-center p-3  position-fixed bottom-0 w-100 z-3">
+    <div class="divPlayer bg-grayMain align-items-center p-3  position-fixed bottom-0 w-100 z-3 h-15">
         <audio id="audio"  crossorigin="anonymous">
-            <source src="https://cdn-preview-3.dzcdn.net/stream/c-311edfab6c168901d5b4a27004c05425-1.mp3" type="audio/mpeg">
+            <source src="https://cdn-preview-5.dzcdn.net/stream/c-56b90c84e99cca5b7e5c7f5059e4696f-2.mp3" type="audio/mpeg">
             Your browser does not support the audio element.
         </audio>
         <div class="row">
@@ -342,14 +339,14 @@
 
             </div>
             <div class="col-3 d-flex justify-content-end align-items-center">
-                <i class="bi bi-mic-fill mx-1 d-none d-md-inline-block"></i>
-                <i class="bi bi-menu-button-wide-fill mx-1 d-none d-md-inline-block"></i>
-                <i class="bi bi-speaker mx-1 d-none d-md-inline-block"></i>
+                <i class="bi bi-mic-fill mx-1 d-none d-lg-inline-block"></i>
+                <i class="bi bi-menu-button-wide-fill mx-1 d-none d-lg-inline-block"></i>
+                <i class="bi bi-speaker mx-1 d-none d-lg-inline-block"></i>
 
-                <i class="bi bi-volume-down-fill mx-1"></i>
-                <input type="range" id="volumeControl" class="slider" min="0" max="1" step="0.01" value="1">
+                <i class="bi bi-volume-down-fill mx-1 d-none d-md-block"></i>
+                <input type="range" id="volumeControl" class="slider d-none d-md-block" min="0" max="1" step="0.01" value="1">
 
-                <i class="bi bi-arrows-fullscreen mx-1 d-none d-md-inline-block"></i>
+                <i class="bi bi-arrows-fullscreen mx-1 d-none d-lg-inline-block"></i>
             </div>
         </div>
     </div>
