@@ -166,13 +166,13 @@ $utilities: map-merge($utilities,
 }
 
 .scaleHover {
-  transition: transform 0.3s linear 0s;
+  transition: transform 0.3s linear 0s, display 0.3s linear 0s;
 }
 
 .scaleHover:hover {
   transform: scale(1.1);
- background-color: #313030;
- z-index:2
+  background-color: #313030;
+  z-index:2
 }
 
 .scaleHover:hover .card-body {

@@ -43,7 +43,7 @@
 }
 
 .scaleHover {
-  transition: transform 0.3s linear 0s;
+  transition: transform 0.3s linear 0s, display 0.3s linear 0s;
 }
 
 .scaleHover:hover {
