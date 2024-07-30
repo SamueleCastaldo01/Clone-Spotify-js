@@ -2,6 +2,7 @@ const albumsId = ["11205422", "534017402", "544892012", "420845567", "6327742", 
 const carouselRow = document.getElementById('carousel');
 const cardsAlbumRow = document.getElementById('cardsAlbum')
 
+
 window.onload = function () {
     player();
     buildCarouselItems()
@@ -124,6 +125,13 @@ function buildCarouselItems() {
 }
 
 function buildCarousel(datasetArray) {
+    function truncate(text, maxLength) {
+        if (text.length > maxLength) {
+            return text.slice(0, maxLength) + '...';
+        }
+        return text;
+    }
+    
     datasetArray.forEach((element) => {
         const active = document.querySelectorAll(".carousel-item").length < 1 ? "active" : "";
         carouselRow.innerHTML += `
@@ -133,7 +141,7 @@ function buildCarousel(datasetArray) {
                 class="w-100"></div>
             <div class="col-7">
                 <h6 class="fs-supersmall">ALBUM</h6>
-                <h1>${element.title_short}</h1>
+                <h1>${truncate(element.title_short, 17)} </h1>
                 <p class="fs-small">${element.album.title}</p>
                 <p class="fs-small mb-0">${convertDuration(element.duration)}</p>
                 <div class="w-100 d-flex align-items-center">
@@ -157,7 +165,7 @@ function createAlbumCards(albums) {
         <div class="col-3 mb-3 scaleHover rounded"
           <div class="card w-25 " >
           <div class="position-relative">
-            <img src="${albums[0].album.cover_medium}" class="card-img-top rounded mt-2" alt="img album">  
+            <img src="${albums[0].album.cover_medium}" class="card-img-top rounded mt-2" alt="img album" >  
             <button type="button" class="btn btn-primary circle-button position-absolute bottom-0 end-0 translate-middle d-none rounded-circle"><i class="bi bi-play-fill "></i></button>
             </div>        
             
