@@ -263,8 +263,9 @@ function createAlbumCards(track) {
 
 // Funzione per gestire la riproduzione delle tracce, qui avrò tutte le tracce. Si attiva quando premo l'immagine
 function playerTracks(index) {
-    flagShuffle = false;
-    shuffleButton.style.color = "white"
+    if(flagShuffle === true) {
+        tracks = shuffle(tracks); // Mescola l'array tracks
+    }
     indexCurrentTrack = 0;
     tracks = trackDataArray[index];
     console.log(tracks);
