@@ -1,6 +1,7 @@
-const albumsId = ["11205422", "534017402", "544892012", "420845567", "6327742", "112217392", "6157080", "74872972","11205422", "534017402", "544892012", "420845567", "6327742", "112217392", "6157080", "74872972"];
+const albumsId = ["11205422", "534017402", "544892012", "420845567", "6327742", "112217392", "6157080", "74872972", "11205422", "534017402", "544892012", "420845567", "6327742", "112217392", "6157080", "74872972"];
 const carouselRow = document.getElementById('carousel');
 const cardsAlbumRow = document.getElementById('cardsAlbum')
+const loading = document.getElementById("loading");
 
 
 let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel player, quando seleziono un album
@@ -49,7 +50,7 @@ const player = function () {
 
     // Quando si resetta, finisce, passa a valore zero si resetta
     audio.addEventListener('ended', () => {
-        if(tracks.length >1) {
+        if (tracks.length > 1) {
             playTrack()
         } else {
             rangeAudio.value = 0;
@@ -106,6 +107,7 @@ const player = function () {
 
 const albumData = function (type, album) {
     const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/${type}/${album}`;
+    loading.style.display = 'block';
 
     fetch(apiKey)
         .then((response) => {
@@ -125,7 +127,10 @@ const albumData = function (type, album) {
         })
         .catch((error) => {
             console.error('Errore:', error);
-        });
+        })
+        .finally(() => {
+            loading.style.display = "none";
+        })
 }
 
 function buildCarouselItems() {
@@ -141,7 +146,7 @@ function buildCarousel(datasetArray) {
         }
         return text;
     }
-    
+
     datasetArray.forEach((element) => {
         const active = document.querySelectorAll(".carousel-item").length < 1 ? "active" : "";
         carouselRow.innerHTML += `
@@ -191,7 +196,7 @@ function createAlbumCards(track) {
                 <p class="card-text mb-4 fs-small "><a href = "artist.html/?artistid=${track[0].artist.id}" class="text-decoration-none text-white">${track[0].artist.name}</a></p>
             </div>
         </div>`
-       
+
 }
 
 
@@ -204,16 +209,16 @@ function playerTracks(index) {
 }
 
 
- document.getElementById('nextTrack').addEventListener('click', () => { //evento quando vado alla canzone successiva
+document.getElementById('nextTrack').addEventListener('click', () => { //evento quando vado alla canzone successiva
     playTrack()
- })
+})
 
- //Qui vado a prendere un album. Album iniziale
- function initTracks() {
+//Qui vado a prendere un album. Album iniziale
+function initTracks() {
     albumDataIni("album", "6327742");
- }
+}
 
- function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
+function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
     const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/${type}/${albumId}`;
 
     fetch(apiKey)
@@ -245,10 +250,10 @@ function playTrack() {
     playPlayTrack()
     // Ricarica l'audio e riproduci
     audioElement.load();
-    audioElement.play(); 
- }
+    audioElement.play();
+}
 
- function playPlayTrack() {
+function playPlayTrack() {
     const titlePlayer = document.getElementById('titlePlayer')  //vado a prendere gli elementi da cambiare all'interno del player
     const artistPlayer = document.getElementById('artistPlayer')
     const imgPlayer = document.getElementById('imgPlayer')
@@ -256,7 +261,7 @@ function playTrack() {
     const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
     const sourceElement = audioElement.querySelector('source');
 
-    if(indexCurrentTrack >= tracks.length) {
+    if (indexCurrentTrack >= tracks.length) {
         indexCurrentTrack = 0;  // Resetta l'indice alla prima traccia
     }
 
@@ -265,8 +270,8 @@ function playTrack() {
     artistPlayer.innerText = tracks[indexCurrentTrack].artist.name
     imgPlayer.src = tracks[indexCurrentTrack].album.cover_small
 
-    indexCurrentTrack ++; //aggiorna l'index per poi andare alla prossima traccia, quando si preme il pulsante
- }
+    indexCurrentTrack++; //aggiorna l'index per poi andare alla prossima traccia, quando si preme il pulsante
+}
 
 
 
