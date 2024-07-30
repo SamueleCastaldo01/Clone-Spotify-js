@@ -170,8 +170,8 @@ function createAlbumCards(albums) {
 }
 
 const convertDuration = function (seconds) {
-    const minutes = Math.floor(seconds / 60)
-    const remainingSeconds = seconds % 60
+    const minutes = Math.floor(seconds / 60) < 10 ? "0" + Math.floor(seconds / 60) : Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60 < 10 ? "0" + seconds % 60 : seconds % 60;
     return `${minutes}:${remainingSeconds}`
 }
 
