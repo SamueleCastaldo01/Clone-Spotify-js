@@ -109,7 +109,8 @@ body {
 }
 
 .albumHead {
-  background: linear-gradient(to top, #1E1E1E 45%, #DEC04F 55%);
+  background: #1E1E1E;
+  background: linear-gradient(0deg, #1E1E1E 60%, #DEC04F 100%);
 }
 
 /*!
