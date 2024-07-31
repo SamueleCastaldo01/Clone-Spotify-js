@@ -1,3 +1,11 @@
+import { player, playerCarousel, playerTracks, initTracks} from "./player.js";
+import {trackDataArray,} from "./player.js"
+
+window.onload = function () {
+    initTracks();
+    player();
+}
+
 let listaArtisti = [];
 let listaAlbum = [];
 const searchInput = document.querySelector(".input");
