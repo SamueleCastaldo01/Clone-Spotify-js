@@ -19,75 +19,78 @@
     <main>
         <div class="container-fluid">
             <div style="height: 90vh;" class="row">
-                <div
-                    class="col-3 bg-black d-none d-md-flex px-3 pt-2 d-flex flex-column overflow-scroll overflow-x-hidden">
+                <div class="col-3 bg-black d-none d-md-flex px-3 pt-2 d-flex flex-column position-sticky top-0 left-0 overflow-hidden"
+                    style="height:100vh">
                     <p class="fs-4 fw-semibold mb-2">...</p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/house-door-fill.svg" alt="homeIcon"
-                            class="me-3">Home</p>
+                            class="me-3"><a href="index.html" class="text-decoration-none text-light">Home</a></p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/search.svg" alt="searchIcon"
-                            class="me-3">Cerca</p>
+                            class="me-3"><a href="search.html" class="text-decoration-none text-light">Cerca</a></p>
                     <p class="d-flex align-items-center mb-5"><img src="assets/icons/music-note-list.svg"
-                            alt="libraryIcon" class="me-3">La tua libreria</p>
+                            alt="libraryIcon" class="me-3"><a href="#" class="text-decoration-none text-light">La tua
+                            libreria</a></p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/plus-square-fill.svg"
                             alt="playIcon" class="me-3">Crea Playlist</p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/bag-heart-fill.svg" alt="heartIcon"
                             class="me-3">Brani che ti piacciono</p>
-
-
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/bookmark-fill.svg"
                             alt="episodesIcon" class="me-3">I tuoi episodi</p>
                     <hr style="border-width:1px">
                     <div>
-                        
+                        <!-- Div che conterrà la lista delle playlist -->
                     </div>
                 </div>
-                <div class="col-12  px-5 pt-5 col-md-7 overflow-scroll overflow-x-hidden albumHead " id="albumdettagli">
+
+                <div class="col-12  px-5 pt-5 col-md-7 overflow-scroll overflow-x-hidden albumHead" id="albumdettagli">
           <!-- QUI VIENE CREATO IL CONTENUTO CENTARLE-->
                       
                 </div>
-            <div
-                class="col-2 bg-black d-none d-md-flex  flex-column align-content-start overflow-scroll overflow-x-hidden">
-                <div class="d-flex justify-content-between m-2">
-                    <h6 class="my-2">Attività amici</h6> <span><i class="bi bi-person-add "></i><i
+                <div class="px-1 col-2 bg-black d-none d-md-flex  flex-column align-content-start position-sticky top-0 right-0 overflow-hidden"
+                style="height:100vh">
+                <div class="d-flex justify-content-between m-2 align-items-center">
+                    <h6 class="my-3 ">Attività amici</h6> <span><i class="bi bi-person-add "></i><i
                             class="bi bi-x "></i></span>
                 </div>
-                <div class="row h-5">
-                    <div class="col-2">
-                        <img src="./assets/imgs/main/image-1.jpg" alt="foto profilo utente" class="rounded-circle h-10">
+                <div class="row h-10 mb-4 mb-md-3">
+                    <div class="col-2 d-none d-lg-block">
+                        <img src="./assets/imgs/main/image-1.jpg" alt="foto profilo utente"
+                            class="rounded-circle h-10">
                     </div>
                     <div class="col-10 ">
-                        <p class="d-flex justify-content-between my-0 fs-11"> <span class=" fw-bold">Charlie Hookham
-                            </span> <span>4 ore</span></p>
-                        <p class="my-0 fs-11 d-flex"><span>In Camera </span><i class="bi bi-dot "></i><span>Yumi
+                        <p class="d-flex justify-content-between my-0 fs-small"> <span class=" fw-bold">Charlie
+                                Hookham
+                            </span> <span class="fs-supersmall">4 ore</span></p>
+                        <p class="my-0 fs-small truncateText"><span>In Camera </span><i
+                                class="bi bi-dot "></i><span>Yumi
                                 Zouma</span></p>
-                        <p class=" fs-11"><i class="bi bi-disc"></i>EP ||| </p>
+                        <p class=" fs-small truncateText"><i class="bi bi-disc"></i>EP ||| </p>
                     </div>
                 </div>
-                <div class="row h-5">
-                    <div class="col-2">
+                <div class="row h-10 mb-2 mb-md-2 ">
+                    <div class="col-2 d-none d-lg-block">
                         <img src="./assets/imgs/main/image-11.jpg" alt="foto profilo utente"
                             class="rounded-circle h-10">
                     </div>
                     <div class="col-10 ">
-                        <p class="d-flex justify-content-between my-0 fs-11"> <span class=" fw-bold">Lightdark02</span>
-                            <span>8 ore</span>
-                        </p>
-                        <p class="d-flex my-0 fs-11"><span>Aimend to Kill</span><i class="bi bi-dot"></i><span>Jade
+                        <p class="d-flex justify-content-between my-0 fs-small"> <span
+                                class=" fw-bold">Lightdark02</span> <span class="fs-supersmall">8 ore</span></p>
+                        <p class="d-flex my-0 fs-small truncateText"><span>Aimend to Kill</span><i
+                                class="bi bi-dot"></i><span>Jade
                                 LeMac</span></p>
-                        <p class="fs-11"><i class="bi bi-disc"></i>Aimend to Kill </p>
+                        <p class="fs-11 truncateText"><i class="bi bi-disc"></i>Aimend to Kill </p>
                     </div>
                 </div>
-                <div class="row h-5">
-                    <div class="col-2">
+                <div class="row h-10">
+                    <div class="col-2 d-none d-lg-block">
                         <img src="./assets/imgs/main/image-12.jpg" alt="foto profilo utente"
                             class="rounded-circle h-10">
                     </div>
                     <div class="col-10">
-                        <p class="d-flex justify-content-between my-0 fs-11"> <span class=" fw-bold">Valeria
-                                Traverso</span> <span>3 giorni</span></p>
-                        <p class="d-flex my-0 fs-11"><span>New Kings </span><i class="bi bi-dot "></i><span
-                                class="fs-11">Sleeping Wolf</span></p>
-                        <p class="fs-11"><i class="bi bi-music-note-beamed"></i>Twint Badass Mood</p>
+                        <p class="d-flex justify-content-between my-0 fs-small"> <span class=" fw-bold">Valeria
+                                Traverso</span> <span class="fs-supersmall">3 giorni</span></p>
+                        <p class="d-flex my-0 fs-small truncateText"><span>New Kings </span><i
+                                class="bi bi-dot "></i><span class="fs-11">Sleeping Wolf</span></p>
+                        <p class="fs-11 truncateText"><i class="bi bi-music-note-beamed"></i>Twint Badass Mood</p>
                     </div>
                 </div>
             </div>
