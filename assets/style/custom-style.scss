@@ -233,7 +233,12 @@ body {
   background: #252525;
 }
 
-
+#albumdettagli{
+  padding-top: 0 !important;
+}
+.albumHead{
+  background: linear-gradient(to top, #1E1E1E 45%, #DEC04F 55%);
+}
 
 // $headings-font-family: "Inter", sans-serif;
 
