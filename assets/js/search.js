@@ -11,7 +11,9 @@ let listaAlbum = [];
 let listaAlbumsTracks = [];
 const searchInput = document.querySelector(".input");
 const albumsContainer = document.getElementById("listaAlbum");
+const artistsContainer = document.getElementById("listaArtisti");
 let albums = Array.from(document.getElementsByClassName("albumItem")) || [];
+let artists = Array.from(document.getElementsByClassName("artistItem")) || [];
 
 
 
@@ -38,21 +40,23 @@ class Art {
     }
 }
 
-
-
-function searchBarAnimation() {
-
-    const main = document.getElementsByName("main")[0];
-
-    searchInput.addEventListener("focus", () => {
-        main.classList.add("wide");
-    })
-
-    searchInput.addEventListener("blur", () => {
-        main.classList.remove("wide")
-    })
+// Funzione per gestire il clic fuori dall'input
+function handleClickOutside(event) {
+    // Verifica se il clic è avvenuto al di fuori dell'input
+    if (!searchInput.contains(event.target)) {
+        searchInput.classList.remove("comparsa");
+    }
 }
 
+// Aggiungi un listener per i clic su tutto il documento
+document.addEventListener("click", handleClickOutside);
+
+// Aggiungi un listener per i clic sull'input
+searchInput.addEventListener("click", (e) => {
+
+    searchInput.classList.add("comparsa");
+
+});
 
 
 async function queryFetch(param) {
@@ -69,6 +73,7 @@ async function queryFetch(param) {
         const data = await response.json();
 
         if (data.data.length > 0) {
+            builArtistItems(data);
             buildAlbumItems(data);
         }
 
@@ -84,6 +89,11 @@ searchInput.addEventListener("input", async () => {
     queryFetch(q);
 });
 
+searchInput.addEventListener("keydown", (e) => {
+    if (e.key === 'Enter')
+        e.preventDefault();
+});
+
 
 
 function artistList(dati) {
@@ -93,7 +103,7 @@ function artistList(dati) {
         if (!artistNames.has(element.artist.name)) {
             artistNames.add(element.artist.name);
             const ar = new Art(element.artist.name, element.artist.id, element.artist.picture_small)
-            listaArtisti.push({ ar });
+            listaArtisti.push(ar);
         }
     });
     return listaArtisti
@@ -105,7 +115,6 @@ function albumList(dati) {
     listaAlbum = [];
     const albumTitles = new Set();
     (dati.data).forEach((element) => {
-        console.log(element)
         if (!albumTitles.has(element.album.title)) {
             albumTitles.add(element.album.title);
             const al = new Alb(element.artist.name, element.album.title, element.album.id, element.album.cover_small, element.album.tracklist, element.artist.id, element.rank, "", element.duration, element.preview);
@@ -116,6 +125,27 @@ function albumList(dati) {
 }
 
 
+function builArtistItems(dati) {
+    artists.forEach(item => {
+        item.remove();
+    })
+
+    artistList(dati).forEach((item, i) => {
+
+        artistsContainer.innerHTML += `
+                <div class="row d-flex align-items-center mt-2 artistItem">
+                    <div class="col-1 opacity-50">${i+1}</div>
+                    <div class="col-1"><img src="${item.foto}" alt="artista" class="w-100 rounded-3"></div>
+                    <div class="col-7 d-flex flex-column justify-content-center">
+                         <p class="mb-0 "><a href="${item.id}" class="text-light text-decoration-none">${item.nome}</a></p>
+                    </div>
+                </div>
+        `
+    })
+    artists = Array.from(document.getElementsByClassName("artistItem"));
+}
+
+
 
 function buildAlbumItems(dati) {
     albums.forEach(item => {
@@ -123,14 +153,18 @@ function buildAlbumItems(dati) {
     })
 
     listaAlbumsTracks = [];
-    albumList(dati).forEach((item) => {
-
+    albumList(dati).forEach((item, i) => {
         // albumFetch(item.tracklist);
         albumsContainer.innerHTML += `
         <div class="row d-flex align-items-center mt-2 albumItem" data-listaDiTracce = "${item.tracklist}">
-            <div class="col-1 opacity-50">1</div>
-            <div class="col-1"><img onclick="searchTrack(${item.id})" src="${item.cover}" alt="qualcosa" class="w-100 rounded-3"></div>
-            <div class="col-6 d-flex flex-column justify-content-center">
+            <div class="col-1 opacity-50">${i+1}</div>
+            <div class="col-2 col-lg-2 position-relative">
+                <img src="${item.cover}" alt="qualcosa" class="w-100 rounded-3">
+               <button type="button" class="btn btn-primary circle-button position-absolute bottom-10 end-5 rounded-circle ">
+                    <i class="bi bi-play-fill fs-small " onclick="searchTrack(${item.id})"></i>
+               </button>
+            </div>
+            <div class="col-5 col-lg-5 d-flex flex-column justify-content-center">
                 <p class="mb-0"><a href="./albumDetails.html?albumId=${item.id}" class="text-light text-decoration-none" >${item.titolo}</a> </p>
                 <p class="mb-0 opacity-50"><a href="./artist.html?artistId=${item.idArtista}" class="text-light text-decoration-none">${item.artista}</a></p>
             </div>
@@ -142,8 +176,10 @@ function buildAlbumItems(dati) {
     albums = Array.from(document.getElementsByClassName("albumItem"));
 }
 
+window.searchTrack = searchTrack;
 
-window.searchTrack = searchTrack
+
+
 
 
 

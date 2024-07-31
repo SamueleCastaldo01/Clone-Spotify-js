@@ -101,14 +101,23 @@ export function player()  {
     });
 
 
-    // Definisci la funzione da eseguire quando viene premuto il tasto spazio
-    function handleSpacebarPress(event) {
-        if (event.key === ' ' || event.key === 'Spacebar') {
+// Definisci la funzione da eseguire quando viene premuto il tasto spazio
+function handleSpacebarPress(event) {
+    // Controlla se il tasto premuto è la barra spaziatrice
+    if (event.key === ' ' || event.key === 'Spacebar') {
+        // Verifica se l'elemento attivo è un input, textarea o select
+        const activeElement = document.activeElement;
+        const isInputField = activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.tagName === 'SELECT';
+
+        if (!isInputField) {
             event.preventDefault(); // Previene il comportamento predefinito (es. scorrimento della pagina)
-            pausePLay()
+            pausePLay()// Esegui la funzione per mettere in pausa o riprodurre
         }
     }
-    document.addEventListener('keydown', handleSpacebarPress);
+}
+
+// Aggiungi l'evento keydown all'intero documento
+document.addEventListener('keydown', handleSpacebarPress);
 
 
     shuffleButton.addEventListener('click', () => {
@@ -183,7 +192,7 @@ export function playTrack() {
     }, 400); // Puoi regolare il tempo di attesa se necessario
 }
 
-export function playPlayTrack() {
+export function playPlayTrack(i) {
     const titlePlayer = document.getElementById('titlePlayer')  //vado a prendere gli elementi da cambiare all'interno del player
     const artistPlayer = document.getElementById('artistPlayer')
     const imgPlayer = document.getElementById('imgPlayer')
@@ -204,8 +213,12 @@ export function playPlayTrack() {
     imgPlayer.classList.remove("d-none")
     loader.style.display = "none";
 
-
-    indexCurrentTrack++; //aggiorna l'index per poi andare alla prossima traccia, quando si preme il pulsante
+    if(i) {
+        indexCurrentTrack = 0
+    } else {
+        indexCurrentTrack++; //aggiorna l'index per poi andare alla prossima traccia, quando si preme il pulsante
+    }   
+  
 }
 
 
@@ -237,9 +250,19 @@ export function albumDataIni(type, albumId) {  //vado a fare una fetch per andar
 
 
 export function searchTrack(id) {
-    console.log(id)
+    const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
+    playIcon.classList.remove('bi-play-circle-fill');
+    playIcon.classList.add('bi-pause-circle-fill');
+    const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
+    const i = true
+    indexCurrentTrack = 0;
     albumDataIni("album", id); 
-    playTrack()
+    playPlayTrack(i)
+
+    setTimeout(() => {
+        audioElement.load();
+        audioElement.play();
+    }, 400); // Puoi regolare il tempo di attesa se necessario
 
 }
 
