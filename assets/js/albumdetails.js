@@ -1,8 +1,9 @@
-import { player, playerCarousel, playerTracks, initTracks, albumDataIni} from "./player.js";
+import { player, playerAlbumTrack, playerTracks, initTracks, albumDataIni} from "./player.js";
 import { tracks } from "./player.js";
 
 const addressBarParameters = new URLSearchParams(location.search);
 const albumId = addressBarParameters.get('albumId');
+let currentTrack = 0;
 console.log('albumId', albumId);
 
 window.onload = function () {
@@ -31,7 +32,6 @@ fetch(keyUrl + albumId)
         const artist = document.getElementById('artist');
         const trackList = document.getElementById('lists'); 
     
-        console.log(singleAlbum.tracks.data)
         img.src = singleAlbum.cover_medium;
         titleAlbum.innerText = singleAlbum.title;
         artist.innerText = singleAlbum.artist.name;
@@ -43,10 +43,9 @@ fetch(keyUrl + albumId)
         let trackHTML = ''; 
     
         singleAlbum.tracks.data.forEach((track) => {
-            const escapedElement = JSON.stringify(track).replace(/"/g, '&quot;'); // Serve per portarmi l'array nella funzione per gestire il lettore
             trackHTML += `
-                <div class="row ">
-                    <div class="col-8" onclick='playerCarousel(${escapedElement})'>
+                <div class="row" id="${track.id}">
+                    <div class="col-8" onclick='playerAlbumTrack(${track.id})'>
                         <ol class="list-unstyled">
                             <li class="">${track.title_short}</li>
                             <p class="text-undertitle">${track.artist.name}</p>
@@ -77,5 +76,5 @@ function convertDuration(seconds) {
 }
 
 
-window.playerCarousel = playerCarousel;
+window.playerAlbumTrack = playerAlbumTrack;
 window.albumDataIni = albumDataIni;

@@ -227,7 +227,6 @@ export function initTracks() {
     albumDataIni("album", "6327742");
 }
 
-
 export function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
     const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/${type}/${albumId}`;
 
@@ -265,6 +264,16 @@ export function searchTrack(id) {
         audioElement.play();
     }, 400); // Puoi regolare il tempo di attesa se necessario
 
+}
+
+export function playerAlbumTrack(id) {
+    console.log(id)
+    console.log(tracks)
+    tracks.forEach((track) => {
+        if(track.id === id) {
+            playerCarousel(track);
+        }
+    });
 }
 
 // Definisci la funzione di mescolamento (Fisher-Yates shuffle)
