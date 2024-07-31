@@ -13,9 +13,10 @@ class Alb {
 }
 
 class Art {
-    constructor(title, id,) {
+    constructor(title, id, picture) {
         this.nome = title;
         this.id = id;
+        this.foto = picture;
     }
 
 }
@@ -51,7 +52,7 @@ async function queryFetch(param) {
         const data = await response.json();
         // console.log(albumList(data));
         console.log("album: \n", albumList(data))
-         console.log("artist: \n", artistList(data))
+        console.log("artist: \n", artistList(data))
         // console.log("artist: \n", artistList(data))
 
 
@@ -110,9 +111,9 @@ function artistList(dati) {
     listaArtisti = [];
     const artistNames = new Set();
     (dati.data).forEach((element) => {
-        if(!artistNames.has(element.artist.name)){
+        if (!artistNames.has(element.artist.name)) {
             artistNames.add(element.artist.name);
-            const ar = new Art(element.artist.name, element.artist.id)
+            const ar = new Art(element.artist.name, element.artist.id, element.artist.picture_small)
             listaArtisti.push({ ar });
         }
     });
