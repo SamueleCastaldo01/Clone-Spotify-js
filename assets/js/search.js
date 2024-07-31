@@ -143,7 +143,7 @@ function buildAlbumItems(dati) {
 }
 
 
-
+window.searchTrack = searchTrack
 
 
 
