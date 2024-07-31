@@ -47,7 +47,7 @@ fetch(keyUrl + albumId)
                 <div class="row" id="${track.id}">
                     <div class="col-8" onclick='playerAlbumTrack(${track.id})'>
                         <ol class="list-unstyled">
-                            <li class="">${track.title_short}</li>
+                            <li class="title">${track.title_short}</li>
                             <p class="text-undertitle">${track.artist.name}</p>
                         </ol>
                     </div>

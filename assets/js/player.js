@@ -267,10 +267,23 @@ export function searchTrack(id) {
 }
 
 export function playerAlbumTrack(id) {
-    console.log(id)
-    console.log(tracks)
+    // Rimuovi la classe da tutti i titoli
+    document.querySelectorAll('.title').forEach((el) => {
+        el.classList.remove('selected-title');
+    });
+
+    // Trova il titolo del brano selezionato e aggiungi la classe
+    const trackElement = document.getElementById(id);
+    if (trackElement) {
+        const titleElement = trackElement.querySelector('.title');
+        if (titleElement) {
+            titleElement.classList.add('selected-title');
+        }
+    }
+
+    // Esegui il codice per riprodurre il brano
     tracks.forEach((track) => {
-        if(track.id === id) {
+        if (track.id === id) {
             playerCarousel(track);
         }
     });

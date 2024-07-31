@@ -305,6 +305,10 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: -407px 0 0 400px white;
 }
 
+.selected-title {
+  color: #1ED760; /* Cambia il colore a rosso o quello che preferisci */
+  font-weight: bold; /* Facoltativo: aggiunge peso al testo */
+}
 
 
 // $headings-font-family: "Inter", sans-serif;
