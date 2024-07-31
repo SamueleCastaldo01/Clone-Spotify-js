@@ -192,7 +192,7 @@ export function playTrack() {
     }, 400); // Puoi regolare il tempo di attesa se necessario
 }
 
-export function playPlayTrack() {
+export function playPlayTrack(i) {
     const titlePlayer = document.getElementById('titlePlayer')  //vado a prendere gli elementi da cambiare all'interno del player
     const artistPlayer = document.getElementById('artistPlayer')
     const imgPlayer = document.getElementById('imgPlayer')
@@ -213,8 +213,12 @@ export function playPlayTrack() {
     imgPlayer.classList.remove("d-none")
     loader.style.display = "none";
 
-
-    indexCurrentTrack++; //aggiorna l'index per poi andare alla prossima traccia, quando si preme il pulsante
+    if(i) {
+        indexCurrentTrack = 0
+    } else {
+        indexCurrentTrack++; //aggiorna l'index per poi andare alla prossima traccia, quando si preme il pulsante
+    }   
+  
 }
 
 
@@ -246,9 +250,19 @@ export function albumDataIni(type, albumId) {  //vado a fare una fetch per andar
 
 
 export function searchTrack(id) {
-    console.log(id)
+    const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
+    playIcon.classList.remove('bi-play-circle-fill');
+    playIcon.classList.add('bi-pause-circle-fill');
+    const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
+    const i = true
+    indexCurrentTrack = 0;
     albumDataIni("album", id); 
-    playTrack()
+    playPlayTrack(i)
+
+    setTimeout(() => {
+        audioElement.load();
+        audioElement.play();
+    }, 400); // Puoi regolare il tempo di attesa se necessario
 
 }
 
