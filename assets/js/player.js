@@ -176,9 +176,11 @@ export function playTrack() {
     const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
 
     playPlayTrack()
-    // Ricarica l'audio e riproduci
-    audioElement.load();
-    audioElement.play();
+    // Usa setTimeout per dare tempo al browser di aggiornare la sorgente
+    setTimeout(() => {
+        audioElement.load();
+        audioElement.play();
+    }, 400); // Puoi regolare il tempo di attesa se necessario
 }
 
 export function playPlayTrack() {
@@ -212,7 +214,7 @@ export function initTracks() {
     albumDataIni("album", "6327742");
 }
 
-function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
+export function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
     const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/${type}/${albumId}`;
 
     fetch(apiKey)

@@ -1,4 +1,4 @@
-import { player, playerCarousel, playerTracks, initTracks} from "./player.js";
+import { player, playerCarousel, playerTracks, initTracks, albumDataIni, playTrack} from "./player.js";
 import {trackDataArray,} from "./player.js"
 
 window.onload = function () {
@@ -140,7 +140,7 @@ function buildAlbumItems(dati) {
         albumsContainer.innerHTML += `
         <div class="row d-flex align-items-center mt-2 albumItem" data-listaDiTracce = "${item.tracks}">
             <div class="col-1 opacity-50">1</div>
-            <div class="col-1"><img src="${item.cover}" alt="qualcosa" class="w-100 rounded-3"></div>
+            <div class="col-1"><img onclick="searchTrack(${item.id})" src="${item.cover}" alt="qualcosa" class="w-100 rounded-3"></div>
             <div class="col-6 d-flex flex-column justify-content-center">
                 <p class="mb-0"><a href="./albumDetails.html?albumId=${item.id}" class="text-light text-decoration-none" >${item.titolo}</a> </p>
                 <p class="mb-0 opacity-50"><a href="./artist.html?artistId=${item.idArtista}" class="text-light text-decoration-none">${item.artista}</a></p>
@@ -152,3 +152,15 @@ function buildAlbumItems(dati) {
     })
     albums = Array.from(document.getElementsByClassName("albumItem"));
 }
+
+
+function searchTrack(id) {
+    console.log(id)
+    albumDataIni("album", id); 
+    playTrack()
+
+}
+
+window.searchTrack = searchTrack
+window.initTracks = initTracks;
+window.playerTracks = playerTracks;
