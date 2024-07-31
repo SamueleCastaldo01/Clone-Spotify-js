@@ -76,7 +76,8 @@
   }
 }
 .position-relative:hover .circle-button {
-  display: block; /* Mostra il pulsante */
+  display: block;
+  /* Mostra il pulsante */
   animation-name: slideInTop;
   animation-timing-function: ease-in;
   animation-duration: 0.2s;
@@ -95,7 +96,8 @@
   box-sizing: border-box;
 }
 
-html, body {
+html,
+body {
   width: 100%;
   height: 100%;
 }
