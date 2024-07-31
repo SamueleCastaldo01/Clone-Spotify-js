@@ -128,8 +128,6 @@ const convertDuration = function (seconds) {
 
 window.playerCarousel = playerCarousel;
 window.playerTracks = playerTracks;
-window.playTrack = playTrack;
-window.playPlayTrack = playPlayTrack;
 window.initTracks = initTracks;
 
 
