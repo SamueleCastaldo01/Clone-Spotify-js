@@ -79,7 +79,7 @@
   display: block; /* Mostra il pulsante */
   animation-name: slideInTop;
   animation-timing-function: ease-in;
-  animation-duration: 0.3s;
+  animation-duration: 0.2s;
   animation-iteration-count: 1;
 }
 
@@ -111,6 +111,59 @@ body {
 .albumHead {
   background: #1E1E1E;
   background: linear-gradient(0deg, #1E1E1E 60%, #DEC04F 100%);
+}
+
+input[type=range] {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+       appearance: none;
+  /* creating a custom design */
+  width: 100%;
+  cursor: pointer;
+  outline: none;
+  /*  slider progress trick  */
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  height: 20px;
+  background: #313030;
+  border-radius: 16px;
+}
+
+/* Track: Mozilla Firefox */
+input[type=range]::-moz-range-track {
+  height: 20px;
+  background: #313030;
+  border-radius: 16px;
+}
+
+/* Thumb: webkit */
+input[type=range]::-webkit-slider-thumb {
+  /* removing default appearance */
+  -webkit-appearance: none;
+  appearance: none;
+  /* creating a custom design */
+  height: 20px;
+  width: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 2px solid white;
+  /*  slider progress trick  */
+  box-shadow: -407px 0 0 400px white;
+}
+
+/* Thumb: Firefox */
+input[type=range]::-moz-range-thumb {
+  height: 20px;
+  width: 15px;
+  background-color: #fff;
+  border-radius: 50%;
+  border: 1px solid white;
+  /*  slider progress trick  */
+  box-shadow: -407px 0 0 400px white;
 }
 
 /*!
