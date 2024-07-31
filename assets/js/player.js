@@ -101,14 +101,23 @@ export function player()  {
     });
 
 
-    // Definisci la funzione da eseguire quando viene premuto il tasto spazio
-    function handleSpacebarPress(event) {
-        if (event.key === ' ' || event.key === 'Spacebar') {
+// Definisci la funzione da eseguire quando viene premuto il tasto spazio
+function handleSpacebarPress(event) {
+    // Controlla se il tasto premuto è la barra spaziatrice
+    if (event.key === ' ' || event.key === 'Spacebar') {
+        // Verifica se l'elemento attivo è un input, textarea o select
+        const activeElement = document.activeElement;
+        const isInputField = activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.tagName === 'SELECT';
+
+        if (!isInputField) {
             event.preventDefault(); // Previene il comportamento predefinito (es. scorrimento della pagina)
-            pausePLay()
+            pausePLay()// Esegui la funzione per mettere in pausa o riprodurre
         }
     }
-    document.addEventListener('keydown', handleSpacebarPress);
+}
+
+// Aggiungi l'evento keydown all'intero documento
+document.addEventListener('keydown', handleSpacebarPress);
 
 
     shuffleButton.addEventListener('click', () => {
