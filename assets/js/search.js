@@ -1,10 +1,14 @@
 let listaArtisti = [];
 let listaAlbum = [];
 const searchInput = document.querySelector(".input");
+const albumsContainer = document.getElementById("listaAlbum");
+let albums = Array.from(document.getElementsByClassName("albumItem")) || [];
 
 class Alb {
-    constructor(name, title, id, cover, tracklist) {
+    constructor(name, title, id, cover, tracklist, idArtist, rank) {
+        this.rank = rank;
         this.artista = name;
+        this.idArtista = idArtist
         this.titolo = title;
         this.id = id;
         this.cover = cover;
@@ -35,8 +39,6 @@ function searchBarAnimation() {
 }
 
 
-
-
 async function queryFetch(param) {
     if (param == "") {
         return;
@@ -51,12 +53,8 @@ async function queryFetch(param) {
 
         const data = await response.json();
         // console.log(albumList(data));
-        console.log("album: \n", albumList(data))
-        console.log("artist: \n", artistList(data))
-        // console.log("artist: \n", artistList(data))
 
-
-
+        buildAlbumItems(data);
         // pulitura del contenitore
 
         if (data.data.length > 0) {
@@ -71,9 +69,8 @@ async function queryFetch(param) {
 }
 
 
-
 async function albumFetch(parameter) {
-    if (param == "") {
+    if (parameter == "") {
         return;
     }
 
@@ -96,7 +93,6 @@ async function albumFetch(parameter) {
         console.error("There was a problem with the fetch operation:", error)
     }
 }
-// queryFetch("jeffmills")
 
 
 
@@ -120,20 +116,42 @@ function artistList(dati) {
     return listaArtisti
 }
 
-
-
 function albumList(dati) {
     listaAlbum = [];
     const albumTitles = new Set();
     (dati.data).forEach((element) => {
         if (!albumTitles.has(element.album.title)) {
             albumTitles.add(element.album.title);
-            const al = new Alb(element.artist.name, element.album.title, element.album.id, element.album.cover_small, element.album.tracklist);
+            const al = new Alb(element.artist.name, element.album.title, element.album.id, element.album.cover_small, element.album.tracklist, element.artist.id, element.rank);
             listaAlbum.push(al);
         }
     });
     return listaAlbum;
 }
+
+
+function buildAlbumItems(dati) {
+    albums.forEach(item => {
+        item.remove();
+    })
+
+    albumList(dati).forEach((item) => {
+        albumsContainer.innerHTML += `
+        <div class="row d-flex align-items-center mt-2 albumItem" data-listaDiTracce = "${item.tracks}">
+            <div class="col-1 opacity-50">1</div>
+            <div class="col-1"><img src="${item.cover}" alt="qualcosa" class="w-100 rounded-3"></div>
+            <div class="col-6 d-flex flex-column justify-content-center">
+                <p class="mb-0"><a href="./albumDetails.html?albumId=${item.id}" class="text-light text-decoration-none" >${item.titolo}</a> </p>
+                <p class="mb-0 opacity-50"><a href="./artist.html?artistId=${item.idArtista}" class="text-light text-decoration-none">${item.artista}</a></p>
+            </div>
+            <div class="col-3 opacity-50">${item.rank}</div>
+            <div class="col-1 opacity-50">item</div>
+        </div>
+        `;
+    })
+    albums = Array.from(document.getElementsByClassName("albumItem"));
+}
+
 
 
 
