@@ -1,3 +1,12 @@
+import { player, playerCarousel, playerTracks, initTracks} from "./player.js";
+import { tracks } from "./player.js";
+
+
+window.onload = function () {
+    initTracks();
+    player();
+}
+
 const addressBarParameters = new URLSearchParams(location.search);
 const albumId = addressBarParameters.get('albumId');
 console.log('albumId', albumId);
@@ -23,6 +32,7 @@ fetch(keyUrl + albumId)
         const artist = document.getElementById('artist');
         const trackList = document.getElementById('lists'); 
     
+        console.log(singleAlbum)
         img.src = singleAlbum.cover_medium;
         titleAlbum.innerText = singleAlbum.title;
         artist.innerText = singleAlbum.artist.name;

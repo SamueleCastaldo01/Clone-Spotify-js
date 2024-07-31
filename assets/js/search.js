@@ -1,5 +1,4 @@
 import { player, playerCarousel, playerTracks, initTracks, searchTrack} from "./player.js";
-import {trackDataArray,} from "./player.js"
 
 window.onload = function () {
     initTracks();
