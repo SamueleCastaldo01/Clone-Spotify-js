@@ -1,3 +1,10 @@
+import { player, playerCarousel, playerTracks, initTracks} from "./player.js";
+//import variabili
+import {trackDataArray,} from "./player.js"
+
+
+
+
 const albumsId = ["11205422", "534017402", "544892012", "420845567", "6327742", "112217392", "6157080", "74872972"];
 const carouselRow = document.getElementById('carousel');
 const cardsAlbumRow = document.getElementById('cardsAlbum')
@@ -5,148 +12,11 @@ const loading = document.getElementById("loading");
 const loader = document.getElementById("loader");
 
 
-let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel player, quando seleziono un album
-let indexCurrentTrack = 0;
-let tracks;
-
-const shuffleButton = document.getElementById('shuffleButton');
-let flagShuffle = false;
-let flagLoop = false;
-
-
 window.onload = function () {
     initTracks()
     player();
     buildCarouselItems()
 }
-
-const player = function () {
-    const audio = document.getElementById('audio');
-    const rangeAudio = document.getElementById('rangeAudio');
-    const currentDuration = document.getElementById('currentDuration');
-    const maxDuration = document.getElementById('maxDuration');
-    const playIcon = document.getElementById('play');
-    const resetButton = document.getElementById('resetButton');
-    const volumeControl = document.getElementById('volumeControl');
-    const loopButton = document.getElementById('loopButton');
-    //vado a prendere la durata della canzone
-    rangeAudio.value = 0
-    rangeAudio.max = Math.floor(audio.duration);
-    maxDuration.innerText = formatTime(audio.duration);
-
-
-    // va a prendere la durata massima dell'audio
-    audio.addEventListener('loadedmetadata', () => {
-        rangeAudio.max = Math.floor(audio.duration);
-        maxDuration.innerText = formatTime(audio.duration);
-    });
-
-    // aggiorna il valore del rangr in base a quello corrente del audio
-    audio.addEventListener('timeupdate', () => {
-        rangeAudio.value = Math.floor(audio.currentTime);
-        currentDuration.innerText = formatTime(audio.currentTime);
-    });
-
-    // quando l'input cambia
-    rangeAudio.addEventListener('input', () => {
-        audio.currentTime = rangeAudio.value;
-    });
-
-    // Quando si resetta, finisce, passa a valore zero si resetta
-    audio.addEventListener('ended', () => {
-        if(tracks.length >1 && flagLoop === false) {
-            playTrack()
-        } else {
-            rangeAudio.value = 0;
-            audio.play()
-        }
-    });
-
-
-    // Gestore dell'evento click per il pulsante di reset
-    resetButton.addEventListener('click', () => {
-        audio.currentTime = 0; // Riporta la riproduzione all'inizio
-        if (audio.paused) {
-            audio.pause(); // Mette in pausa l'audio se è in riproduzione
-            playIcon.classList.remove('bi-pause-circle-fill');
-            playIcon.classList.add('bi-play-circle-fill');
-        }
-    });
-
-
-    // Gestore dell'evento input per il controllo del volume
-    volumeControl.addEventListener('input', () => {
-        const volumeValue = parseFloat(volumeControl.value);
-
-        // Verifica che il valore sia nell'intervallo [0, 1]
-        if (volumeValue < 0 || volumeValue > 1) {
-            console.error('Volume value out of range:', volumeValue);
-        } else {
-            audio.volume = volumeValue;
-        }
-    });
-
-
-    // Funzione per formattare il tempo
-    function formatTime(seconds) {
-        const minutes = Math.floor(seconds / 60);
-        const secs = Math.floor(seconds % 60);
-        return `${minutes}:${secs < 10 ? '0' : ''}${secs}`;
-    }
-
-
-    function pausePLay() {
-        if (audio.paused) {
-            audio.play(); // Riproduce l'audio se è in pausa
-            playIcon.classList.remove('bi-play-circle-fill');
-            playIcon.classList.add('bi-pause-circle-fill');
-        } else {
-            audio.pause(); // Pausa l'audio se è in riproduzione
-            playIcon.classList.remove('bi-pause-circle-fill');
-            playIcon.classList.add('bi-play-circle-fill');
-        }
-    }
-
-    // Gestore di evento per il clic sull'icona di riproduzione
-    playIcon.addEventListener('click', () => {
-        pausePLay()
-    });
-
-
-    // Definisci la funzione da eseguire quando viene premuto il tasto spazio
-    function handleSpacebarPress(event) {
-        if (event.key === ' ' || event.key === 'Spacebar') {
-            event.preventDefault(); // Previene il comportamento predefinito (es. scorrimento della pagina)
-            pausePLay()
-        }
-    }
-    document.addEventListener('keydown', handleSpacebarPress);
-
-
-    shuffleButton.addEventListener('click', () => {
-        if(flagShuffle === false) {
-            tracks = shuffle(tracks); // Mescola l'array tracks
-            shuffleButton.style.color = "#1ED760"
-            flagShuffle = true
-        } else {
-            flagShuffle = false
-            shuffleButton.style.color = "white"
-        }
-    })
-
-
-    loopButton.addEventListener('click', () => {
-        if(flagLoop === false) {
-            loopButton.style.color = "#1ED760"
-            flagLoop = true
-        } else {
-            flagLoop = false
-            loopButton.style.color = "white"
-        }
-    })
-
-}
-
 
 
 //-------------------------------------------------------
@@ -222,28 +92,6 @@ function buildCarousel(datasetArray) {
     });
 }
 
-function  playerCarousel(element) {
-    indexCurrentTrack = 0;
-    const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
-    playIcon.classList.remove('bi-play-circle-fill');
-    playIcon.classList.add('bi-pause-circle-fill');
-    const titlePlayer = document.getElementById('titlePlayer')  //vado a prendere gli elementi da cambiare all'interno del player
-    const artistPlayer = document.getElementById('artistPlayer')
-    const imgPlayer = document.getElementById('imgPlayer')
-
-    const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
-    const sourceElement = audioElement.querySelector('source');
-
-    sourceElement.src = element.preview; //imposta il nuvo URL
-    titlePlayer.innerText = element.title_short   //cambia nel cose nel DOM del palyer
-    artistPlayer.innerText = element.artist.name
-    imgPlayer.src = element.album.cover_small
-
-    audioElement.load();
-    audioElement.play(); 
-}
-
-
 
 
 // Funzione per creare le card____________________________________________
@@ -269,85 +117,7 @@ function createAlbumCards(track) {
 }
 
 
-// Funzione per gestire la riproduzione delle tracce, qui avrò tutte le tracce. Si attiva quando premo l'immagine
-function playerTracks(index) {
-    if(flagShuffle === true) {
-        tracks = shuffle(tracks); // Mescola l'array tracks
-    }
-    indexCurrentTrack = 0;
-    tracks = trackDataArray[index];
-    console.log(tracks);
-    playTrack()
-}
-
-
-document.getElementById('nextTrack').addEventListener('click', () => { //evento quando vado alla canzone successiva
-    playTrack()
-})
-
-//Qui vado a prendere un album. Album iniziale
-function initTracks() {
-    albumDataIni("album", "6327742");
-}
-
-function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
-    const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/${type}/${albumId}`;
-
-    fetch(apiKey)
-        .then((response) => {
-            if (response.ok) {
-                return response.json();
-            } else {
-                throw new Error('No Album No party');
-            }
-        })
-        .then((dataAlbum) => {
-            const albumtracks = Array.from(dataAlbum.tracks.data);
-            tracks = albumtracks
-            playPlayTrack()
-        })
-        .catch((error) => {
-            console.error('Errore:', error);
-        });
-}
-
-
 //-----------------------------------------------------------
-function playTrack() {
-    const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
-    playIcon.classList.remove('bi-play-circle-fill');
-    playIcon.classList.add('bi-pause-circle-fill');
-    const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
-
-    playPlayTrack()
-    // Ricarica l'audio e riproduci
-    audioElement.load();
-    audioElement.play();
-}
-
-function playPlayTrack() {
-    const titlePlayer = document.getElementById('titlePlayer')  //vado a prendere gli elementi da cambiare all'interno del player
-    const artistPlayer = document.getElementById('artistPlayer')
-    const imgPlayer = document.getElementById('imgPlayer')
-
-    const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
-    const sourceElement = audioElement.querySelector('source');
-
-    if (indexCurrentTrack >= tracks.length) {
-        indexCurrentTrack = 0;  // Resetta l'indice alla prima traccia
-    }
-
-    sourceElement.src = tracks[indexCurrentTrack].preview; //imposta il nuvo URL
-    titlePlayer.innerText = tracks[indexCurrentTrack].title_short   //cambia nel cose nel DOM del palyer
-    artistPlayer.innerText = tracks[indexCurrentTrack].artist.name
-    imgPlayer.src = tracks[indexCurrentTrack].album.cover_small
-    imgPlayer.classList.remove("d-none")
-    loader.style.display = "none";
-
-
-    indexCurrentTrack++; //aggiorna l'index per poi andare alla prossima traccia, quando si preme il pulsante
-}
-
 
 
 const convertDuration = function (seconds) {
@@ -356,13 +126,11 @@ const convertDuration = function (seconds) {
     return `${minutes}:${remainingSeconds}`
 }
 
+window.playerCarousel = playerCarousel;
+window.playerTracks = playerTracks;
+window.playTrack = playTrack;
+window.playPlayTrack = playPlayTrack;
+window.initTracks = initTracks;
 
 
-// Definisci la funzione di mescolamento (Fisher-Yates shuffle)
-function shuffle(array) {
-    for (let i = array.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [array[i], array[j]] = [array[j], array[i]]; // Scambia gli elementi
-    }
-    return array;
-}
+
