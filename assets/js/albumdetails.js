@@ -19,8 +19,8 @@ fetch(keyUrl + albumId)
 function displayAlbumDetails(singleAlbum) {
     const albumDetailsContainer = document.getElementById('albumdettagli');
     albumDetailsContainer.innerHTML = `
-    <div class="row  ">   
-                        <div class="d-flex mt-2 " >
+    <div class="row ">   
+                        <div class="d-flex mt-2" >
                         <i class="bi bi-arrow-left-circle fs-3"></i>
                         <i class="bi bi-arrow-right-circle fs-3 ms-3"></i>
                     </div>
@@ -45,7 +45,7 @@ function displayAlbumDetails(singleAlbum) {
                     <div class="row mt-5">
                         <div class="col-7 ">
                             <ol>
-                                 <li>${singleAlbum.tracks.title_short}</li>
+                            ${singleAlbum.tracks.data.map(track => `<li>${track.title_short}</li>`).join('')}
                             </ol>
 
                         </div>
@@ -58,7 +58,7 @@ function displayAlbumDetails(singleAlbum) {
                         </div>
                         <div class="col-1 text-end">
                             <ol>
-                            <li> ${convertDuration(singleAlbum.tracks.duration)}</li>
+                            ${singleAlbum.tracks.data.map(track => `<li>${convertDuration(track.duration)}</li>`)}
                             </ol>
 
 
