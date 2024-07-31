@@ -170,10 +170,6 @@ function buildAlbumItems(dati) {
 
 
 
-
-
-
-
 // async function albumFetch(parameter) {
 //     if (parameter == "") {
 //         return;
