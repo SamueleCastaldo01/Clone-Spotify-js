@@ -37,12 +37,14 @@ fetch(keyUrl + albumId)
             trackHTML += `
                 <div class="row ">
                     <div class="col-8">
+                     <p>#TITOLO</p>
                         <ol class="list-unstyled">
                             <li class="">${track.title_short}</li>
                             <p class="text-undertitle">${track.artist.name}</p>
                         </ol>
                     </div>
                     <div class="col-3 ">
+                     <p>RIPRODUZIONI</p>
                         <ol class="list-unstyled" >
                             <li class="text-undertitle"> ${track.rank}</li> 
                         </ol>

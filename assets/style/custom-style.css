@@ -115,6 +115,10 @@ body {
   background: linear-gradient(0deg, #1E1E1E 60%, #DEC04F 100%);
 }
 
+.underTitle {
+  color: #888886;
+}
+
 input[type=range] {
   /* removing default appearance */
   -webkit-appearance: none;
@@ -166,6 +170,10 @@ input[type=range]::-moz-range-thumb {
   border: 1px solid white;
   /*  slider progress trick  */
   box-shadow: -407px 0 0 400px white;
+}
+
+hr {
+  border-color: #1ED760;
 }
 
 /*!
