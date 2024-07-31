@@ -145,7 +145,7 @@ function builArtistItems(dati) {
     artists = Array.from(document.getElementsByClassName("artistItem"));
 }
 
-searchTrack(${item.id})
+
 
 function buildAlbumItems(dati) {
     albums.forEach(item => {
@@ -161,7 +161,7 @@ function buildAlbumItems(dati) {
             <div class="col-2 col-lg-2 position-relative">
                 <img src="${item.cover}" alt="qualcosa" class="w-100 rounded-3">
                <button type="button" class="btn btn-primary circle-button position-absolute bottom-10 end-5 rounded-circle ">
-                    <i class="bi bi-play-fill fs-small " onclick=""></i>
+                    <i class="bi bi-play-fill fs-small " onclick="searchTrack(${item.id})"></i>
                </button>
             </div>
             <div class="col-5 col-lg-5 d-flex flex-column justify-content-center">
@@ -175,6 +175,8 @@ function buildAlbumItems(dati) {
     })
     albums = Array.from(document.getElementsByClassName("albumItem"));
 }
+
+window.searchTrack = searchTrack;
 
 
 
