@@ -236,6 +236,12 @@ export function albumDataIni(type, albumId) {  //vado a fare una fetch per andar
 }
 
 
+export function searchTrack(id) {
+    console.log(id)
+    albumDataIni("album", id); 
+    playTrack()
+
+}
 
 // Definisci la funzione di mescolamento (Fisher-Yates shuffle)
 function shuffle(array) {

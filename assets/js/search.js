@@ -1,4 +1,4 @@
-import { player, playerCarousel, playerTracks, initTracks, albumDataIni, playTrack} from "./player.js";
+import { player, playerCarousel, playerTracks, initTracks, searchTrack} from "./player.js";
 import {trackDataArray,} from "./player.js"
 
 window.onload = function () {
@@ -154,13 +154,6 @@ function buildAlbumItems(dati) {
 }
 
 
-function searchTrack(id) {
-    console.log(id)
-    albumDataIni("album", id); 
-    playTrack()
 
-}
 
 window.searchTrack = searchTrack
-window.initTracks = initTracks;
-window.playerTracks = playerTracks;
