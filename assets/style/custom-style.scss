@@ -15,7 +15,8 @@ $new-theme-colors: (
   "grayMain": #212121,
   "grayCard" :#2C2C2C,
   "chit":#4498E7,
-  "dark":$new-dark
+  "dark":$new-dark,
+  "undertitle": #888886
 );
 
 $theme-colors: map-merge($theme-colors, $new-theme-colors);
@@ -240,7 +241,9 @@ body {
   background: #1E1E1E;
 background: linear-gradient(0deg, #1E1E1E 60%, #DEC04F 100%);
 }
-
+.underTitle{
+  color:#888886
+}
 
 // $headings-font-family: "Inter", sans-serif;
 
