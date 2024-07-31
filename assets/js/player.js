@@ -101,14 +101,23 @@ export function player()  {
     });
 
 
-    // Definisci la funzione da eseguire quando viene premuto il tasto spazio
-    function handleSpacebarPress(event) {
-        if (event.key === ' ' || event.key === 'Spacebar') {
+// Definisci la funzione da eseguire quando viene premuto il tasto spazio
+function handleSpacebarPress(event) {
+    // Controlla se il tasto premuto è la barra spaziatrice
+    if (event.key === ' ' || event.key === 'Spacebar') {
+        // Verifica se l'elemento attivo è un input, textarea o select
+        const activeElement = document.activeElement;
+        const isInputField = activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.tagName === 'SELECT';
+
+        if (!isInputField) {
             event.preventDefault(); // Previene il comportamento predefinito (es. scorrimento della pagina)
-            pausePLay()
+            pausePLay()// Esegui la funzione per mettere in pausa o riprodurre
         }
     }
-    document.addEventListener('keydown', handleSpacebarPress);
+}
+
+// Aggiungi l'evento keydown all'intero documento
+document.addEventListener('keydown', handleSpacebarPress);
 
 
     shuffleButton.addEventListener('click', () => {
@@ -176,9 +185,11 @@ export function playTrack() {
     const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
 
     playPlayTrack()
-    // Ricarica l'audio e riproduci
-    audioElement.load();
-    audioElement.play();
+    // Usa setTimeout per dare tempo al browser di aggiornare la sorgente
+    setTimeout(() => {
+        audioElement.load();
+        audioElement.play();
+    }, 400); // Puoi regolare il tempo di attesa se necessario
 }
 
 export function playPlayTrack() {
@@ -212,7 +223,7 @@ export function initTracks() {
     albumDataIni("album", "6327742");
 }
 
-function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
+export function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
     const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/${type}/${albumId}`;
 
     fetch(apiKey)
@@ -234,6 +245,12 @@ function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a pre
 }
 
 
+export function searchTrack(id) {
+    console.log(id)
+    albumDataIni("album", id); 
+    playTrack()
+
+}
 
 // Definisci la funzione di mescolamento (Fisher-Yates shuffle)
 function shuffle(array) {

@@ -1,3 +1,11 @@
+import { player, playerCarousel, playerTracks, initTracks, searchTrack} from "./player.js";
+import {trackDataArray,} from "./player.js"
+
+window.onload = function () {
+    initTracks();
+    player();
+}
+
 let listaArtisti = [];
 let listaAlbum = [];
 let listaAlbumsTracks = [];
@@ -137,7 +145,7 @@ function builArtistItems(dati) {
     artists = Array.from(document.getElementsByClassName("artistItem"));
 }
 
-
+searchTrack(${item.id})
 
 function buildAlbumItems(dati) {
     albums.forEach(item => {
@@ -167,6 +175,10 @@ function buildAlbumItems(dati) {
     })
     albums = Array.from(document.getElementsByClassName("albumItem"));
 }
+
+
+
+
 
 
 
