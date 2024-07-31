@@ -50,17 +50,10 @@ async function queryFetch(param) {
         if (!response.ok) {
             throw new Error("Response is not ok!");
         }
-
         const data = await response.json();
-        // console.log(albumList(data));
-
-        buildAlbumItems(data);
-        // pulitura del contenitore
-
+        
         if (data.data.length > 0) {
-
-            // funzioni di creazione
-
+            buildAlbumItems(data);
         }
 
     } catch (error) {
@@ -151,15 +144,3 @@ function buildAlbumItems(dati) {
     })
     albums = Array.from(document.getElementsByClassName("albumItem"));
 }
-
-
-
-
-
-
-
-
-
-
-
-
