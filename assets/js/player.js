@@ -227,6 +227,7 @@ export function initTracks() {
     albumDataIni("album", "6327742");
 }
 
+
 export function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
     const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/${type}/${albumId}`;
 

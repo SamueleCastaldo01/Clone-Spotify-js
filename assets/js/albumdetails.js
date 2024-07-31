@@ -1,15 +1,14 @@
-import { player, playerCarousel, playerTracks, initTracks} from "./player.js";
+import { player, playerCarousel, playerTracks, initTracks, albumDataIni} from "./player.js";
 import { tracks } from "./player.js";
-
-
-window.onload = function () {
-    initTracks();
-    player();
-}
 
 const addressBarParameters = new URLSearchParams(location.search);
 const albumId = addressBarParameters.get('albumId');
 console.log('albumId', albumId);
+
+window.onload = function () {
+    albumDataIni("album", albumId)
+    player();
+}
 
 const keyUrl = 'https://striveschool-api.herokuapp.com/api/deezer/album/';
 fetch(keyUrl + albumId)
@@ -79,3 +78,4 @@ function convertDuration(seconds) {
 
 
 window.playerCarousel = playerCarousel;
+window.albumDataIni = albumDataIni;
