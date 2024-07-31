@@ -16,7 +16,7 @@ fetch(keyUrl + albumId)
         displayAlbumDetails(singleAlbum);
 })
 
-function displayAlbumDetails(singleAlbum) {
+/*function displayAlbumDetails(singleAlbum) {
     const albumDetailsContainer = document.getElementById('albumdettagli');
     albumDetailsContainer.innerHTML = `
     <div class="row ">   
@@ -58,7 +58,7 @@ function displayAlbumDetails(singleAlbum) {
                         </div>
                         <div class="col-1 text-end">
                             <ol>
-                            ${singleAlbum.tracks.data.map(track => `<li>${convertDuration(track.duration)}</li>`)}
+                            ${singleAlbum.tracks.data.map(track => `<li>${convertDuration(track.duration)}</li>`).join('')}
                             </ol>
 
 
@@ -66,6 +66,16 @@ function displayAlbumDetails(singleAlbum) {
 
                     </div>
     `;
+}*/
+function displayAlbumDetails(singleAlbum) {
+    const img = document.getElementById('imgDetails');
+    const titleAlbum = document.getElementById('title');
+    const artist = document.getElementById('artist');
+    const listOne = document.getElementById('listOne');
+
+    img.src = singleAlbum.cover_medium;
+    titleAlbum.innerText = singleAlbum.title;
+    artist.innerText = singleAlbum.artist.name;
 }
 
 function convertDuration(seconds) {
