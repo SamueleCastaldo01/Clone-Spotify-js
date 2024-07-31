@@ -1,18 +1,24 @@
 let listaArtisti = [];
 let listaAlbum = [];
+let listaAlbumsTracks = [];
 const searchInput = document.querySelector(".input");
 const albumsContainer = document.getElementById("listaAlbum");
 let albums = Array.from(document.getElementsByClassName("albumItem")) || [];
 
+
+
 class Alb {
-    constructor(name, title, id, cover, tracklist, idArtist, rank) {
+    constructor(name, title, id, cover, tracklist, idArtist, rank, tracks, duration, preview) {
         this.rank = rank;
         this.artista = name;
         this.idArtista = idArtist
         this.titolo = title;
         this.id = id;
         this.cover = cover;
-        this.tracks = tracklist
+        this.tracklist = tracklist
+        this.tracks = tracks || [];
+        this.duration = duration;
+        this.preview = preview;
     }
 }
 
@@ -22,8 +28,9 @@ class Art {
         this.id = id;
         this.foto = picture;
     }
-
 }
+
+
 
 function searchBarAnimation() {
 
@@ -39,6 +46,7 @@ function searchBarAnimation() {
 }
 
 
+
 async function queryFetch(param) {
     if (param == "") {
         return;
@@ -51,35 +59,9 @@ async function queryFetch(param) {
             throw new Error("Response is not ok!");
         }
         const data = await response.json();
-        
+
         if (data.data.length > 0) {
             buildAlbumItems(data);
-        }
-
-    } catch (error) {
-        console.error("There was a problem with the fetch operation:", error)
-    }
-}
-
-
-async function albumFetch(parameter) {
-    if (parameter == "") {
-        return;
-    }
-
-    const url = parameter;
-    try {
-        const response = await fetch(url);
-        if (!response.ok) {
-            throw new Error("Response is not ok!");
-        }
-
-        const data = await response.json();
-
-        if (data.data.length > 0) {
-
-            // funzioni di creazione
-
         }
 
     } catch (error) {
@@ -109,13 +91,16 @@ function artistList(dati) {
     return listaArtisti
 }
 
+
+
 function albumList(dati) {
     listaAlbum = [];
     const albumTitles = new Set();
     (dati.data).forEach((element) => {
+        console.log(element)
         if (!albumTitles.has(element.album.title)) {
             albumTitles.add(element.album.title);
-            const al = new Alb(element.artist.name, element.album.title, element.album.id, element.album.cover_small, element.album.tracklist, element.artist.id, element.rank);
+            const al = new Alb(element.artist.name, element.album.title, element.album.id, element.album.cover_small, element.album.tracklist, element.artist.id, element.rank, "", element.duration, element.preview);
             listaAlbum.push(al);
         }
     });
@@ -123,14 +108,18 @@ function albumList(dati) {
 }
 
 
+
 function buildAlbumItems(dati) {
     albums.forEach(item => {
         item.remove();
     })
 
+    listaAlbumsTracks = [];
     albumList(dati).forEach((item) => {
+
+        // albumFetch(item.tracklist);
         albumsContainer.innerHTML += `
-        <div class="row d-flex align-items-center mt-2 albumItem" data-listaDiTracce = "${item.tracks}">
+        <div class="row d-flex align-items-center mt-2 albumItem" data-listaDiTracce = "${item.tracklist}">
             <div class="col-1 opacity-50">1</div>
             <div class="col-1"><img src="${item.cover}" alt="qualcosa" class="w-100 rounded-3"></div>
             <div class="col-6 d-flex flex-column justify-content-center">
@@ -138,9 +127,47 @@ function buildAlbumItems(dati) {
                 <p class="mb-0 opacity-50"><a href="./artist.html?artistId=${item.idArtista}" class="text-light text-decoration-none">${item.artista}</a></p>
             </div>
             <div class="col-3 opacity-50">${item.rank}</div>
-            <div class="col-1 opacity-50">item</div>
+            <div class="col-1 opacity-50">${item.duration}</div>
         </div>
         `;
     })
     albums = Array.from(document.getElementsByClassName("albumItem"));
 }
+
+
+
+
+
+
+
+// async function albumFetch(parameter) {
+//     if (parameter == "") {
+//         return;
+//     }
+
+//     const url = parameter;
+//     try {
+//         const response = await fetch(url);
+//         if (!response.ok) {
+//             throw new Error("Response is not ok!");
+//         }
+
+//         const data = await response.json();
+
+//         if (data.data.length > 0) {
+//             albumsTracksList(data);
+
+//             // funzioni di creazione
+//         }
+
+//     } catch (error) {
+//         console.error("There was a problem with the fetch operation:", error)
+//     }
+// }
+
+
+
+// function albumsTracksList(dati) {
+//     listaAlbumsTracks.push(dati.data)
+//     return listaAlbumsTracks;
+// }
