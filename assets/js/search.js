@@ -121,8 +121,8 @@ function buildAlbumItems(dati) {
         albumsContainer.innerHTML += `
         <div class="row d-flex align-items-center mt-2 albumItem" data-listaDiTracce = "${item.tracklist}">
             <div class="col-1 opacity-50">1</div>
-            <div class="col-1"><img src="${item.cover}" alt="qualcosa" class="w-100 rounded-3"></div>
-            <div class="col-6 d-flex flex-column justify-content-center">
+            <div class="col-2 col-lg-1"><img src="${item.cover}" alt="qualcosa" class="w-100 rounded-3"></div>
+            <div class="col-5 col-lg-6 d-flex flex-column justify-content-center">
                 <p class="mb-0"><a href="./albumDetails.html?albumId=${item.id}" class="text-light text-decoration-none" >${item.titolo}</a> </p>
                 <p class="mb-0 opacity-50"><a href="./artist.html?artistId=${item.idArtista}" class="text-light text-decoration-none">${item.artista}</a></p>
             </div>
