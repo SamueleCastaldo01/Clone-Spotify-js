@@ -4,6 +4,7 @@ export let flagShuffle = false;
 export let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel player, quando seleziono un album
 export let indexCurrentTrack = 0;
 export let tracks;
+let likePlaylist = JSON.parse(localStorage.getItem("likePlaylist")) || [];
 
 export function player()  {
     const audio = document.getElementById('audio');
@@ -145,23 +146,45 @@ document.addEventListener('keydown', handleSpacebarPress);
 }
 
 
-export function  playerCarousel(element) {
+export function playerCarousel(track) {
+    console.log("sono entrato 1")
     indexCurrentTrack = 0;
     const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
+    const heart = document.getElementById('heart');
     playIcon.classList.remove('bi-play-circle-fill');
     playIcon.classList.add('bi-pause-circle-fill');
-    const titlePlayer = document.getElementById('titlePlayer')  //vado a prendere gli elementi da cambiare all'interno del player
-    const artistPlayer = document.getElementById('artistPlayer')
-    const imgPlayer = document.getElementById('imgPlayer')
+    const titlePlayer = document.getElementById('titlePlayer');  //vado a prendere gli elementi da cambiare all'interno del player
+    const artistPlayer = document.getElementById('artistPlayer');
+    const imgPlayer = document.getElementById('imgPlayer');
 
     const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
     const sourceElement = audioElement.querySelector('source');
 
-    sourceElement.src = element.preview; //imposta il nuvo URL
-    titlePlayer.innerText = element.title_short   //cambia nel cose nel DOM del palyer
-    artistPlayer.innerText = element.artist.name
-    imgPlayer.src = element.album.cover_small
+    sourceElement.src = track.preview; //imposta il nuovo URL
+    titlePlayer.innerText = track.title_short;   //cambia nel DOM del player
+    artistPlayer.innerText = track.artist.name;
+    imgPlayer.src = track.album.cover_small;
 
+    heart.onclick = function() {
+        likePlaylist.forEach((e) => {
+            if(e.id === track.id) {
+                heart.classList.toggle('bi-heart-fill'); // Cambia l'icona a 'bi-heart-fill'
+                heart.classList.toggle('bi-heart'); // Rimuovi l'icona 'bi-heart'
+                return
+            }
+        })
+
+
+        likePlaylist.push({
+            id : track.id,
+            title_short : track.title_short,
+            preview : track.preview,
+            cover_small : track.cover_small,
+            artist : track.artist.name
+        })
+        console.log(likePlaylist)
+        localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
+    };
 
     setTimeout(() => {
         audioElement.load();
