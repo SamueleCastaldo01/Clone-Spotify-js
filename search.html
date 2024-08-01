@@ -73,6 +73,17 @@
             background: #3b3640;
             border-radius: 10px;
         }
+
+        #mobileFooter {
+            background-color: rgba(30, 30, 30, 0.96);
+        }
+
+        @media screen and (min-width:992px) {
+            .divPlayer {
+                bottom: 0 !important
+            }
+
+        }
     </style>
 </head>
 
@@ -90,7 +101,7 @@
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/search.svg" alt="searchIcon"
                             class="me-3"><a href="#" class="text-decoration-none text-light">Cerca</a></p>
                     <p class="d-flex align-items-center mb-5"><img src="assets/icons/music-note-list.svg"
-                            alt="libraryIcon" class="me-3"><a href="#" class="text-decoration-none text-light">La tua
+                            alt="libraryIcon" class="me-3"><a href="library.html" class="text-decoration-none text-light">La tua
                             libreria</a></p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/plus-square-fill.svg"
                             alt="playIcon" class="me-3">Crea Playlist</p>
@@ -103,7 +114,7 @@
                         <!-- Div che conterrà la lista delle playlist -->
                     </div>
                 </div>
-                <div class="col-12  px-5 pt-5 col-lg-7 justify-content-center" style="margin-bottom: 15%;">
+                <div class="col-12  px-5 pt-5 col-lg-7 justify-content-center" style="margin-bottom: 40%;">
                     <h1>Cerca</h1>
                     <div class="box position-relative ">
                         <div class="search-container">
@@ -263,7 +274,7 @@
     </main>
 
     <!--Player  -->
-    <div class="divPlayer bg-grayMain align-items-center p-3  position-fixed bottom-0 w-100 z-3 h-15">
+    <div class="divPlayer bg-grayMain align-items-center p-3  position-fixed bottom-10 w-100 z-3 h-15">
         <audio id="audio" crossorigin="anonymous">
             <source src="https://cdn-preview-5.dzcdn.net/stream/c-56b90c84e99cca5b7e5c7f5059e4696f-2.mp3"
                 type="audio/mpeg">
@@ -283,7 +294,7 @@
                         <p id="artistPlayer" class="m-0"></p>
                     </div>
                     <div class="ms-2">
-                        <i class="bi bi-heart ms-2"></i>
+                        <i id="heart" class="bi bi-heart ms-2"></i>
                         <!--<i class="bi bi-heart-fill"></i> -->
                     </div>
                 </div>
@@ -304,7 +315,7 @@
                 <div class="w-100 d-flex align-items-center">
                     <p id="currentDuration" class="m-0 me-1">0:00</p>
                     <input type="range" id="rangeAudio" class="slider w-90">
-                    <p id="maxDuration" class="m-0 ms-1">10:10</p>
+                    <p id="maxDuration" class="m-0 ms-1">3:23</p>
                 </div>
             </div>
             <div class="col-3 d-flex justify-content-end align-items-center">
@@ -319,6 +330,28 @@
                 <i class="bi bi-arrows-fullscreen mx-1 d-none d-lg-inline-block"></i>
             </div>
         </div>
+    </div>
+
+    <div class='container-fluid position-fixed bottom-0 h-10 d-lg-none d-flex justify-content-between align-items-center'
+        id="mobileFooter">
+        <a href='index.html'>
+            <div class="icon w-100 d-flex flex-column align-items-center ">
+                <img src="assets/icons/house-door-fill.svg" alt="home" class=" d-block w-100">
+                <a class="text-decoration-none text-white">Home</a>
+            </div>
+        </a>
+        <a href='search.html'>
+            <div class="icon w-100 d-flex flex-column align-items-center">
+                <img src="assets/icons/search.svg" alt="search" class=" d-block w-100">
+                <a class="text-decoration-none text-white">Cerca</a>
+            </div>
+        </a>
+        <a href="library.html">
+            <div class="icon w-100  d-flex flex-column align-items-center">
+                <img src="assets/icons/music-note-list.svg" alt="music" class="d-block w-100">
+                <a class="text-decoration-none text-white">La tua libreria</a>
+            </div>
+        </a>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
