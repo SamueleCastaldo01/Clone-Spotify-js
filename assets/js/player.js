@@ -165,15 +165,20 @@ export function playerCarousel(track) {
     artistPlayer.innerText = track.artist.name;
     imgPlayer.src = track.album.cover_small;
 
-    heart.onclick = function() {
-        likePlaylist.forEach((e) => {
-            if(e.id === track.id) {
-                heart.classList.toggle('bi-heart-fill'); // Cambia l'icona a 'bi-heart-fill'
-                heart.classList.toggle('bi-heart'); // Rimuovi l'icona 'bi-heart'
-                return
-            }
-        })
+    likePlaylist.forEach((e) => {
+        if(e.id === track.id) {
+            heart.classList.add('bi-heart-fill');
+            heart.classList.remove('bi-heart');
+            return
+        } else {
+            heart.classList.remove('bi-heart-fill');
+            heart.classList.add('bi-heart');
+        }
+    })
 
+    heart.onclick = function() {
+        heart.classList.toggle('bi-heart-fill'); // Cambia l'icona a 'bi-heart-fill'
+        heart.classList.toggle('bi-heart'); // Rimuovi l'icona 'bi-heart'
 
         likePlaylist.push({
             id : track.id,
