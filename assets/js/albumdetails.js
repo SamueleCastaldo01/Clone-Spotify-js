@@ -48,13 +48,16 @@ fetch(keyUrl + albumId)
         singleAlbum.tracks.data.forEach((track, index) => {
             trackHTML += `
                 <div class="row" id="${track.id}">
-                    <div class="col-8" onclick='playerAlbumTrack(${track.id})'>
+                    <div class="col-1 text-muted">
+                        ${index +1}
+                    </div>
+                    <div class="col-6" onclick='playerAlbumTrack(${track.id})'>
                         <ol class="list-unstyled">
                             <li class="title">${track.title_short}</li>
                             <p class="text-undertitle">${track.artist.name}</p>
                         </ol>
                     </div>
-                    <div class="col-3">
+                    <div class="col-3 text-end">
                         <ol class="list-unstyled mb-0">
                             <li class="text-muted">${track.rank}</li>
                         </ol>
