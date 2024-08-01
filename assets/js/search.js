@@ -8,18 +8,55 @@ window.onload = function () {
 //animazione tasto input
 document.addEventListener("DOMContentLoaded", function() {
     const inputSearch = document.querySelector(".inputSearch");
+  
+    // Espande l'input automaticamente all'apertura della pagina
     inputSearch.classList.add("expanded");
+  
+    // Ritarda il focus sull'input per farlo sembrare più fluido
     setTimeout(() => {
       inputSearch.focus();
-    }, 1000); 
+    }, 1000); // Ritardo di 1000 ms (1 secondo)
   });
 
 
-
-
+  document.addEventListener('DOMContentLoaded', function() {
+    // Ottieni gli elementi del DOM
+    const searchInput = document.querySelector(".inputSearch");
+    const scopri = document.getElementById('scopri');
+    const listaArtisti = document.getElementById('listaArtisti');
+    const listaAlbum = document.getElementById('listaAlbum');
+  
+    // Verifica se gli elementi sono stati trovati
+    if (searchInput) {
+      // Funzione per controllare il contenuto dell'input
+      function checkInput() {
+        // Controlla se l'input è vuoto (spazi vuoti inclusi)
+        if (searchInput.value.trim() === '') {
+          // Mostra il div 'scopri' e nasconde gli altri
+          if (scopri) scopri.style.display = 'flex';
+          if (listaArtisti) listaArtisti.style.display = 'none';
+          if (listaAlbum) listaAlbum.style.display = 'none';
+        } else {
+          // Nasconde il div 'scopri' e mostra gli altri
+          if (scopri) scopri.style.display = 'none';
+          if (listaArtisti) listaArtisti.style.display = 'block';
+          if (listaAlbum) listaAlbum.style.display = 'block';
+        }
+      }
+  
+      // Aggiungi un event listener per l'evento 'input' sull'input di ricerca
+      searchInput.addEventListener('input', checkInput);
+  
+      // Esegui il controllo iniziale (se l'input ha già testo, ad esempio, dopo un ricaricamento della pagina)
+      checkInput();
+    } else {
+      console.error("Elemento con ID 'searchInput' non trovato.");
+    }
+  });
 
 let listaArtisti = [];
 let listaAlbum = [];
+let listaAlbumsTracks = [];
 const searchInput = document.getElementById('inputSearch');
 const albumsContainer = document.getElementById("listaAlbum");
 const artistsContainer = document.getElementById("listaArtisti");
