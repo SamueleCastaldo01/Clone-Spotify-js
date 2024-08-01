@@ -165,7 +165,7 @@ function albumList(dati) {
     (dati.data).forEach((element) => {
         if (!albumTitles.has(element.album.title)) {
             albumTitles.add(element.album.title);
-            const al = new Alb(element.artist.name, element.album.title, element.album.id, element.album.cover_small, element.album.tracklist, element.artist.id, element.rank, "", element.duration, element.preview);
+            const al = new Alb(element.artist.name, element.album.title, element.album.id, element.album.cover_medium, element.album.tracklist, element.artist.id, element.rank, "", element.duration, element.preview);
             listaAlbum.push(al);
         }
     });
