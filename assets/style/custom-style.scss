@@ -16,7 +16,8 @@ $new-theme-colors: (
   "grayCard" :#2C2C2C,
   "chit":#4498E7,
   "dark":$new-dark,
-  "undertitle": #888886
+  "undertitle": #888886,
+  "min": #CEC7AD
 );
 
 $theme-colors: map-merge($theme-colors, $new-theme-colors);
