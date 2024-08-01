@@ -151,7 +151,6 @@ export function playerCarousel(track) {
     console.log(likePlaylist)
     indexCurrentTrack = 0;
     const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
-    const heart = document.getElementById('heart');
     playIcon.classList.remove('bi-play-circle-fill');
     playIcon.classList.add('bi-pause-circle-fill');
     const titlePlayer = document.getElementById('titlePlayer');  //vado a prendere gli elementi da cambiare all'interno del player
@@ -166,53 +165,8 @@ export function playerCarousel(track) {
     artistPlayer.innerText = track.artist.name;
     imgPlayer.src = track.album.cover_small;
 
-    let flagPresentPlayLike = false;
-    let idPlayLike = 0
-    likePlaylist.forEach((e) => {
-        console.log("snon entrato baby")
-        if(e.id === track.id) {  //se è presente allora deve essere fill
-            console.log("entrao nell if")
-            console.log(track.id)
-            heart.classList.remove('bi-heart');
-            heart.classList.add('bi-heart-fill');
-            flagPresentPlayLike = true
-            idPlayLike = track.id
-            return
-        } 
-    })
-
-    if(flagPresentPlayLike === false) {
-        heart.classList.add('bi-heart');
-        heart.classList.remove('bi-heart-fill');
-    }
-
-    heart.onclick = function() {
-        heart.classList.toggle('bi-heart-fill'); // Cambia l'icona a 'bi-heart-fill'
-        heart.classList.toggle('bi-heart'); // Rimuovi l'icona 'bi-heart'
-
-        if(flagPresentPlayLike === false) {  //se non è presente allora me lo vai ad aggiungere
-            likePlaylist.push({
-                id : track.id,
-                title_short : track.title_short,
-                preview : track.preview,
-                cover_small : track.cover_small,
-                artist : track.artist.name
-            })
-            console.log(likePlaylist)
-            localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
-        } else {  //se è presente allora me lo vai ad elimnare
-            const index = likePlaylist.findIndex(item => item.id === idPlayLike);
-
-            if (index !== -1) {
-                // Se l'elemento è trovato, rimuovilo dall'array
-                likePlaylist.splice(index, 1);
-            }
-
-            // Aggiorna il localStorage
-            localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
-        }
-    };
-
+    playlistLike(track)
+   
     setTimeout(() => {
         audioElement.load();
         audioElement.play();
@@ -269,6 +223,7 @@ export function playPlayTrack(i) {
     loader.style.display = "none";
 
     colorTitleTrack(tracks[indexCurrentTrack].id)
+    playlistLike(indexCurrentTrack)
 
     if(i) {
         indexCurrentTrack = 0
@@ -405,4 +360,52 @@ function fetchArtist(artistId) {
             console.log(tracks)
             playPlayTrack()
     })
+}
+
+
+function playlistLike(track) {
+    console.log("sono entrato baby")
+    const heart = document.getElementById('heart');
+    let flagPresentPlayLike = false;
+    let idPlayLike = 0
+    likePlaylist.forEach((e) => {
+        if(e.id === track.id) {  //se è presente allora deve essere fill
+            heart.classList.remove('bi-heart');
+            heart.classList.add('bi-heart-fill');
+            flagPresentPlayLike = true
+            idPlayLike = track.id
+            return
+        } 
+    })
+
+    if(flagPresentPlayLike === false) {
+        heart.classList.add('bi-heart');
+        heart.classList.remove('bi-heart-fill');
+    }
+
+    heart.onclick = function() {
+        heart.classList.toggle('bi-heart-fill'); // Cambia l'icona a 'bi-heart-fill'
+        heart.classList.toggle('bi-heart'); // Rimuovi l'icona 'bi-heart'
+
+        if(flagPresentPlayLike === false) {  //se non è presente allora me lo vai ad aggiungere
+            likePlaylist.push({
+                id : track.id,
+                title_short : track.title_short,
+                preview : track.preview,
+                cover_small : track.cover_small,
+                artist : track.artist.name
+            })
+            localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
+        } else {  //se è presente allora me lo vai ad elimnare
+            const index = likePlaylist.findIndex(item => item.id === idPlayLike);
+
+            if (index !== -1) {
+                // Se l'elemento è trovato, rimuovilo dall'array
+                likePlaylist.splice(index, 1);
+            }
+
+            // Aggiorna il localStorage
+            localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
+        }
+    };
 }
