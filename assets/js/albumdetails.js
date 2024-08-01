@@ -53,13 +53,13 @@ function displayAlbumDetails(singleAlbum) {
     let trackHTML = '';
     singleAlbum.tracks.data.forEach((track, index) => {
         trackHTML += `
-                <div class="row" id="${track.id}">
+                <div class="row user-select-none" id="${track.id}">
                     <div class="col-1 text-muted">
                         ${index + 1}
                     </div>
                     <div class="col-6" onclick='playerAlbumTrack(${track.id})'>
                         <ol class="list-unstyled">
-                            <li class="title">${truncate(track.title_short, 15)}</li>
+                            <li class="title user-select-none">${truncate(track.title_short, 15)}</li>
                             <a href="./artist.html?artistId=${track.artist.id}" class="no-underline text-undertitle text-decoration-none">${track.artist.name}</a>
 
                         </ol>
