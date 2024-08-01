@@ -192,7 +192,7 @@ export function playTrack() {
     setTimeout(() => {
         audioElement.load();
         audioElement.play();
-    }, 400); // Puoi regolare il tempo di attesa se necessario
+    }, 600); // Puoi regolare il tempo di attesa se necessario
 }
 
 export function playPlayTrack(i) {
@@ -271,7 +271,7 @@ export function searchTrack(id) {
     setTimeout(() => {
         audioElement.load();
         audioElement.play();
-    }, 400); // Puoi regolare il tempo di attesa se necessario
+    }, 600); // Puoi regolare il tempo di attesa se necessario
 
 }
 
