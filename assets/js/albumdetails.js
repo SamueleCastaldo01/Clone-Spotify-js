@@ -1,5 +1,4 @@
-import { player, playerAlbumTrack, playerTracks, initTracks, albumDataIni} from "./player.js";
-import { tracks } from "./player.js";
+
 
 const addressBarParameters = new URLSearchParams(location.search);
 const albumId = addressBarParameters.get('albumId');
@@ -51,19 +50,19 @@ fetch(keyUrl + albumId)
                     <div class="col-1 text-muted">
                         ${index +1}
                     </div>
-                    <div class="col-7" onclick='playerAlbumTrack(${track.id})'>
+                    <div class="col-6" onclick='playerAlbumTrack(${track.id})'>
                         <ol class="list-unstyled">
                             <li class="title">${track.title_short}</li>
                             <p class="text-undertitle">${track.artist.name}</p>
                         </ol>
                     </div>
-                    <div class="col-3 ">
-                        <ol class="list-unstyled mb-0">
+                    <div class="col-4">
+                        <ol class="list-unstyled ">
                             <li class="text-muted">${track.rank}</li>
                         </ol>
                     </div>
-                    <div class="col-1 ">
-                        <ol class="list-unstyled mb-0">
+                    <div class="col-1">
+                        <ol class="list-unstyled ">
                             <li class="text-muted">${convertDuration(track.duration)}</li>
                         </ol>
                     </div>
