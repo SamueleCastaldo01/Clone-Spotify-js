@@ -393,7 +393,8 @@ function playlistLike(track) {
                 id : track.id,
                 title_short : track.title_short,
                 preview : track.preview,
-                cover_small : track.cover_small,
+                cover_small : track.album.cover_small,
+                duration : track.duration,
                 artist : track.artist.name
             })
             localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
