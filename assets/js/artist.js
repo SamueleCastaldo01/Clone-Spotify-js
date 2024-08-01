@@ -46,15 +46,15 @@ function topTracks(singleTrack) {
 
     singleTrack.data.forEach(track => {
         tracksHTML += `
-                <div class="col-6 d-flex">
+                <div class="col-6 d-flex my-2">
                     <img src="${track.album.cover_medium}" alt="Album Cover" class="w-10">
                     <h6 class="mb-0 mt-1 ms-2">${truncate(track.title,15)}</h6>
                 </div>
-                <div class="col-3">
-                    <p>${track.rank}</p>
+                <div class="col-3 my-2">
+                    <p class="text-muted ">${track.rank}</p>
                 </div>
-                <div class="col-3">
-                    <p>${convertDuration(track.duration)}</p>
+                <div class="col-3 my-2">
+                    <p class="text-muted ">${convertDuration(track.duration)}</p>
                 </div>
         `;
     });
