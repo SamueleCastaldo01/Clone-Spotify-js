@@ -243,6 +243,12 @@ export function initArtist(artistId) {
     fetchArtist(artistId)
 }
 
+export function initLikePlaylist() {
+    tracks = likePlaylist;
+    console.log(tracks)
+    playPlayTrack()
+}
+
 export function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
     const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/${type}/${albumId}`;
 
@@ -393,10 +399,12 @@ function playlistLike(track) {
                 id : track.id,
                 title_short : track.title_short,
                 preview : track.preview,
-                cover_small : track.album.cover_small,
+                album :{cover_small: track.album.cover_small},
                 duration : track.duration,
-                artist : track.artist.name,
-                artist_id : track.artist.id
+                artist : {
+                    id: track.artist.id,
+                    name: track.artist.name
+                }
             })
             localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
         } else {  //se è presente allora me lo vai ad elimnare

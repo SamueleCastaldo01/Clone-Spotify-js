@@ -1,4 +1,4 @@
-import { player, playerAlbumTrack, albumDataIni, playArtistFunction} from "./player.js";
+import { player, playerAlbumTrack, albumDataIni, playArtistFunction, initLikePlaylist} from "./player.js";
 let likePlaylist=JSON.parse(localStorage.getItem('likePlaylist')) || [];
 console.log(likePlaylist)
 
@@ -6,7 +6,8 @@ const playArtist = document.getElementById("playArtist");
 
 window.onload = function () {
     displayAlbumDetails();
-    albumDataIni("album", "11205422")
+    //albumDataIni("album", "11205422")
+    initLikePlaylist()
     player();
 }
 
@@ -43,7 +44,7 @@ playArtist.addEventListener("click", () => {
                     <div class="col-6" onclick='playerAlbumTrack(${track.id})'>
                         <ol class="list-unstyled">
                             <li class="title">${truncate(track.title_short,20)}</li>
-                            <a href="" class="no-underline text-undertitle text-decoration-none">${track.artist}</a>
+                            <a href="./artist.html?artistId=${track.artist.id}" class="no-underline text-undertitle text-decoration-none">${track.artist.name}</a>
 
                         </ol>
                     </div>
