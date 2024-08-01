@@ -119,10 +119,6 @@ body {
   color: #888886;
 }
 
-.underTitle {
-  color: #888886;
-}
-
 input[type=range] {
   /* removing default appearance */
   -webkit-appearance: none;
@@ -177,7 +173,11 @@ input[type=range]::-moz-range-thumb {
 }
 
 .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
-  background-color: #1E1E1E; /* Colore di sfondo che deve coprire tutto lo spazio */
+  background-color: #1E1E1E;
+} /* Colore di sfondo che deve coprire tutto lo spazio */
+.selected-title {
+  color: #1ED760; /* Cambia il colore a rosso o quello che preferisci */
+  font-weight: bold; /* Facoltativo: aggiunge peso al testo */
 }
 
 .artist-img {
@@ -186,11 +186,6 @@ input[type=range]::-moz-range-thumb {
   border-radius: 50%;
   -o-object-fit: cover;
      object-fit: cover;
-}
-
-.selected-title {
-  color: #1ED760; /* Cambia il colore a rosso o quello che preferisci */
-  font-weight: bold; /* Facoltativo: aggiunge peso al testo */
 }
 
 /*!
