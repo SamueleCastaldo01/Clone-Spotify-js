@@ -1,6 +1,7 @@
 import { player, playerCarousel, playerTracks, initTracks, searchTrack} from "./player.js";
 
 const loading = document.getElementById("loading");
+loading.style.display ="none"
 
 window.onload = function () {
     initTracks();
