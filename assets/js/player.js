@@ -4,6 +4,7 @@ export let flagShuffle = false;
 export let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel player, quando seleziono un album
 export let indexCurrentTrack = 0;
 export let tracks;
+let likePlaylist = JSON.parse(localStorage.getItem("likePlaylist")) || [];
 
 export function player()  {
     const audio = document.getElementById('audio');
@@ -145,29 +146,34 @@ document.addEventListener('keydown', handleSpacebarPress);
 }
 
 
-export function  playerCarousel(element) {
+export function playerCarousel(track) {
+    console.log("sono entrato 1")
+    console.log(likePlaylist)
     indexCurrentTrack = 0;
     const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
     playIcon.classList.remove('bi-play-circle-fill');
     playIcon.classList.add('bi-pause-circle-fill');
-    const titlePlayer = document.getElementById('titlePlayer')  //vado a prendere gli elementi da cambiare all'interno del player
-    const artistPlayer = document.getElementById('artistPlayer')
-    const imgPlayer = document.getElementById('imgPlayer')
+    const titlePlayer = document.getElementById('titlePlayer');  //vado a prendere gli elementi da cambiare all'interno del player
+    const artistPlayer = document.getElementById('artistPlayer');
+    const imgPlayer = document.getElementById('imgPlayer');
 
     const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
     const sourceElement = audioElement.querySelector('source');
 
-    sourceElement.src = element.preview; //imposta il nuvo URL
-    titlePlayer.innerText = element.title_short   //cambia nel cose nel DOM del palyer
-    artistPlayer.innerText = element.artist.name
-    imgPlayer.src = element.album.cover_small
+    sourceElement.src = track.preview; //imposta il nuovo URL
+    titlePlayer.innerText = track.title_short;   //cambia nel DOM del player
+    artistPlayer.innerText = track.artist.name;
+    imgPlayer.src = track.album.cover_small;
 
-
+    playlistLike(track)
+   
     setTimeout(() => {
         audioElement.load();
         audioElement.play();
     }, 400); // Puoi regolare il tempo di attesa se necessario
 }
+
+
 
 
 // Funzione per gestire la riproduzione delle tracce, qui avrò tutte le tracce. Si attiva quando premo l'immagine
@@ -217,6 +223,7 @@ export function playPlayTrack(i) {
     loader.style.display = "none";
 
     colorTitleTrack(tracks[indexCurrentTrack].id)
+    playlistLike(tracks[indexCurrentTrack])
 
     if(i) {
         indexCurrentTrack = 0
@@ -353,4 +360,53 @@ function fetchArtist(artistId) {
             console.log(tracks)
             playPlayTrack()
     })
+}
+
+
+function playlistLike(track) {
+    console.log("sono entrato baby")
+    console.log(likePlaylist)
+    const heart = document.getElementById('heart');
+    let flagPresentPlayLike = false;
+    let idPlayLike = 0;
+    likePlaylist.forEach((e) => {
+        if(e.id === track.id) {  //se è presente allora deve essere fill
+            heart.classList.remove('bi-heart');
+            heart.classList.add('bi-heart-fill');
+            flagPresentPlayLike = true
+            idPlayLike = track.id
+            return
+        } 
+    })
+
+    if(flagPresentPlayLike === false) {
+        heart.classList.add('bi-heart');
+        heart.classList.remove('bi-heart-fill');
+    }
+
+    heart.onclick = function() {
+        heart.classList.toggle('bi-heart-fill'); // Cambia l'icona a 'bi-heart-fill'
+        heart.classList.toggle('bi-heart'); // Rimuovi l'icona 'bi-heart'
+
+        if(flagPresentPlayLike === false) {  //se non è presente allora me lo vai ad aggiungere
+            likePlaylist.push({
+                id : track.id,
+                title_short : track.title_short,
+                preview : track.preview,
+                cover_small : track.cover_small,
+                artist : track.artist.name
+            })
+            localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
+        } else {  //se è presente allora me lo vai ad elimnare
+            const index = likePlaylist.findIndex(item => item.id === idPlayLike);
+
+            if (index !== -1) {
+                // Se l'elemento è trovato, rimuovilo dall'array
+                likePlaylist.splice(index, 1);
+            }
+
+            // Aggiorna il localStorage
+            localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
+        }
+    };
 }
