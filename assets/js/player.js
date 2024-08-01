@@ -5,6 +5,12 @@ export let trackDataArray = [];  //variabili utili per la riproduzione delle tra
 export let indexCurrentTrack = 0;
 export let tracks;
 let likePlaylist = JSON.parse(localStorage.getItem("likePlaylist")) || [];
+likePlaylist.unshift("Preferiti")
+localStorage.setItem("playlists", JSON.stringify([]))
+let playlists = JSON.parse(localStorage.getItem("playlists"))
+playlists.push(JSON.stringify(likePlaylist));
+console.log(playlists)
+
 
 export function player()  {
     const audio = document.getElementById('audio');
@@ -411,8 +417,10 @@ function playlistLike(track) {
             const index = likePlaylist.findIndex(item => item.id === idPlayLike);
 
             if (index !== -1) {
+                if(likePlaylist.length > 1) {
+                    likePlaylist.splice(index, 1);
+                }
                 // Se l'elemento è trovato, rimuovilo dall'array
-                likePlaylist.splice(index, 1);
             }
 
             // Aggiorna il localStorage
