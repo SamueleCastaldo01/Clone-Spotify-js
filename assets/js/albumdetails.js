@@ -1,5 +1,3 @@
-import { player, playerAlbumTrack, playerTracks, initTracks, albumDataIni} from "./player.js";
-import { tracks } from "./player.js";
 
 const addressBarParameters = new URLSearchParams(location.search);
 const albumId = addressBarParameters.get('albumId');
