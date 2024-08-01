@@ -34,7 +34,7 @@ function displayArtistDetails(singleArtist) {
     const img = document.getElementById('imgArtist');  
     const artist = document.getElementById('artist');
     const ascoltatori = document.getElementById('ascoltatori');
-    img.src = singleArtist.picture_small;
+    img.src = singleArtist.picture_medium;
     artist.innerText = singleArtist.name;
     ascoltatori.innerHTML=`${singleArtist.nb_fan} ascoltatori mensili `
 }
@@ -48,7 +48,7 @@ function topTracks(singleTrack) {
         tracksHTML += `
                 <div class="col-6 d-flex">
                     <img src="${track.album.cover_medium}" alt="Album Cover" class="w-10">
-                    <h6>${truncate(track.title,15)}</h6>
+                    <h6 class="mb-0 mt-1 ms-2">${truncate(track.title,15)}</h6>
                 </div>
                 <div class="col-3">
                     <p>${track.rank}</p>
@@ -74,3 +74,14 @@ function truncate(text ,maxLength ) {
         }
         return text;
     }
+
+
+    function changeButtonText() {
+        const follow = document.getElementById('follow');
+        if (follow.innerHTML === 'Follow') {
+            follow.innerHTML = 'Following';
+        } else {
+            follow.innerHTML = 'Follow';
+        }
+    }
+    
