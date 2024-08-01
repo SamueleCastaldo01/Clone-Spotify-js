@@ -261,8 +261,9 @@ export function albumDataIni(type, albumId) {  //vado a fare una fetch per andar
         });
 }
 
-
+//funzione che si attiva quando premo il pulsante della pagina search
 export function searchTrack(id) {
+    colorTitleTrack(id)
     const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
     playIcon.classList.remove('bi-play-circle-fill');
     playIcon.classList.add('bi-pause-circle-fill');
@@ -270,14 +271,13 @@ export function searchTrack(id) {
     const i = true
     indexCurrentTrack = 0;
     albumDataIni("album", id); 
-    playPlayTrack(i)
 
     setTimeout(() => {
-        audioElement.load();
         audioElement.play();
-    }, 600); // Puoi regolare il tempo di attesa se necessario
+    }, 1000); // Puoi regolare il tempo di attesa se necessario
 
 }
+
 
 export function playerAlbumTrack(id) {
     colorTitleTrack(id)

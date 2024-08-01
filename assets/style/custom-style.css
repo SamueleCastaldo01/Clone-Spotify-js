@@ -185,7 +185,7 @@ input[type=range]::-moz-range-thumb {
 }
 
 .selected-title {
-  color: #1ED760; /* Cambia il colore a rosso o quello che preferisci */
+  color: #1ED760;
   font-weight: bold; /* Facoltativo: aggiunge peso al testo */
 }
 
