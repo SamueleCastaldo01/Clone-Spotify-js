@@ -388,7 +388,11 @@ input[type="range"]::-moz-range-thumb {
     background-color: #D84000;
   }
 }
-
+#imgDetails {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; /* Può essere 'contain' se preferisci mantenere l'intero contenuto */
+}
 // $headings-font-family: "Inter", sans-serif;
 
 @import "scss/bootstrap.scss";
