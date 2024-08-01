@@ -1,5 +1,8 @@
 import { player, playerCarousel, playerTracks, initTracks, searchTrack} from "./player.js";
 
+const loading = document.getElementById("loading");
+loading.style.display ="none"
+
 window.onload = function () {
     initTracks();
     player();
@@ -113,6 +116,7 @@ async function queryFetch(param) {
     }
 
     const url = `https://striveschool-api.herokuapp.com/api/deezer/search?q=${param}`;
+    loading.style.display = 'block';
     try {
         const response = await fetch(url);
         if (!response.ok) {
@@ -127,6 +131,8 @@ async function queryFetch(param) {
 
     } catch (error) {
         console.error("There was a problem with the fetch operation:", error)
+    }finally{
+        loading.style.display = "none";
     }
 }
 

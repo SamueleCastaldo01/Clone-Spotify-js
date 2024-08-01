@@ -1,3 +1,4 @@
+
 import { player, initTracks, playerAlbumTrack, initArtist, playArtistFunction} from "./player.js";
 
 const playArtist = document.getElementById("playArtist");
