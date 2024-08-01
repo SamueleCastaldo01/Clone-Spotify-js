@@ -8,15 +8,36 @@ window.onload = function () {
 //animazione tasto input
 document.addEventListener("DOMContentLoaded", function() {
     const inputSearch = document.querySelector(".inputSearch");
-  
-    // Espande l'input automaticamente all'apertura della pagina
     inputSearch.classList.add("expanded");
-  
-    // Ritarda il focus sull'input per farlo sembrare più fluido
     setTimeout(() => {
       inputSearch.focus();
-    }, 1000); // Ritardo di 1000 ms (1 secondo)
+    }, 1000); 
   });
+
+
+  //controllo se è presente l'input all'intero della search
+  document.addEventListener('DOMContentLoaded', function() {
+    const searchInput = document.querySelector(".inputSearch");
+    const scopri = document.getElementById('scopri');
+    const listaArtisti = document.getElementById('listaArtisti');
+    const listaAlbum = document.getElementById('listaAlbum');
+  
+    function checkInput() {
+      if (searchInput.value.trim() === '') {
+        scopri.style.display = 'flex';
+        listaArtisti.style.display = 'none';
+        listaAlbum.style.display = 'none';
+      } else {
+        scopri.style.display = 'none';
+        listaArtisti.style.display = 'block';
+        listaAlbum.style.display = 'block';
+      }
+    }
+    searchInput.addEventListener('input', checkInput);
+
+    checkInput();
+  });
+
 
 let listaArtisti = [];
 let listaAlbum = [];

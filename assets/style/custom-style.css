@@ -181,7 +181,6 @@ input[type=range]::-moz-range-thumb {
   position: relative;
   width: 100%; /* Assicurati che il contenitore abbia una larghezza specificata o ereditata */
   max-width: 600px; /* Limita la larghezza massima del contenitore, se necessario */
-  margin: 0 auto; /* Centra il contenitore */
 }
 
 .inputSearch {
@@ -224,6 +223,28 @@ input[type=range]::-moz-range-thumb {
   pointer-events: none; /* Evita che l'icona sia cliccabile */
   color: #aaa; /* Colore dell'icona */
   font-size: 1.2em; /* Dimensione dell'icona */
+}
+
+.scopri .bg-red {
+  background-color: #E13300;
+}
+.scopri .bg-blue {
+  background-color: #1E3264;
+}
+.scopri .bg-pink {
+  background-color: #E8115C;
+}
+.scopri .bg-green {
+  background-color: #158A08;
+}
+.scopri .bg-brown {
+  background-color: #BC5800;
+}
+.scopri .bg-violet {
+  background-color: #8C67AC;
+}
+.scopri .bg-orange {
+  background-color: #D84000;
 }
 
 /*!
