@@ -15,28 +15,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
 
-  //controllo se è presente l'input all'intero della search
-  document.addEventListener('DOMContentLoaded', function() {
-    const searchInput = document.querySelector(".inputSearch");
-    const scopri = document.getElementById('scopri');
-    const listaArtisti = document.getElementById('listaArtisti');
-    const listaAlbum = document.getElementById('listaAlbum');
-  
-    function checkInput() {
-      if (searchInput.value.trim() === '') {
-        scopri.style.display = 'flex';
-        listaArtisti.style.display = 'none';
-        listaAlbum.style.display = 'none';
-      } else {
-        scopri.style.display = 'none';
-        listaArtisti.style.display = 'block';
-        listaAlbum.style.display = 'block';
-      }
-    }
-    searchInput.addEventListener('input', checkInput);
 
-    checkInput();
-  });
 
 
 let listaArtisti = [];
