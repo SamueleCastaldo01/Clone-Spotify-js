@@ -15,19 +15,62 @@ fetch(keyUrl + artistId)
         console.log(singleArtist)
         displayArtistDetails(singleArtist);
 })
+const keyUrl1='/top?limit=11'
+fetch(keyUrl + artistId + keyUrl1)
+.then((response) => {
+   if (response.ok){
+    return response.json()
+   } else {
+    throw new Error('errore')
+   }
+})
+.then((singleTrack) => {
+        console.log(singleTrack);
+        topTracks(singleTrack);
+})
+
 
 function displayArtistDetails(singleArtist) {
-    const albumDetailsContainer = document.getElementById('artistadettagli');
-    albumDetailsContainer.innerHTML = `
-        <div class="singleArtist-details">
-            <img src="${singleArtist.picture_medium}" alt="Album Cover">
-            <h1>${singleArtist.name}</h1>
-            <p>${singleArtist.nb_fan} ascoltatori mensili</p>
-        </div>`;
+    const img = document.getElementById('imgArtist');  
+    const artist = document.getElementById('artist');
+    const ascoltatori = document.getElementById('ascoltatori');
+    img.src = singleArtist.picture_small;
+    artist.innerText = singleArtist.name;
+    ascoltatori.innerHTML=`${singleArtist.nb_fan} ascoltatori mensili `
 }
+
+function topTracks(singleTrack) {
+   
+    const topTrackList = document.getElementById('topTrackList');
+    let tracksHTML = '';
+
+    singleTrack.data.forEach(track => {
+        tracksHTML += `
+                <div class="col-6 d-flex">
+                    <img src="${track.album.cover_medium}" alt="Album Cover" class="w-10">
+                    <h6>${truncate(track.title,15)}</h6>
+                </div>
+                <div class="col-3">
+                    <p>${track.rank}</p>
+                </div>
+                <div class="col-3">
+                    <p>${convertDuration(track.duration)}</p>
+                </div>
+        `;
+    });
+
+    topTrackList.innerHTML= tracksHTML;
+}
+
 
 function convertDuration(seconds) {
     const minutes = Math.floor(seconds / 60) < 10 ? "0" + Math.floor(seconds / 60) : Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60 < 10 ? "0" + seconds % 60 : seconds % 60;
     return `${minutes}:${remainingSeconds}`;
-}
+} 
+function truncate(text ,maxLength ) {
+        if (text.length > maxLength) {
+            return text.slice(0, 17) + '...';
+        }
+        return text;
+    }
