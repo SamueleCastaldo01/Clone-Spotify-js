@@ -223,7 +223,7 @@ export function playPlayTrack(i) {
     loader.style.display = "none";
 
     colorTitleTrack(tracks[indexCurrentTrack].id)
-    playlistLike(indexCurrentTrack)
+    playlistLike(tracks[indexCurrentTrack])
 
     if(i) {
         indexCurrentTrack = 0
@@ -365,9 +365,10 @@ function fetchArtist(artistId) {
 
 function playlistLike(track) {
     console.log("sono entrato baby")
+    console.log(likePlaylist)
     const heart = document.getElementById('heart');
     let flagPresentPlayLike = false;
-    let idPlayLike = 0
+    let idPlayLike = 0;
     likePlaylist.forEach((e) => {
         if(e.id === track.id) {  //se è presente allora deve essere fill
             heart.classList.remove('bi-heart');
