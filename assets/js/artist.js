@@ -45,13 +45,29 @@ fetch(keyUrl + artistId + keyUrl1)
 })
 
 
+
 function displayArtistDetails(singleArtist) {
     const img = document.getElementById('imgArtist');  
     const artist = document.getElementById('artist');
     const ascoltatori = document.getElementById('ascoltatori');
+    const follow = document.getElementById('follow');
+    
+    follow.addEventListener('click', function () {
+        if (follow.innerHTML === 'Follow') {
+            follow.innerHTML = 'Following';
+            follow.style.color = 'gray'; 
+            
+        } else {
+            follow.innerHTML = 'Follow';
+            follow.style.color = 'white'; 
+        }
+    });
+
+    follow.innerHTML = 'Follow';
     img.src = singleArtist.picture_medium;
     artist.innerText = singleArtist.name;
     ascoltatori.innerHTML=`${singleArtist.nb_fan} ascoltatori mensili `
+
 }
 
 function topTracks(singleTrack) {
@@ -95,16 +111,6 @@ function truncate(text ,maxLength ) {
         return text;
     }
 
-
-    function changeButtonText() {
-        const follow = document.getElementById('follow');
-        if (follow.innerHTML === 'Follow') {
-            follow.innerHTML = 'Following';
-        } else {
-            follow.innerHTML = 'Follow';
-        }
-    }
-    
 
 window.playerAlbumTrack = playerAlbumTrack;
 window.playArtistFunction = playArtistFunction;
