@@ -56,7 +56,7 @@ fetch(keyUrl + albumId)
                     </div>
                     <div class="col-6" onclick='playerAlbumTrack(${track.id})'>
                         <ol class="list-unstyled">
-                            <li class="title">${track.title_short}</li>
+                            <li class="title">${truncate(track.title_short,15)}</li>
                             <a href="./artist.html?artistId=${track.artist.id}" class="no-underline text-undertitle text-decoration-none">${track.artist.name}</a>
 
                         </ol>
