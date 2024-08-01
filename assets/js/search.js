@@ -5,10 +5,23 @@ window.onload = function () {
     player();
 }
 
+//animazione tasto input
+document.addEventListener("DOMContentLoaded", function() {
+    const inputSearch = document.querySelector(".inputSearch");
+  
+    // Espande l'input automaticamente all'apertura della pagina
+    inputSearch.classList.add("expanded");
+  
+    // Ritarda il focus sull'input per farlo sembrare più fluido
+    setTimeout(() => {
+      inputSearch.focus();
+    }, 1000); // Ritardo di 1000 ms (1 secondo)
+  });
+
 let listaArtisti = [];
 let listaAlbum = [];
 let listaAlbumsTracks = [];
-const searchInput = document.querySelector(".input");
+const searchInput = document.getElementById('inputSearch');
 const albumsContainer = document.getElementById("listaAlbum");
 const artistsContainer = document.getElementById("listaArtisti");
 let albums = Array.from(document.getElementsByClassName("albumItem")) || [];

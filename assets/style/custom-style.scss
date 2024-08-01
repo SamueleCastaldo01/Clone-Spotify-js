@@ -310,6 +310,49 @@ input[type="range"]::-moz-range-thumb {
   font-weight: bold; /* Facoltativo: aggiunge peso al testo */
 }
 
+.search-container {
+  position: relative;
+  width: 100%; /* Assicurati che il contenitore abbia una larghezza specificata o ereditata */
+  max-width: 600px; /* Limita la larghezza massima del contenitore, se necessario */
+  margin: 0 auto; /* Centra il contenitore */
+}
+
+.inputSearch {
+  width: 40px; /* Larghezza iniziale */
+  height: 40px; /* Altezza dell'input */
+  border-radius: 20px; /* Cerchio */
+  border: 2px solid #888; /* Bordo */
+  padding-left: 40px; /* Spazio per l'icona */
+  outline: none;
+  transition: width 0.8s ease, border-radius 0.8s ease, background-color 0.8s ease; /* Durata aumentata */
+  background-color: #1B1B1B; /* Colore di sfondo */
+  box-sizing: border-box; /* Include il padding nella larghezza totale */
+
+  &.expanded {
+    width: 100%; /* Espande l'input a tutta la larghezza del contenitore */
+    border-radius: 10px; /* Riduce il raggio dei bordi */
+    border-color: #ccc; /* Cambia il colore del bordo */
+  }
+
+  &::placeholder {
+    color: #aaa; /* Colore del placeholder */
+    transition: opacity 0.8s ease; /* Durata aumentata */
+  }
+
+  &:focus::placeholder {
+    opacity: 0; /* Nasconde il placeholder quando l'input è in focus */
+  }
+}
+
+.search-icon {
+  position: absolute;
+  left: 12px; /* Posizionamento dell'icona all'interno dell'input */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none; /* Evita che l'icona sia cliccabile */
+  color: #aaa; /* Colore dell'icona */
+  font-size: 1.2em; /* Dimensione dell'icona */
+}
 
 // $headings-font-family: "Inter", sans-serif;
 
