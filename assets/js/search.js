@@ -41,7 +41,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
 let listaArtisti = [];
 let listaAlbum = [];
-let listaAlbumsTracks = [];
 const searchInput = document.getElementById('inputSearch');
 const albumsContainer = document.getElementById("listaAlbum");
 const artistsContainer = document.getElementById("listaArtisti");
