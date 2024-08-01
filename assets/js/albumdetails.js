@@ -56,8 +56,8 @@ fetch(keyUrl + albumId)
                             <p class="text-undertitle">${track.artist.name}</p>
                         </ol>
                     </div>
-                    <div class="col-4">
-                        <ol class="list-unstyled ">
+                    <div class="col-4 ">
+                        <ol class="list-unstyled mb-0">
                             <li class="text-muted">${track.rank}</li>
                         </ol>
                     </div>
