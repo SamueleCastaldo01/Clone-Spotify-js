@@ -32,32 +32,33 @@ fetch(keyUrl + albumId)
     
         
         let trackHTML = ''; 
-    
-        singleAlbum.tracks.data.forEach((track) => {
+        singleAlbum.tracks.data.forEach((track, index) => {
             trackHTML += `
-                <div class="row ">
-                    <div class="col-8">
-                     <p>#TITOLO</p>
-                        <ol class="list-unstyled">
-                            <li class="">${track.title_short}</li>
-                            <p class="text-undertitle">${track.artist.name}</p>
+                <div class="row align-items-center">
+                    <div class="col-1 d-flex align-items-center justify-content-center">
+                        <div class="d-flex align-items-start ">
+                            <span class="text-undertitle fw-bold ">${index + 1}</span>
+                        </div>
+                    </div>
+                    <div class="col-7">
+                        <ol class="list-unstyled mb-0">
+                            <li class="fw-bold">${track.title_short}</li>
+                            <p class="mb-0 text-muted">${track.artist.name}</p>
                         </ol>
                     </div>
-                    <div class="col-3 ">
-                     <p>RIPRODUZIONI</p>
-                        <ol class="list-unstyled" >
-                            <li class="text-undertitle"> ${track.rank}</li> 
+                    <div class="col-3">
+                        <ol class="list-unstyled mb-0">
+                            <li class="text-muted">${track.rank}</li>
                         </ol>
                     </div>
                     <div class="col-1 text-end">
-                        <ol class="list-unstyled">  
-                            <li class="text-undertitle">${convertDuration(track.duration)}</li>
+                        <ol class="list-unstyled mb-0">
+                            <li class="text-muted">${convertDuration(track.duration)}</li>
                         </ol>
                     </div>
                 </div>
             `;
         });
-    
         
         trackList.innerHTML = trackHTML;
     }
