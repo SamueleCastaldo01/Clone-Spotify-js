@@ -395,7 +395,8 @@ function playlistLike(track) {
                 preview : track.preview,
                 cover_small : track.album.cover_small,
                 duration : track.duration,
-                artist : track.artist.name
+                artist : track.artist.name,
+                artist_id : track.artist.id
             })
             localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
         } else {  //se è presente allora me lo vai ad elimnare
