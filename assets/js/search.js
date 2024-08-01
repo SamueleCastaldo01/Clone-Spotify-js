@@ -204,12 +204,12 @@ function buildAlbumItems(dati) {
     albumList(dati).forEach((item, i) => {
         // albumFetch(item.tracklist);
         albumsContainer.innerHTML += `
-        <div class="row d-flex align-items-center mt-2 albumItem" data-listaDiTracce = "${item.tracklist}" id= "${item.id}">
+        <div class="row d-flex align-items-center mt-2 albumItem scaleHover" data-listaDiTracce = "${item.tracklist}" id= "${item.id}">
             <div class="col-1 opacity-50">${i+1}</div>
             <div class="col-2 col-lg-2 position-relative">
                 <img src="${item.cover}" alt="qualcosa" class="w-100 rounded-3">
-               <button onclick="searchTrack(${item.id})" type="button" class="btn btn-primary circle-button position-absolute bottom-10 end-5 rounded-circle ">
-                    <i class="bi bi-play-fill fs-small "></i>
+               <button onclick="searchTrack(${item.id})" type="button" class="btn btn-primary circle-button position-absolute bottom-10 end-10 d-none rounded-circle ">
+                    <i class="bi bi-play-fill fs-small fs-4  "></i>
                </button>
             </div>
             <div class="col-5 col-lg-5 d-flex flex-column justify-content-center">
