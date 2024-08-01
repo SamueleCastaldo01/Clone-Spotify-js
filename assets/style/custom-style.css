@@ -110,6 +110,18 @@ body {
   padding-top: 0 !important;
 }
 
+.container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+  background-color: #1E1E1E;
+}
+
+.artist-img {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
 .albumHead {
   background: #1E1E1E;
   background: linear-gradient(0deg, #1E1E1E 60%, #DEC04F 100%);
