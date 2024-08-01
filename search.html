@@ -120,8 +120,13 @@
                         <div class="search-container">
                             <input type="text" class="inputSearch" id="inputSearch" placeholder="Cosa vuoi ascoltare?">
                             <i class="bi bi-search search-icon"></i> <!-- Simbolo dell'icona di ricerca -->
-                          </div>
+                        </div>
                     </div>
+                    <div class="w-100 d-flex justify-content-center mt-3">
+                        <div class="loading" id="loading"></div>
+
+                    </div>
+                    
 
                     <div id="scopri" class="row scopri mt-7">
                         <h3>Sfoglia tutto</h2>
@@ -332,7 +337,7 @@
         </div>
     </div>
 
-    <div class='container-fluid position-fixed bottom-0 h-10 d-lg-none d-flex justify-content-between align-items-center'
+    <div class='container-fluid position-fixed bottom-0 h-10 d-lg-none d-flex justify-content-between align-items-center z-3'
         id="mobileFooter">
         <a href='index.html'>
             <div class="icon w-100 d-flex flex-column align-items-center ">

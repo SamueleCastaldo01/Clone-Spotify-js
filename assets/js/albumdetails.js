@@ -1,4 +1,4 @@
-import { player, playerAlbumTrack, albumDataIni, playArtistFunction} from "./player.js";
+import { player, playerAlbumTrack, albumDataIni, playArtistFunction } from "./player.js";
 
 const playArtist = document.getElementById("playArtist");
 const addressBarParameters = new URLSearchParams(location.search);
@@ -28,35 +28,35 @@ fetch(keyUrl + albumId)
         displayAlbumDetails(singleAlbum);
     });
 
-    
-    function displayAlbumDetails(singleAlbum) {
-        const img = document.getElementById('imgDetails');
-        const titleAlbum = document.getElementById('title');
-        const artist = document.getElementById('artist');
-        const trackList = document.getElementById('lists'); 
-        const releaseYear = singleAlbum.release_date.split('-')[0];
 
-    
-        img.src = singleAlbum.cover_medium;
-        titleAlbum.innerText = truncate(singleAlbum.title,12);
-        artist.innerHTML = `<img src=" ${singleAlbum.artist.picture_small}" class="artist-img"> ${singleAlbum.artist.name.toUpperCase()} • ${releaseYear} • ${singleAlbum.nb_tracks} brani, <span class="text-min">${convertDurations(singleAlbum.duration)}</span>`;
+function displayAlbumDetails(singleAlbum) {
+    const img = document.getElementById('imgDetails');
+    const titleAlbum = document.getElementById('title');
+    const artist = document.getElementById('artist');
+    const trackList = document.getElementById('lists');
+    const releaseYear = singleAlbum.release_date.split('-')[0];
 
 
-    
-        
-        trackList.innerHTML = '';
-    
-        
-        let trackHTML = ''; 
-        singleAlbum.tracks.data.forEach((track, index) => {
-            trackHTML += `
+    img.src = singleAlbum.cover_medium;
+    titleAlbum.innerText = truncate(singleAlbum.title, 12);
+    artist.innerHTML = `<img src=" ${singleAlbum.artist.picture_small}" class="artist-img"> ${singleAlbum.artist.name.toUpperCase()} • ${releaseYear} • ${singleAlbum.nb_tracks} brani, <span class="text-min">${convertDurations(singleAlbum.duration)}</span>`;
+
+
+
+
+    trackList.innerHTML = '';
+
+
+    let trackHTML = '';
+    singleAlbum.tracks.data.forEach((track, index) => {
+        trackHTML += `
                 <div class="row" id="${track.id}">
                     <div class="col-1 text-muted">
-                        ${index +1}
+                        ${index + 1}
                     </div>
                     <div class="col-6" onclick='playerAlbumTrack(${track.id})'>
                         <ol class="list-unstyled">
-                            <li class="title">${truncate(track.title_short,15)}</li>
+                            <li class="title">${truncate(track.title_short, 15)}</li>
                             <a href="./artist.html?artistId=${track.artist.id}" class="no-underline text-undertitle text-decoration-none">${track.artist.name}</a>
 
                         </ol>
@@ -73,10 +73,10 @@ fetch(keyUrl + albumId)
                     </div>
                 </div>
             `;
-        });
-        
-        trackList.innerHTML = trackHTML;
-    }
+    });
+
+    trackList.innerHTML = trackHTML;
+}
 
 function convertDuration(seconds) {
     const minutes = Math.floor(seconds / 60) < 10 ? "0" + Math.floor(seconds / 60) : Math.floor(seconds / 60);
