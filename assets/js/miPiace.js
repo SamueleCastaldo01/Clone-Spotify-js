@@ -37,20 +37,23 @@ playArtist.addEventListener("click", () => {
         for(let i = 1; i< likePlaylist.length; i++) {
             trackHTML += `
             <div class="row user-select-none" id="${likePlaylist[i].id}">
-                <div class="col-1 text-muted">
+                <div class="col-1 text-muted d-flex align-items-center">
                     ${i}
                 </div>
                 <div class="col-6" onclick='playerAlbumTrack(${likePlaylist[i].id})'>
-                    <ol class="list-unstyled">
+                <div class="d-flex align-items-center">
+                <img class="w-10 me-3 rounded-3" src="${likePlaylist[i].album.cover_small}"/>
+                 <ol class="list-unstyled mb-0">
                         <li class="title">${truncate(likePlaylist[i].title_short,20)}</li>
                         <a href="./artist.html?artistId=${likePlaylist[i].artist.id}" class="no-underline text-undertitle text-decoration-none">${likePlaylist[i].artist.name}</a>
-
                     </ol>
+                </div>
+                   
                 </div>
                 <div class="col-4 ">
                 </div>
                 <div class="col-1 ">
-                    <ol class="list-unstyled mb-0">
+                    <ol class="list-unstyled mb-0 d-flex align-items-center">
                         <li class="text-muted">${convertDuration(likePlaylist[i].duration)}</li>
                     </ol>
                 </div>
