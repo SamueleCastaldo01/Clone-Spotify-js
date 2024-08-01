@@ -22,10 +22,14 @@ fetch(keyUrl + albumId)
         const titleAlbum = document.getElementById('title');
         const artist = document.getElementById('artist');
         const trackList = document.getElementById('lists'); 
+        const releaseYear = singleAlbum.release_date.split('-')[0];
+
     
         img.src = singleAlbum.cover_medium;
-        titleAlbum.innerText = singleAlbum.title;
-        artist.innerText = singleAlbum.artist.name;
+        titleAlbum.innerText = truncate(singleAlbum.title,12);
+        artist.innerHTML = `<img src=" ${singleAlbum.artist.picture_small}" class="artist-img"> ${singleAlbum.artist.name.toUpperCase()} • ${releaseYear} • ${singleAlbum.nb_tracks} brani, <span class="text-min">${convertDurations(singleAlbum.duration)}</span>`;
+
+
     
         
         trackList.innerHTML = '';
@@ -34,9 +38,9 @@ fetch(keyUrl + albumId)
         let trackHTML = ''; 
         singleAlbum.tracks.data.forEach((track, index) => {
             trackHTML += `
-                <div class="row align-items-center">
-                    <div class="col-1 d-flex align-items-center justify-content-center">
-                        <div class="d-flex align-items-start ">
+                <div class="row ">
+                    <div class="col-1 d-flex align-items-center ">
+                        <div class="d-flex  ">
                             <span class="text-undertitle fw-bold ">${index + 1}</span>
                         </div>
                     </div>
@@ -67,4 +71,16 @@ function convertDuration(seconds) {
     const minutes = Math.floor(seconds / 60) < 10 ? "0" + Math.floor(seconds / 60) : Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60 < 10 ? "0" + seconds % 60 : seconds % 60;
     return `${minutes}:${remainingSeconds}`;
+}
+
+function convertDurations(seconds) {
+    const minutes = Math.floor(seconds / 60) < 10 ? "0" + Math.floor(seconds / 60) : Math.floor(seconds / 60);
+    const remainingSeconds = seconds % 60 < 10 ? "0" + seconds % 60 : seconds % 60;
+    return `${minutes} min ${remainingSeconds} sec`;
+}
+function truncate(text, maxLength) {
+    if (text.length > maxLength) {
+        return text.slice(0, maxLength) + '...';
+    }
+    return text;
 }

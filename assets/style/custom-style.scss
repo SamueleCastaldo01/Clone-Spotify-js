@@ -16,7 +16,8 @@ $new-theme-colors: (
   "grayCard" :#2C2C2C,
   "chit":#4498E7,
   "dark":$new-dark,
-  "undertitle": #888886
+  "undertitle": #888886,
+  "min":#CAC2A8
 );
 
 $theme-colors: map-merge($theme-colors, $new-theme-colors);
@@ -305,10 +306,16 @@ input[type="range"]::-moz-range-thumb {
   box-shadow: -407px 0 0 400px white;
 }
 
-hr{
-  border-color: #1ED760
+.container-fluid {
+  background-color: #1E1E1E ; /* Colore di sfondo che deve coprire tutto lo spazio */
 }
 
+.artist-img {
+  width: 30px; 
+  height: 30px; 
+  border-radius: 50%;
+  object-fit: cover; 
+}
 
 // $headings-font-family: "Inter", sans-serif;
 
