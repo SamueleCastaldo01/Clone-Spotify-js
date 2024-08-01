@@ -26,7 +26,10 @@ fetch(keyUrl + albumId)
     .then((singleAlbum) => {
         console.log(singleAlbum);
         displayAlbumDetails(singleAlbum);
-    });
+    })
+    .catch((error) => {
+        console.error('Errore:', error);
+    })
 
 
 function displayAlbumDetails(singleAlbum) {

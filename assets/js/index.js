@@ -71,8 +71,8 @@ function buildCarousel(datasetArray) {
                     <div class="col-3 mt-3"><img src="${element.album.cover_medium}" alt="imgprova" class="w-100"></div>
                     <div class="col-7">
                         <h6 class="fs-supersmall">ALBUM</h6>
-                        <h1>${truncate(element.title_short, 17)}</h1>
-                        <p class="fs-small">${element.album.title}</p>
+                        <h1>${truncate(element.title_short, 14)}</h1>
+                        <p class="fs-small"><a href="albumdetails.html" class="text-light text-decoration-none">${element.album.title}</a></p>
                         <p class="fs-small mb-0">${convertDuration(element.duration)}</p>
                         <div class="w-100 d-flex align-items-center">
                             <button onclick='playerCarousel(${escapedElement})' class="btn btn-sm bg-primary rounded-5 px-4 py-2 me-3 h-25 fw-bold text-black">Play</button>

@@ -42,16 +42,31 @@ fetch(keyUrl + artistId + keyUrl1)
     .then((singleTrack) => {
         console.log(singleTrack);
         topTracks(singleTrack);
-    })
+})
+
 
 
 function displayArtistDetails(singleArtist) {
     const img = document.getElementById('imgArtist');
     const artist = document.getElementById('artist');
     const ascoltatori = document.getElementById('ascoltatori');
+    const follow = document.getElementById('follow');
+    
+    follow.addEventListener('click', function () {
+        if (follow.innerHTML === 'Follow') {
+            follow.innerHTML = 'Following';
+            follow.style.color = 'gray'; 
+            
+        } else {
+            follow.innerHTML = 'Follow';
+            follow.style.color = 'white'; 
+        }
+    });
+
+    follow.innerHTML = 'Follow';
     img.src = singleArtist.picture_medium;
     artist.innerText = singleArtist.name;
-    ascoltatori.innerHTML = `${singleArtist.nb_fan} ascoltatori mensili `
+    ascoltatori.innerHTML=`${singleArtist.nb_fan} ascoltatori mensili `
 }
 
 function topTracks(singleTrack) {
@@ -87,24 +102,24 @@ function convertDuration(seconds) {
     const minutes = Math.floor(seconds / 60) < 10 ? "0" + Math.floor(seconds / 60) : Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60 < 10 ? "0" + seconds % 60 : seconds % 60;
     return `${minutes}:${remainingSeconds}`;
-}
-function truncate(text, maxLength) {
-    if (text.length > maxLength) {
-        return text.slice(0, 17) + '...';
+} 
+function truncate(text ,maxLength ) {
+        if (text.length > maxLength) {
+            return text.slice(0, 17) + '...';
+        }
+        return text;
     }
-    return text;
-}
 
 
-function changeButtonText() {
-    const follow = document.getElementById('follow');
-    if (follow.innerHTML === 'Follow') {
-        follow.innerHTML = 'Following';
-    } else {
-        follow.innerHTML = 'Follow';
+    function changeButtonText() {
+        const follow = document.getElementById('follow');
+        if (follow.innerHTML === 'Follow') {
+            follow.innerHTML = 'Following';
+        } else {
+            follow.innerHTML = 'Follow';
+        }
     }
-}
-
+    
 
 window.playerAlbumTrack = playerAlbumTrack;
 window.playArtistFunction = playArtistFunction;
