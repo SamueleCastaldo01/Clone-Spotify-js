@@ -7,6 +7,10 @@ const carouselRow = document.getElementById('carousel');
 const cardsAlbumRow = document.getElementById('cardsAlbum')
 const loading = document.getElementById("loading");
 const loader = document.getElementById("loader");
+const listaPlaylist = JSON.parse(localStorage.getItem("playlists"));
+const creationButton = document.getElementById("saveList");
+const creationInput = document.getElementById("textInput");
+
 
 
 window.onload = function () {
@@ -122,6 +126,17 @@ const convertDuration = function (seconds) {
     const remainingSeconds = seconds % 60 < 10 ? "0" + seconds % 60 : seconds % 60;
     return `${minutes}:${remainingSeconds}`
 }
+
+
+// --------creazione playlist
+function creaPL(form){
+    const newL = [form];
+    listaPlaylist.push(JSON.stringify(newL));
+}
+
+creationButton.addEventListener(() =>{
+    creaPL(creationInput.value);
+})
 
 window.playerCarousel = playerCarousel;
 window.playerTracks = playerTracks;
