@@ -162,8 +162,11 @@ export function  playerCarousel(element) {
     artistPlayer.innerText = element.artist.name
     imgPlayer.src = element.album.cover_small
 
-    audioElement.load();
-    audioElement.play(); 
+
+    setTimeout(() => {
+        audioElement.load();
+        audioElement.play();
+    }, 400); // Puoi regolare il tempo di attesa se necessario
 }
 
 
@@ -229,6 +232,10 @@ export function initTracks() {
     albumDataIni("album", "6327742");
 }
 
+export function initArtist(artistId) {
+    fetchArtist(artistId)
+}
+
 export function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
     const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/${type}/${albumId}`;
 
@@ -280,6 +287,7 @@ export function playerAlbumTrack(id) {
     });
 }
 
+
 // Definisci la funzione di mescolamento (Fisher-Yates shuffle)
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -289,7 +297,7 @@ function shuffle(array) {
     return array;
 }
 
-function colorTitleTrack(id) {
+function colorTitleTrack(id) { 
         // Rimuovi la classe da tutti i titoli
         document.querySelectorAll('.title').forEach((el) => {
             el.classList.remove('selected-title');
@@ -303,4 +311,42 @@ function colorTitleTrack(id) {
                 titleElement.classList.add('selected-title');
             }
         }
+}
+
+export function playArtistFunction() {
+    colorTitleTrack(tracks[0].id)
+    console.log(tracks[0])
+    playerCarousel(tracks[0]);
+}
+
+function fetchArtist(artistId) {
+    const keyUrl = 'https://striveschool-api.herokuapp.com/api/deezer/artist/'
+
+    fetch(keyUrl + artistId)
+    .then((response) => {
+       if (response.ok){
+        return response.json()
+       } else {
+        throw new Error('errore')
+       }
+    })
+    .then((singleArtist) => {
+
+    })
+    const keyUrl1='/top?limit=11'
+    fetch(keyUrl + artistId + keyUrl1)
+    .then((response) => {
+       if (response.ok){
+        return response.json()
+       } else {
+        throw new Error('errore')
+       }
+    })
+    .then((singleTrack) => {
+            console.log(singleTrack.data);
+            const albumtracks = Array.from(singleTrack.data);
+            tracks = albumtracks;
+            console.log(tracks)
+            playPlayTrack()
+    })
 }
