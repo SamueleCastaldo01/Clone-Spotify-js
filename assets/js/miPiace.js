@@ -36,7 +36,7 @@ playArtist.addEventListener("click", () => {
         let trackHTML = ''; 
         likePlaylist.forEach((track, index) => {
             trackHTML += `
-                <div class="row" id="${track.id}">
+                <div class="row user-select-none" id="${track.id}">
                     <div class="col-1 text-muted">
                         ${index +1}
                     </div>
