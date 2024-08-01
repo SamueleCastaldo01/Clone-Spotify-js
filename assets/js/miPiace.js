@@ -5,6 +5,7 @@ console.log(likePlaylist)
 const playArtist = document.getElementById("playArtist");
 
 window.onload = function () {
+    displayAlbumDetails();
     albumDataIni("album", "11205422")
     player();
 }
@@ -16,17 +17,15 @@ playArtist.addEventListener("click", () => {
 
 
     
-    function displayAlbumDetails(singleAlbum) {
+    function displayAlbumDetails() {
         const img = document.getElementById('imgDetails');
         const titleAlbum = document.getElementById('title');
         const artist = document.getElementById('artist');
-        const trackList = document.getElementById('lists'); 
-        const releaseYear = singleAlbum.release_date.split('-')[0];
+        const trackList = document.getElementById('lists');
 
     
-        img.src = singleAlbum.cover_medium;
-        titleAlbum.innerText = truncate(singleAlbum.title,12);
-        artist.innerHTML = `<img src=" ${singleAlbum.artist.picture_small}" class="artist-img"> ${singleAlbum.artist.name.toUpperCase()} • ${releaseYear} • ${singleAlbum.nb_tracks} brani, <span class="text-min">${convertDurations(singleAlbum.duration)}</span>`;
+        img.src = likePlaylist.cover_small;
+        titleAlbum.innerText = truncate('brani che ti piacciono',20);
 
 
     
@@ -35,7 +34,7 @@ playArtist.addEventListener("click", () => {
     
         
         let trackHTML = ''; 
-        singleAlbum.tracks.data.forEach((track, index) => {
+        likePlaylist.forEach((track, index) => {
             trackHTML += `
                 <div class="row" id="${track.id}">
                     <div class="col-1 text-muted">
@@ -43,15 +42,12 @@ playArtist.addEventListener("click", () => {
                     </div>
                     <div class="col-6" onclick='playerAlbumTrack(${track.id})'>
                         <ol class="list-unstyled">
-                            <li class="title">${truncate(track.title_short,15)}</li>
-                            <a href="./artist.html?artistId=${track.artist.id}" class="no-underline text-undertitle text-decoration-none">${track.artist.name}</a>
+                            <li class="title">${truncate(track.title_short,20)}</li>
+                            <a href="" class="no-underline text-undertitle text-decoration-none">${track.artist}</a>
 
                         </ol>
                     </div>
                     <div class="col-4 ">
-                        <ol class="list-unstyled mb-0">
-                            <li class="text-muted">${track.rank}</li>
-                        </ol>
                     </div>
                     <div class="col-1 ">
                         <ol class="list-unstyled mb-0">
