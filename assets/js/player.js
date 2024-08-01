@@ -4,8 +4,8 @@ export let flagShuffle = false;
 export let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel player, quando seleziono un album
 export let indexCurrentTrack = 0;
 export let tracks;
-let likePlaylist = JSON.parse(localStorage.getItem("likePlaylist")) || [];
-likePlaylist.unshift("Preferiti")
+let likePlaylist = JSON.parse(localStorage.getItem("likePlaylist")) || ["Preferiti"];
+
 localStorage.setItem("playlists", JSON.stringify([]))
 let playlists = JSON.parse(localStorage.getItem("playlists"))
 playlists.push(JSON.stringify(likePlaylist));
@@ -250,7 +250,7 @@ export function initArtist(artistId) {
 }
 
 export function initLikePlaylist() {
-    tracks = likePlaylist;
+    tracks = likePlaylist.slice(1);
     console.log(tracks)
     playPlayTrack()
 }
