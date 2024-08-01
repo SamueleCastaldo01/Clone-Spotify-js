@@ -164,13 +164,20 @@
                         <div class="loading" id="loader"></div>
                         <img id="imgPlayer" class="divImgPlayer d-none" src="assets/imgs/search/image-1.jpeg"
                             alt="image player">
+                        <div class="loading" id="loader"></div>
+                        <img id="imgPlayer" class="divImgPlayer d-none" src="assets/imgs/search/image-1.jpeg"
+                            alt="image player">
                     </div>
 
                     <div class="ms-2 d-none d-md-block">
                         <h6 id="titlePlayer" class="m-0"></h6>
                         <p id="artistPlayer" class="m-0"></p>
+                    <div class="ms-2 d-none d-md-block">
+                        <h6 id="titlePlayer" class="m-0"></h6>
+                        <p id="artistPlayer" class="m-0"></p>
                     </div>
                     <div class="ms-2">
+                        <i class="bi bi-heart ms-2"></i>
                         <i class="bi bi-heart ms-2"></i>
                         <!--<i class="bi bi-heart-fill"></i> -->
                     </div>
@@ -180,13 +187,16 @@
             <div class="col-6 d-flex flex-column justify-content-center align-items-center z-10">
                 <div class="d-flex justify-content-center align-items-center mb-2">
                     <i id="shuffleButton" class="bi bi-shuffle"></i>
+                    <i id="shuffleButton" class="bi bi-shuffle"></i>
                     <i id="resetButton" class="material-symbols-outlined ms-3">
                         skip_previous
                     </i>
                     <i id="play" class="bi bi-play-circle-fill ms-3 display-6"></i>
                     <i id="nextTrack" class="material-symbols-outlined ms-3">
+                    <i id="nextTrack" class="material-symbols-outlined ms-3">
                         skip_next
                     </i>
+                    <i id="loopButton" class="bi bi-repeat ms-3"></i>
                     <i id="loopButton" class="bi bi-repeat ms-3"></i>
                 </div>
                 <div class="w-100 d-flex align-items-center">
@@ -199,11 +209,18 @@
                 <i class="bi bi-mic-fill mx-1 d-none d-lg-inline-block"></i>
                 <i class="bi bi-menu-button-wide-fill mx-1 d-none d-lg-inline-block"></i>
                 <i class="bi bi-speaker mx-1 d-none d-lg-inline-block"></i>
+                <i class="bi bi-mic-fill mx-1 d-none d-lg-inline-block"></i>
+                <i class="bi bi-menu-button-wide-fill mx-1 d-none d-lg-inline-block"></i>
+                <i class="bi bi-speaker mx-1 d-none d-lg-inline-block"></i>
 
                 <i class="bi bi-volume-down-fill mx-1 d-none d-md-block"></i>
                 <input type="range" id="volumeControl" class="slider d-none d-md-block" min="0" max="1" step="0.01"
                     value="1">
+                <i class="bi bi-volume-down-fill mx-1 d-none d-md-block"></i>
+                <input type="range" id="volumeControl" class="slider d-none d-md-block" min="0" max="1" step="0.01"
+                    value="1">
 
+                <i class="bi bi-arrows-fullscreen mx-1 d-none d-lg-inline-block"></i>
                 <i class="bi bi-arrows-fullscreen mx-1 d-none d-lg-inline-block"></i>
             </div>
         </div>
@@ -215,6 +232,6 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
         crossorigin="anonymous"></script>
 </body>
-<script src="assets/js/albumdetails.js"></script>
+<script type="module" src="assets/js/albumdetails.js"></script>
 
 </html>

@@ -1,6 +1,15 @@
+import { player, playerAlbumTrack, playerTracks, initTracks, albumDataIni} from "./player.js";
+import { tracks } from "./player.js";
+
 const addressBarParameters = new URLSearchParams(location.search);
 const albumId = addressBarParameters.get('albumId');
+let currentTrack = 0;
 console.log('albumId', albumId);
+
+window.onload = function () {
+    albumDataIni("album", albumId)
+    player();
+}
 
 const keyUrl = 'https://striveschool-api.herokuapp.com/api/deezer/album/';
 fetch(keyUrl + albumId)
@@ -38,16 +47,11 @@ fetch(keyUrl + albumId)
         let trackHTML = ''; 
         singleAlbum.tracks.data.forEach((track, index) => {
             trackHTML += `
-                <div class="row ">
-                    <div class="col-1 d-flex align-items-center ">
-                        <div class="d-flex  ">
-                            <span class="text-undertitle fw-bold ">${index + 1}</span>
-                        </div>
-                    </div>
-                    <div class="col-7">
-                        <ol class="list-unstyled mb-0">
-                            <li class="fw-bold">${track.title_short}</li>
-                            <p class="mb-0 text-muted">${track.artist.name}</p>
+                <div class="row" id="${track.id}">
+                    <div class="col-8" onclick='playerAlbumTrack(${track.id})'>
+                        <ol class="list-unstyled">
+                            <li class="title">${track.title_short}</li>
+                            <p class="text-undertitle">${track.artist.name}</p>
                         </ol>
                     </div>
                     <div class="col-3">
@@ -84,3 +88,7 @@ function truncate(text, maxLength) {
     }
     return text;
 }
+
+
+window.playerAlbumTrack = playerAlbumTrack;
+window.albumDataIni = albumDataIni;

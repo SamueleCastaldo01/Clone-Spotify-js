@@ -213,11 +213,13 @@ export function playPlayTrack(i) {
     imgPlayer.classList.remove("d-none")
     loader.style.display = "none";
 
+    colorTitleTrack(tracks[indexCurrentTrack].id)
+
     if(i) {
         indexCurrentTrack = 0
     } else {
         indexCurrentTrack++; //aggiorna l'index per poi andare alla prossima traccia, quando si preme il pulsante
-    }   
+    }
   
 }
 
@@ -266,6 +268,18 @@ export function searchTrack(id) {
 
 }
 
+export function playerAlbumTrack(id) {
+    colorTitleTrack(id)
+
+    // Esegui il codice per riprodurre il brano
+    tracks.forEach((track, i) => {
+        if (track.id === id) {
+            playerCarousel(track);
+            indexCurrentTrack = i+1;
+        }
+    });
+}
+
 // Definisci la funzione di mescolamento (Fisher-Yates shuffle)
 function shuffle(array) {
     for (let i = array.length - 1; i > 0; i--) {
@@ -273,4 +287,20 @@ function shuffle(array) {
         [array[i], array[j]] = [array[j], array[i]]; // Scambia gli elementi
     }
     return array;
+}
+
+function colorTitleTrack(id) {
+        // Rimuovi la classe da tutti i titoli
+        document.querySelectorAll('.title').forEach((el) => {
+            el.classList.remove('selected-title');
+        });
+    
+        // Trova il titolo del brano selezionato e aggiungi la classe
+        const trackElement = document.getElementById(id);
+        if (trackElement) {
+            const titleElement = trackElement.querySelector('.title');
+            if (titleElement) {
+                titleElement.classList.add('selected-title');
+            }
+        }
 }
