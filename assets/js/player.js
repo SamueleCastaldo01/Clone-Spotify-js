@@ -248,9 +248,13 @@ export function albumDataIni(type, albumId) {  //vado a fare una fetch per andar
             }
         })
         .then((dataAlbum) => {
+            const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
             const albumtracks = Array.from(dataAlbum.tracks.data);
             tracks = albumtracks
             playPlayTrack()
+            setTimeout(() => {
+                audioElement.load();
+            }, 600); // Puoi regolare il tempo di attesa se necessario
         })
         .catch((error) => {
             console.error('Errore:', error);
