@@ -1,4 +1,4 @@
-import { player, playerAlbumTrack, albumDataIni, playArtistFunction, initLikePlaylist} from "./player.js";
+import { player, playerAlbumTrack, playArtistFunction, initLikePlaylist} from "./player.js";
 let likePlaylist=JSON.parse(localStorage.getItem('likePlaylist')) || [];
 console.log(likePlaylist)
 
@@ -6,7 +6,6 @@ const playArtist = document.getElementById("playArtist");
 
 window.onload = function () {
     displayAlbumDetails();
-    //albumDataIni("album", "11205422")
     initLikePlaylist()
     player();
 }
@@ -82,5 +81,3 @@ function truncate(text, maxLength) {
 
 
 window.playerAlbumTrack = playerAlbumTrack;
-window.albumDataIni = albumDataIni;
-window.playArtistFunction = playArtistFunction;
