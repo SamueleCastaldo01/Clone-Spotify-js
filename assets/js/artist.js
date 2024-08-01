@@ -1,6 +1,20 @@
+import { player, initTracks, playerAlbumTrack, initArtist, playArtistFunction} from "./player.js";
+
+const playArtist = document.getElementById("playArtist");
 const addressBarParameters = new URLSearchParams (location.search)
 const artistId = addressBarParameters.get('artistId')
 console.log('artistId',artistId)
+
+
+window.onload = function () {
+    initArtist(artistId)
+    player();
+}
+
+
+playArtist.addEventListener("click", () => {
+    playArtistFunction()
+})
 
 const keyUrl = 'https://striveschool-api.herokuapp.com/api/deezer/artist/'
 fetch(keyUrl + artistId)
@@ -26,6 +40,7 @@ fetch(keyUrl + artistId + keyUrl1)
 })
 .then((singleTrack) => {
         console.log(singleTrack);
+
         topTracks(singleTrack);
 })
 
@@ -46,21 +61,26 @@ function topTracks(singleTrack) {
 
     singleTrack.data.forEach(track => {
         tracksHTML += `
-                <div class="col-6 d-flex my-2">
-                    <img src="${track.album.cover_medium}" alt="Album Cover" class="w-10">
-                    <h6 class="mb-0 mt-1 ms-2">${truncate(track.title,15)}</h6>
+                <div class= "row d-flex align-items-center my-2" id="${track.id}">
+                    <div class="col-6 d-flex my-2" onclick='playerAlbumTrack(${track.id})'>
+                        <img src="${track.album.cover_medium}" alt="Album Cover" class="w-10">
+                        <h6 class="mb-0 mt-1 ms-2 title">${truncate(track.title,15)}</h6>
+                    </div>
+                    <div class="col-3 my-2">
+                        <p class="text-muted ">${track.rank}</p>
+                    </div>
+                    <div class="col-3 my-2">
+                        <p class="text-muted ">${convertDuration(track.duration)}</p>
+                    </div>
                 </div>
-                <div class="col-3 my-2">
-                    <p class="text-muted ">${track.rank}</p>
-                </div>
-                <div class="col-3 my-2">
-                    <p class="text-muted ">${convertDuration(track.duration)}</p>
-                </div>
+    
         `;
     });
 
     topTrackList.innerHTML= tracksHTML;
 }
+
+
 
 
 function convertDuration(seconds) {
@@ -85,3 +105,6 @@ function truncate(text ,maxLength ) {
         }
     }
     
+
+window.playerAlbumTrack = playerAlbumTrack;
+window.playArtistFunction = playArtistFunction;
