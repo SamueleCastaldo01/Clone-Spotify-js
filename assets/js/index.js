@@ -210,9 +210,6 @@ function salvaModal(track) { //qunado premo il pulsante modal salva si apre e co
 // tracciare le tracce che vanno salvate
 // tracksSavers.forEach(e => {
 //     e.addEventListener(function () {
-
-        
-
 //     })
 // })
 
