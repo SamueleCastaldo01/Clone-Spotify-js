@@ -209,6 +209,7 @@ function salvaModal(track) { //qunado premo il pulsante modal salva si apre e co
                 el.tracks.push(track)
                 console.log(playlists)
                 localStorage.setItem("playlists", JSON.stringify(playlists))
+                alert("Traccia inserita con successo in" + playlistId);
             }
         }
     })
