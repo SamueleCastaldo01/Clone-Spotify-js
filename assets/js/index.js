@@ -183,7 +183,7 @@ function salvaModal(track) { //qunado premo il pulsante modal salva si apre e co
      playlists.forEach(element => {
         const escapedElement = JSON.stringify(track).replace(/"/g, '&quot;'); // Serve per portarmi l'array nella funzione per gestire il lettore
         modalist.innerHTML += `
-        <li data-playlist-id="${element.id}" onclick="addTrackPlaylist(this, ${escapedElement})">
+        <li class="mt-3" data-playlist-id="${element.id}" onclick="addTrackPlaylist(this, ${escapedElement})">
             <a href="#" class="text-decoration-none text-light">${element.namePlaylist}</a>
         </li>
     `;
