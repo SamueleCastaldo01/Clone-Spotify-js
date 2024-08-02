@@ -1,7 +1,7 @@
 import { player, playerAlbumTrack, playArtistFunction, initLikePlaylist } from "./player.js";
 let likePlaylist = JSON.parse(localStorage.getItem('likePlaylist')) || [];
 const urlParam = new URLSearchParams(location.search).get("listId");
-const listaListe = JSON.parse(localStorage.getItem("playlists"));
+const playlists = JSON.parse(localStorage.getItem("playlists"));
 
 
 const playArtist = document.getElementById("playArtist");
@@ -26,30 +26,32 @@ function displayAlbumDetails() {
     trackList.innerHTML = '';
     let trackHTML = '';
 
-    if(listaListe.length != 0){
-        listaListe.forEach(element, function() {
-            if (element[0] === urlParam) {
-                for (let i = 1; i < element.length; i++) {
+
+
+    if(playlists.length != 0){
+        playlists.forEach((element) => {
+            if (element.id === urlParam) {
+                for (let i = 0; i < element.tracks.length; i++) {
                     trackHTML += `
-                    <div class="row user-select-none" id="${element[i].id}">
+                    <div class="row user-select-none" id="${element.tracks[i].id}">
                         <div class="col-1 text-muted d-flex align-items-center">
-                            ${i}
+                            ${i +1}
                         </div>
-                        <div class="col-6" onclick='playerAlbumTrack(${element[i].id})'>
+                        <div class="col-6" onclick='playerAlbumTrack(${element.tracks[i].id})'>
                         <div class="d-flex align-items-center">
-                        <img class="w-10 me-3 rounded-3" src="${element[i].album.cover_small}"/>
+                        <img class="w-10 me-3 rounded-3" src="${element.tracks[i].album.cover_small}"/>
                          <ol class="list-unstyled mb-0">
-                                <li class="title">${truncate(element[i].title_short, 20)}</li>
-                                <a href="./artist.html?artistId=${element[i].artist.id}" class="no-underline text-undertitle text-decoration-none">${element[i].artist.name}</a>
+                                <li class="title">${truncate(element.tracks[i].title_short, 20)}</li>
+                                <a href="./artist.html?artistId=${element.tracks[i].artist.id}" class="no-underline text-undertitle text-decoration-none">${element.tracks[i].artist.name}</a>
                             </ol>
                         </div>
                            
                         </div>
                         <div class="col-4 ">
                         </div>
-                        <div class="col-1 ">
+                        <div class="col-1 "> 
                             <ol class="list-unstyled mb-0 d-flex align-items-center">
-                                <li class="text-muted">${convertDuration(element[i].duration)}</li>
+                                <li class="text-muted">${convertDuration(element.tracks[i].duration)}</li>
                             </ol>
                         </div>
                     </div>
