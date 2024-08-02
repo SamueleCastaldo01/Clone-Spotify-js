@@ -18,13 +18,12 @@ playArtist.addEventListener("click", () => {
 
     
     function displayAlbumDetails() {
-        const img = document.getElementById('imgDetails');
         const titleAlbum = document.getElementById('title');
         const artist = document.getElementById('artist');
         const trackList = document.getElementById('lists');
 
     
-        img.src = likePlaylist.cover_small;
+
         titleAlbum.innerText = truncate('brani che ti piacciono',20);
 
 

@@ -61,6 +61,10 @@
   display: block !important;
 }
 
+.scaleHover:hover .circle-button {
+  display: block !important;
+}
+
 @keyframes slideInTop {
   0% {
     transform: translateY(10px);
@@ -125,6 +129,11 @@ body {
 .albumHead {
   background: #1E1E1E;
   background: linear-gradient(0deg, #1E1E1E 60%, #DEC04F 100%);
+}
+
+.miPiaceHead {
+  background: #1E1E1E;
+  background: linear-gradient(0deg, #1E1E1E 60%, #49348E 100%);
 }
 
 .underTitle {
