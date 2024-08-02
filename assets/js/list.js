@@ -1,9 +1,8 @@
 const listaPlaylist = JSON.parse(localStorage.getItem("playlists"));
 const plist = document.getElementById("plist");
 
-window.onload = function(){
-    listBuilder();
-}
+listBuilder();
+
 
 function listBuilder() {
     listaPlaylist.forEach(element => {
