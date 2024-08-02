@@ -437,14 +437,16 @@ function playlistLike(track) {
             const index = likePlaylist.findIndex(item => item.id === idPlayLike);
 
             if (index !== -1) {
-                if (likePlaylist.length > 1) {
+                console.log("traccia eliminata")
                     likePlaylist.splice(index, 1);
-                }
+                    playlists[0].tracks.splice(index, 1);
                 // Se l'elemento è trovato, rimuovilo dall'array
+
             }
 
             // Aggiorna il localStorage
             localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
+            localStorage.setItem("playlists", JSON.stringify(playlists));
         }
     };
   
