@@ -1,17 +1,17 @@
-const liste = JSON.parse(localStorage.getItem("playlists"));
-const scopri = document.createElement("scopri");
+const playlists = JSON.parse(localStorage.getItem("playlists"));
+const scopri = document.getElementById("scopri");
 
-window.onload() = function(){
+window.onload = function(){
     creazionePlaylist();
 }
 
 function creazionePlaylist() {
-    if (liste.length != 0) {
-        liste.forEach(element => {
-            scopri += `
+    if (playlists.length != 0) {
+        playlists.forEach(element => {
+            scopri.innerHTML += `
                 <div class="col-lg-4 col-sm-3 mt-3">
                     <div class="bg-${coloreRandom} text-center p-4 rounded-3">
-                        <h6><a href="./playlistsDetail.html?listId=${element[0]}" class="text-decoration-none text-light">${element[0]}</a></h6>
+                        <h6><a href="./playlistsDetail.html?listId=${element.id}" class="text-decoration-none text-light">${element.namePlaylist}</a></h6>
                     </div>
                 </div>
             `
