@@ -181,31 +181,29 @@ function salvaModal(track) { //qunado premo il pulsante modal salva si apre e co
     console.log(track)
     modalist.innerHTML = ""
      playlists.forEach(element => {
-         modalist.innerHTML += `
-         <li id="${element.id}" data-track=${track} data-PlaylistId=${element.id}">
-             <a href="#" class="text-decoration-none text-light">${element.id}</a>
-         </li>
-         `;
+        const escapedElement = JSON.stringify(track).replace(/"/g, '&quot;'); // Serve per portarmi l'array nella funzione per gestire il lettore
+        modalist.innerHTML += `
+        <li data-playlist-id="${element.id}" onclick="addTrackPlaylist(this, ${escapedElement})">
+            <a href="#" class="text-decoration-none text-light">${element.namePlaylist}</a>
+        </li>
+    `;
      })
-
-
-     modalistItems.forEach(item => {
-        item.addEventListener("click", function (e) {
-            playlists.forEach(i => {
-                if (i.id === e.target.querySelector("a").value) {
-                    //pushare la traccia su cui si clicca il salva
-                    i.tracks.push(e.target.dataset.track);
-                    localStorage.setItem("playlists", JSON.stringify(playlists))
-                }
-            })
-        })
-    })
    
  }
 
 
- function addTrackPlaylist(ciao) {
-    console.log(ciao)
+ function addTrackPlaylist(listItem, track) {
+    const playlistId = listItem.getAttribute("data-playlist-id");
+    console.log(playlistId);
+    console.log(track)
+    playlists.forEach((el) => {
+        if(el.id === playlistId) {
+            el.tracks.push(track)
+        }
+    })
+   console.log(playlists)
+   localStorage.setItem("playlists", JSON.stringify(playlists))
+    // Resto della logica per aggiungere la traccia alla playlist
 }
 
 
