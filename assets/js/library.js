@@ -15,7 +15,7 @@ function creazionePlaylist() {
                 <div class="col-lg-4 col-sm-3 mt-3 user-select-none">
                     <div class="bg-${coloreRandom()} text-center p-4 rounded-3">
                         <h6><a href="./playlistsDetail.html?listId=${element.id}" class="text-decoration-none text-light">${element.namePlaylist}</a></h6>
-                        <p onclick="deletePlaylist('${element.id}')">cestino</p>
+                        <p onclick="deletePlaylist('${element.id}')"><i class="bi bi-trash-fill"></i></p>
                     </div>
                 </div>
             `;
