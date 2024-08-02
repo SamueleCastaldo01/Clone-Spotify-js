@@ -7,6 +7,13 @@ const carouselRow = document.getElementById('carousel');
 const cardsAlbumRow = document.getElementById('cardsAlbum')
 const loading = document.getElementById("loading");
 const loader = document.getElementById("loader");
+const listaPlaylist = JSON.parse(localStorage.getItem("playlists"));
+const creationButton = document.getElementById("saveList");
+const creationInput = document.getElementById("textInput");
+const modalist = document.getElementById("modalist");
+const modalistItems = Array.from(document.querySelectorAll("#modalist li"));
+const tracksSavers = document.getElementsByClassName("saver");
+
 
 
 window.onload = function () {
@@ -76,7 +83,7 @@ function buildCarousel(datasetArray) {
                         <p class="fs-small mb-0">${convertDuration(element.duration)}</p>
                         <div class="w-100 d-flex align-items-center">
                             <button onclick='playerCarousel(${escapedElement})' class="btn btn-sm bg-primary rounded-5 px-4 py-2 me-3 h-25 fw-bold text-black">Play</button>
-                            <button class="btn btn-sm bg-black text-white rounded-5 px-4 py-2 me-3 h-25 border border-white border-1">Salva</button>
+                            <button class="btn btn-sm bg-black text-white rounded-5 px-4 py-2 me-3 h-25 border border-white border-1 saver"  data-bs-toggle="modal" data-bs-target="#aggiuntaBrano">Salva</button>
                             <p class="fs-1">...</p>
                         </div>
                     </div>
@@ -87,6 +94,7 @@ function buildCarousel(datasetArray) {
             </div>
         `;
     });
+    // tracksSavers = document.getElementsByClassName("saver");
 }
 
 
@@ -122,6 +130,54 @@ const convertDuration = function (seconds) {
     const remainingSeconds = seconds % 60 < 10 ? "0" + seconds % 60 : seconds % 60;
     return `${minutes}:${remainingSeconds}`
 }
+
+
+// --------creazione playlist
+// function creaPL(form) {
+//     const newL = [form];
+//     listaPlaylist.push(JSON.stringify(newL));
+// }
+
+// creationButton.addEventListener(() => {
+//     creaPL(creationInput.value);
+// })
+
+// // creazione lista e aggiunta dei brani nelle playlist
+// function listBuilder() {
+//     listaPlaylist.forEach(element => {
+//         modalist.innerHTML += `
+//         <li>
+//             <a href="#" class="text-decoration-none text-light">${element[0]}</a>
+//         </li>
+//         `;
+//     })
+// }
+// listBuilder();
+
+
+// tracciare le tracce che vanno salvate
+// tracksSavers.forEach(e => {
+//     e.addEventListener(function () {
+
+        
+
+//     })
+// })
+
+
+// modalistItems.forEach(item => {
+//     item.addEventListener(function (e) {
+//         listaPlaylist.forEach(i => {
+//             if (i[0] === e.target.value) {
+//                 //pushare la traccia su cui si clicca il salva
+//                 // nella playlist corretta                  
+//                 i.push();
+//             }
+//         })
+//     })
+// })
+
+
 
 window.playerCarousel = playerCarousel;
 window.playerTracks = playerTracks;

@@ -72,15 +72,17 @@
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/search.svg" alt="searchIcon"
                             class="me-3"><a href="search.html" class="text-decoration-none text-light">Cerca</a></p>
                     <p class="d-flex align-items-center mb-5"><img src="assets/icons/music-note-list.svg"
-                            alt="libraryIcon" class="me-3"><a href="" class="text-decoration-none text-light">La tua
+                            alt="libraryIcon" class="me-3"><a href="library.html" class="text-decoration-none text-light">La tua
                             libreria</a></p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/plus-square-fill.svg"
-                            alt="playIcon" class="me-3">Crea Playlist</p>
+                            alt="playIcon" class="me-3"><a class="text-decoration-none text-light" href="#" data-bs-toggle="modal" data-bs-target="#modaleCreazione">Crea Playlist</a></p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/bag-heart-fill.svg" alt="heartIcon"
-                            class="me-3">Brani che ti piacciono</p>
+                            class="me-3"><a href="miPiace.html" class="text-decoration-none text-light">Brani che ti piacciono</a></p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/bookmark-fill.svg"
                             alt="episodesIcon" class="me-3">I tuoi episodi</p>
                     <hr style="border-width:1px">
+                    <ul class="list-unstyled" id="plist">
+                    </ul>
                     <div>
                         <!-- Div che conterrà la lista delle playlist -->
                     </div>
@@ -428,6 +430,46 @@
             </div>
         </a>
     </div>
+    <div class="modal fade" id="modaleCreazione" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Crea una playlist</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="/submit" method="post">
+                    <label for="textInput">Inserisci il nome della playlist:</label>
+                    <input type="text" id="textInput" name="textInput" required>
+                </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
+              <button type="button" class="btn btn-primary" id="saveList">Salva playlist</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="aggiuntaBrano" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Aggiungi brano ad una Playlist</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <ul id="modalist">
+
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
 
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
@@ -436,6 +478,9 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 </body>
+
 <script type="module" src="assets/js/index.js"></script>
+<script src="assets/js/list.js"></script>
+
 
 </html>

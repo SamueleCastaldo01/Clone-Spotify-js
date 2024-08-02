@@ -4,9 +4,15 @@ export let flagShuffle = false;
 export let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel player, quando seleziono un album
 export let indexCurrentTrack = 0;
 export let tracks;
-let likePlaylist = JSON.parse(localStorage.getItem("likePlaylist")) || [];
+let likePlaylist = JSON.parse(localStorage.getItem("likePlaylist")) || ["Preferiti"];
 
-export function player()  {
+localStorage.setItem("playlists", JSON.stringify([]))
+let playlists = JSON.parse(localStorage.getItem("playlists"))
+playlists.push(JSON.stringify(likePlaylist));
+console.log(playlists)
+
+
+export function player() {
     const audio = document.getElementById('audio');
     const rangeAudio = document.getElementById('rangeAudio');
     const currentDuration = document.getElementById('currentDuration');
@@ -40,7 +46,7 @@ export function player()  {
 
     // Quando si resetta, finisce, passa a valore zero si resetta
     audio.addEventListener('ended', () => {
-        if(tracks.length >1 && flagLoop === false) {
+        if (tracks.length > 1 && flagLoop === false) {
             playTrack()
         } else {
             rangeAudio.value = 0;
@@ -51,7 +57,7 @@ export function player()  {
     document.getElementById('nextTrack').addEventListener('click', () => { //evento quando vado alla canzone successiva
         playTrack()
     })
-    
+
     // Gestore dell'evento click per il pulsante di reset
     resetButton.addEventListener('click', () => {
         audio.currentTime = 0; // Riporta la riproduzione all'inizio
@@ -102,27 +108,27 @@ export function player()  {
     });
 
 
-// Definisci la funzione da eseguire quando viene premuto il tasto spazio
-function handleSpacebarPress(event) {
-    // Controlla se il tasto premuto è la barra spaziatrice
-    if (event.key === ' ' || event.key === 'Spacebar') {
-        // Verifica se l'elemento attivo è un input, textarea o select
-        const activeElement = document.activeElement;
-        const isInputField = activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.tagName === 'SELECT';
+    // Definisci la funzione da eseguire quando viene premuto il tasto spazio
+    function handleSpacebarPress(event) {
+        // Controlla se il tasto premuto è la barra spaziatrice
+        if (event.key === ' ' || event.key === 'Spacebar') {
+            // Verifica se l'elemento attivo è un input, textarea o select
+            const activeElement = document.activeElement;
+            const isInputField = activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA' || activeElement.tagName === 'SELECT';
 
-        if (!isInputField) {
-            event.preventDefault(); // Previene il comportamento predefinito (es. scorrimento della pagina)
-            pausePLay()// Esegui la funzione per mettere in pausa o riprodurre
+            if (!isInputField) {
+                event.preventDefault(); // Previene il comportamento predefinito (es. scorrimento della pagina)
+                pausePLay()// Esegui la funzione per mettere in pausa o riprodurre
+            }
         }
     }
-}
 
-// Aggiungi l'evento keydown all'intero documento
-document.addEventListener('keydown', handleSpacebarPress);
+    // Aggiungi l'evento keydown all'intero documento
+    document.addEventListener('keydown', handleSpacebarPress);
 
 
     shuffleButton.addEventListener('click', () => {
-        if(flagShuffle === false) {
+        if (flagShuffle === false) {
             tracks = shuffle(tracks); // Mescola l'array tracks
             shuffleButton.style.color = "#1ED760"
             flagShuffle = true
@@ -134,7 +140,7 @@ document.addEventListener('keydown', handleSpacebarPress);
 
 
     loopButton.addEventListener('click', () => {
-        if(flagLoop === false) {
+        if (flagLoop === false) {
             loopButton.style.color = "#1ED760"
             flagLoop = true
         } else {
@@ -166,7 +172,7 @@ export function playerCarousel(track) {
     imgPlayer.src = track.album.cover_small;
 
     playlistLike(track)
-   
+
     setTimeout(() => {
         audioElement.load();
         audioElement.play();
@@ -178,7 +184,7 @@ export function playerCarousel(track) {
 
 // Funzione per gestire la riproduzione delle tracce, qui avrò tutte le tracce. Si attiva quando premo l'immagine
 export function playerTracks(index) {
-    if(flagShuffle === true) {
+    if (flagShuffle === true) {
         tracks = shuffle(tracks); // Mescola l'array tracks
     }
     indexCurrentTrack = 0;
@@ -225,12 +231,12 @@ export function playPlayTrack(i) {
     colorTitleTrack(tracks[indexCurrentTrack].id)
     playlistLike(tracks[indexCurrentTrack])
 
-    if(i) {
+    if (i) {
         indexCurrentTrack = 0
     } else {
         indexCurrentTrack++; //aggiorna l'index per poi andare alla prossima traccia, quando si preme il pulsante
     }
-  
+
 }
 
 
@@ -241,6 +247,12 @@ export function initTracks() {
 
 export function initArtist(artistId) {
     fetchArtist(artistId)
+}
+
+export function initLikePlaylist() {
+    tracks = likePlaylist.slice(1);
+    console.log(tracks)
+    playPlayTrack()
 }
 
 export function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
@@ -277,7 +289,7 @@ export function searchTrack(id) {
     const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
     const i = true
     indexCurrentTrack = 0;
-    albumDataIni("album", id); 
+    albumDataIni("album", id);
 
     setTimeout(() => {
         audioElement.play();
@@ -293,7 +305,7 @@ export function playerAlbumTrack(id) {
     tracks.forEach((track, i) => {
         if (track.id === id) {
             playerCarousel(track);
-            indexCurrentTrack = i+1;
+            indexCurrentTrack = i + 1;
         }
     });
 }
@@ -308,20 +320,20 @@ function shuffle(array) {
     return array;
 }
 
-function colorTitleTrack(id) { 
-        // Rimuovi la classe da tutti i titoli
-        document.querySelectorAll('.title').forEach((el) => {
-            el.classList.remove('selected-title');
-        });
-    
-        // Trova il titolo del brano selezionato e aggiungi la classe
-        const trackElement = document.getElementById(id);
-        if (trackElement) {
-            const titleElement = trackElement.querySelector('.title');
-            if (titleElement) {
-                titleElement.classList.add('selected-title');
-            }
+function colorTitleTrack(id) {
+    // Rimuovi la classe da tutti i titoli
+    document.querySelectorAll('.title').forEach((el) => {
+        el.classList.remove('selected-title');
+    });
+
+    // Trova il titolo del brano selezionato e aggiungi la classe
+    const trackElement = document.getElementById(id);
+    if (trackElement) {
+        const titleElement = trackElement.querySelector('.title');
+        if (titleElement) {
+            titleElement.classList.add('selected-title');
         }
+    }
 }
 
 export function playArtistFunction() {
@@ -334,32 +346,32 @@ function fetchArtist(artistId) {
     const keyUrl = 'https://striveschool-api.herokuapp.com/api/deezer/artist/'
 
     fetch(keyUrl + artistId)
-    .then((response) => {
-       if (response.ok){
-        return response.json()
-       } else {
-        throw new Error('errore')
-       }
-    })
-    .then((singleArtist) => {
+        .then((response) => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                throw new Error('errore')
+            }
+        })
+        .then((singleArtist) => {
 
-    })
-    const keyUrl1='/top?limit=11'
+        })
+    const keyUrl1 = '/top?limit=11'
     fetch(keyUrl + artistId + keyUrl1)
-    .then((response) => {
-       if (response.ok){
-        return response.json()
-       } else {
-        throw new Error('errore')
-       }
-    })
-    .then((singleTrack) => {
+        .then((response) => {
+            if (response.ok) {
+                return response.json()
+            } else {
+                throw new Error('errore')
+            }
+        })
+        .then((singleTrack) => {
             console.log(singleTrack.data);
             const albumtracks = Array.from(singleTrack.data);
             tracks = albumtracks;
             console.log(tracks)
             playPlayTrack()
-    })
+        })
 }
 
 
@@ -370,44 +382,50 @@ function playlistLike(track) {
     let flagPresentPlayLike = false;
     let idPlayLike = 0;
     likePlaylist.forEach((e) => {
-        if(e.id === track.id) {  //se è presente allora deve essere fill
+        if (e.id === track.id) {  //se è presente allora deve essere fill
             heart.classList.remove('bi-heart');
             heart.classList.add('bi-heart-fill');
             flagPresentPlayLike = true
             idPlayLike = track.id
             return
-        } 
+        }
     })
 
-    if(flagPresentPlayLike === false) {
+    if (flagPresentPlayLike === false) {
         heart.classList.add('bi-heart');
         heart.classList.remove('bi-heart-fill');
     }
 
-    heart.onclick = function() {
+    heart.onclick = function () {
         heart.classList.toggle('bi-heart-fill'); // Cambia l'icona a 'bi-heart-fill'
         heart.classList.toggle('bi-heart'); // Rimuovi l'icona 'bi-heart'
 
-        if(flagPresentPlayLike === false) {  //se non è presente allora me lo vai ad aggiungere
+        if (flagPresentPlayLike === false) {  //se non è presente allora me lo vai ad aggiungere
             likePlaylist.push({
-                id : track.id,
-                title_short : track.title_short,
-                preview : track.preview,
-                cover_small : track.album.cover_small,
-                duration : track.duration,
-                artist : track.artist.name
+                id: track.id,
+                title_short: track.title_short,
+                preview: track.preview,
+                album: { cover_small: track.album.cover_small },
+                duration: track.duration,
+                artist: {
+                    id: track.artist.id,
+                    name: track.artist.name
+                }
             })
             localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
         } else {  //se è presente allora me lo vai ad elimnare
             const index = likePlaylist.findIndex(item => item.id === idPlayLike);
 
             if (index !== -1) {
+                if (likePlaylist.length > 1) {
+                    likePlaylist.splice(index, 1);
+                }
                 // Se l'elemento è trovato, rimuovilo dall'array
-                likePlaylist.splice(index, 1);
             }
 
             // Aggiorna il localStorage
             localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
         }
     };
+    playlists[0] = JSON.stringify(likePlaylist);
 }

@@ -78,7 +78,7 @@ function topTracks(singleTrack) {
 
     singleTrack.data.forEach(track => {
         tracksHTML += `
-                <div class= "row d-flex align-items-center my-2" id="${track.id}">
+                <div class= "row d-flex align-items-center my-2 user-select-none" id="${track.id}">
                     <div class="col-6 d-flex my-2" onclick='playerAlbumTrack(${track.id})'>
                         <img src="${track.album.cover_medium}" alt="Album Cover" class="w-10">
                         <h6 class="mb-0 mt-1 ms-2 title">${truncate(track.title,15)}</h6>
