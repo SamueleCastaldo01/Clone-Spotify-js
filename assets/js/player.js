@@ -257,6 +257,17 @@ export function initLikePlaylist() {
     playPlayTrack()
 }
 
+export function initPlaylist(playlistId) {
+    playlists.forEach((el) => {
+        if (el.id === playlistId) {
+            tracks = el.tracks;
+            console.log(tracks)
+            playPlayTrack()
+            return;
+        }
+    })
+}
+
 export function albumDataIni(type, albumId) {  //vado a fare una fetch per andare a prender el'album
     const apiKey = `https://striveschool-api.herokuapp.com/api/deezer/${type}/${albumId}`;
 

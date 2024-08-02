@@ -223,7 +223,7 @@ function listBuilder(track) {
     playlists.forEach(element => {
         const escapedElement = JSON.stringify(track).replace(/"/g, '&quot;'); // Serve per portarmi l'array nella funzione per gestire il lettore
         modalist.innerHTML += `
-        <li data-playlist-id="${element.id}" onclick="addTrackPlaylist(this, ${escapedElement})">
+        <li class="mt-3" data-playlist-id="${element.id}" onclick="addTrackPlaylist(this, ${escapedElement})">
             <a href="#" class="text-decoration-none text-light">${element.namePlaylist}</a>
         </li>
     `;
@@ -247,6 +247,7 @@ function addTrackPlaylist(listItem, track) {
             if (flagAdd === false) {
                 el.tracks.push(track)
                 localStorage.setItem("playlists", JSON.stringify(playlists))
+                alert("Traccia inserita con successo in" + playlistId);
             }
         }
     })
