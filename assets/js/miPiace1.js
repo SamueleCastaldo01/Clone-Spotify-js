@@ -34,11 +34,11 @@ playArtist.addEventListener("click", () => {
     
         
         let trackHTML = ''; 
-        for(let i = 1; i< likePlaylist.length; i++) {
+        for(let i = 0; i< likePlaylist.length; i++) {
             trackHTML += `
             <div class="row user-select-none" id="${likePlaylist[i].id}">
                 <div class="col-1 text-muted">
-                    ${i}
+                    ${i +1}
                 </div>
                 <div class="col-6" onclick='playerAlbumTrack(${likePlaylist[i].id})'>
                     <ol class="list-unstyled">
