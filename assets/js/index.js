@@ -212,16 +212,7 @@ function salvaModal(track) { //qunado premo il pulsante modal salva si apre e co
             }
         }
     })
-  
-    // Resto della logica per aggiungere la traccia alla playlist
 }
-
-
-// tracciare le tracce che vanno salvate
-// tracksSavers.forEach(e => {
-//     e.addEventListener(function () {
-//     })
-// })
 
 
 
