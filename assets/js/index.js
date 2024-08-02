@@ -53,7 +53,7 @@ function buonaseraBuilder() {
                          </div>
                     </div>
                         <div class="col-8 p-0 d-flex align-items-center ">
-                            <p class="fs-small ps-3 ">${e.namePlaylist}</p>
+                            <p class="fs-small ps-3 "><a href="playlistsDetail.html?listId=${e.id}" class="text-light text-decoration-none">${e.namePlaylist} </a></p>
                         </div>
                 </div>
         </div>`;
