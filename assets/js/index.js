@@ -142,12 +142,12 @@ const convertDuration = function (seconds) {
 //     creaPL(creationInput.value);
 // })
 
-// // creazione lista e aggiunta dei brani nelle playlist
+//  creazione lista e aggiunta dei brani nelle playlist
 // function listBuilder() {
 //     listaPlaylist.forEach(element => {
 //         modalist.innerHTML += `
 //         <li>
-//             <a href="#" class="text-decoration-none text-light">${element[0]}</a>
+//             <a href="#" class="text-decoration-none text-light">${elemen[0]}</a>
 //         </li>
 //         `;
 //     })
@@ -158,9 +158,6 @@ const convertDuration = function (seconds) {
 // tracciare le tracce che vanno salvate
 // tracksSavers.forEach(e => {
 //     e.addEventListener(function () {
-
-        
-
 //     })
 // })
 
