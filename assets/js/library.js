@@ -1,9 +1,10 @@
-import { player, playerCarousel, playerTracks, initTracks } from "./player.js";
+import { player,  albumDataIni } from "./player.js";
 const playlists = JSON.parse(localStorage.getItem("playlists"));
 const scopri = document.getElementById("scopri");
 
 window.onload = function(){
-    initTracks()
+    albumDataIni("album", "544892012")
+    player();
     creazionePlaylist();
 }
 
