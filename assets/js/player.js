@@ -12,7 +12,7 @@ if (!playlists) {
     playlists = [ar];
     localStorage.setItem("playlists", JSON.stringify(playlists));
 }
-console.log("playlists",playlists)
+
 
 //localStorage.setItem("playlists", JSON.stringify([]))
 //playlists = JSON.parse(localStorage.getItem("playlists"))
@@ -161,8 +161,6 @@ export function player() {
 
 
 export function playerCarousel(track) {
-    console.log("sono entrato 1")
-    console.log(likePlaylist)
     indexCurrentTrack = 0;
     const playIcon = document.getElementById('play');  //vado a mettere il bottone in riproduzione
     playIcon.classList.remove('bi-play-circle-fill');
@@ -197,7 +195,6 @@ export function playerTracks(index) {
     }
     indexCurrentTrack = 0;
     tracks = trackDataArray[index];
-    console.log(tracks);
     playTrack()
 }
 
@@ -222,8 +219,6 @@ export function playPlayTrack(i) {
 
     const audioElement = document.getElementById('audio'); // Cambia la sorgente dell'audio
     const sourceElement = audioElement.querySelector('source');
-
-    console.log(tracks)
 
     if (indexCurrentTrack >= tracks.length) {
         indexCurrentTrack = 0;  // Resetta l'indice alla prima traccia
@@ -259,7 +254,6 @@ export function initArtist(artistId) {
 
 export function initLikePlaylist() {
     tracks = likePlaylist;
-    console.log(tracks)
     playPlayTrack()
 }
 
@@ -346,7 +340,6 @@ function colorTitleTrack(id) {
 
 export function playArtistFunction() {
     colorTitleTrack(tracks[0].id)
-    console.log(tracks[0])
     playerCarousel(tracks[0]);
 }
 
@@ -374,10 +367,10 @@ function fetchArtist(artistId) {
             }
         })
         .then((singleTrack) => {
-            console.log(singleTrack.data);
+
             const albumtracks = Array.from(singleTrack.data);
             tracks = albumtracks;
-            console.log(tracks)
+
             playPlayTrack()
         })
 }
@@ -385,8 +378,7 @@ function fetchArtist(artistId) {
 
 
 function playlistLike(track) {
-    console.log("sono entrato baby")
-    console.log(likePlaylist)
+
     const heart = document.getElementById('heart');
     let flagPresentPlayLike = false;
     let idPlayLike = 0;
