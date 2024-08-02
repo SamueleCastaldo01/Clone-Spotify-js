@@ -26,8 +26,8 @@ function displayAlbumDetails() {
     trackList.innerHTML = '';
     let trackHTML = '';
 
-    if (listaListe.length != 0) {
-        listaListe.forEach(element, function () {
+    if(listaListe.length != 0){
+        listaListe.forEach(element, function() {
             if (element[0] === urlParam) {
                 for (let i = 1; i < element.length; i++) {
                     trackHTML += `

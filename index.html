@@ -72,7 +72,7 @@
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/search.svg" alt="searchIcon"
                             class="me-3"><a href="search.html" class="text-decoration-none text-light">Cerca</a></p>
                     <p class="d-flex align-items-center mb-5"><img src="assets/icons/music-note-list.svg"
-                            alt="libraryIcon" class="me-3"><a href="" class="text-decoration-none text-light" data-bs-toggle="modal" data-bs-target="#exampleModal">La tua
+                            alt="libraryIcon" class="me-3"><a href="library.html" class="text-decoration-none text-light">La tua
                             libreria</a></p>
                     <p class="d-flex align-items-center mb-2"><img src="assets/icons/plus-square-fill.svg"
                             alt="playIcon" class="me-3"><a class="text-decoration-none text-light" href="#" data-bs-toggle="modal" data-bs-target="#modaleCreazione">Crea Playlist</a></p>
@@ -82,7 +82,6 @@
                             alt="episodesIcon" class="me-3">I tuoi episodi</p>
                     <hr style="border-width:1px">
                     <ul class="list-unstyled" id="plist">
-                        <li><a href="" class="text-decoration-none text-light">iugu</a></li>
                     </ul>
                     <div>
                         <!-- Div che conterrà la lista delle playlist -->
@@ -447,6 +446,26 @@
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Chiudi</button>
               <button type="button" class="btn btn-primary" id="saveList">Salva playlist</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="aggiuntaBrano" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="exampleModalLabel">Aggiungi brano ad una Playlist</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <ul id="modalist">
+
+              </ul>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
