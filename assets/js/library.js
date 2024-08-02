@@ -20,6 +20,6 @@ function creazionePlaylist() {
 }
 
 function coloreRandom() {
-    const colori = ["red", "primary", "primary", "success", "success", "danger", "warning", "warnings", "info", "info"];
+    const colori = ["red", "primary", "primary", "success", "success", "danger", "warning", "warning", "info", "info"];
     return colori[Math.floor(Math.random() * colori.length-1)]
 }
