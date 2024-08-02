@@ -7,12 +7,20 @@ const carouselRow = document.getElementById('carousel');
 const cardsAlbumRow = document.getElementById('cardsAlbum')
 const loading = document.getElementById("loading");
 const loader = document.getElementById("loader");
-const listaPlaylist = JSON.parse(localStorage.getItem("playlists"));
 const creationButton = document.getElementById("saveList");
 const creationInput = document.getElementById("textInput");
 const modalist = document.getElementById("modalist");
 const modalistItems = Array.from(document.querySelectorAll("#modalist li"));
 const tracksSavers = document.getElementsByClassName("saver");
+let likePlaylist = JSON.parse(localStorage.getItem("likePlaylist")) || [];
+const ar = { id: "Preferiti0", namePlaylist: "Preferiti", tracks: [...likePlaylist] };
+let playlists = JSON.parse(localStorage.getItem("playlists"));
+
+if (!playlists) {
+    playlists = [ar];
+    localStorage.setItem("playlists", JSON.stringify(playlists));
+}
+console.log("playlists",playlists)
 
 
 
@@ -83,7 +91,7 @@ function buildCarousel(datasetArray) {
                         <p class="fs-small mb-0">${convertDuration(element.duration)}</p>
                         <div class="w-100 d-flex align-items-center">
                             <button onclick='playerCarousel(${escapedElement})' class="btn btn-sm bg-primary rounded-5 px-4 py-2 me-3 h-25 fw-bold text-black">Play</button>
-                            <button class="btn btn-sm bg-black text-white rounded-5 px-4 py-2 me-3 h-25 border border-white border-1 saver"  data-bs-toggle="modal" data-bs-target="#aggiuntaBrano">Salva</button>
+                            <button onclick="salvaModal(${escapedElement})" class="btn btn-sm bg-black text-white rounded-5 px-4 py-2 me-3 h-25 border border-white border-1 saver"  data-bs-toggle="modal" data-bs-target="#aggiuntaBrano">Salva</button>
                             <p class="fs-1">...</p>
                         </div>
                     </div>
@@ -133,26 +141,72 @@ const convertDuration = function (seconds) {
 
 
 // --------creazione playlist
-// function creaPL(form) {
-//     const newL = [form];
-//     listaPlaylist.push(JSON.stringify(newL));
-// }
+function creaPL(form) {
+    // Controlla se il nome della playlist esiste già. Il nome deve esssere univoco
+    const isDuplicate = playlists.some(playlist => playlist.namePlaylist === form);
 
-// creationButton.addEventListener(() => {
-//     creaPL(creationInput.value);
-// })
+    if (isDuplicate) {
+        alert("Il nome della playlist esiste già. Scegli un nome diverso.");
+    } else {
+        // Crea una nuova playlist
+        const newPL = { id: form, namePlaylist: form, tracks: [] };
+        playlists.push(newPL);
+        localStorage.setItem("playlists", JSON.stringify(playlists));
+        creationInput.value = "";
+        alert("Playlist creata con successo!");
+    }
+    console.log("playlists", playlists)
+}
 
-//  creazione lista e aggiunta dei brani nelle playlist
-// function listBuilder() {
-//     listaPlaylist.forEach(element => {
-//         modalist.innerHTML += `
-//         <li>
-//             <a href="#" class="text-decoration-none text-light">${elemen[0]}</a>
-//         </li>
-//         `;
-//     })
-// }
-// listBuilder();
+//evento per prendere l'input per inserire il nome
+creationButton.addEventListener("click", () => {
+    const playlistName = creationInput.value.trim();
+    if (playlistName) {
+        creaPL(playlistName);
+    } else {
+        alert("Inserisci un nome valido per la playlist.");
+    }
+});
+
+
+
+function salvaModal(track) { //qunado premo il pulsante modal salva si apre e compaiono le playlist
+    console.log("Ciao")
+    console.log(track)
+    listBuilder(track);
+ }
+
+ // creazione lista e aggiunta dei brani nelle playlist
+ function listBuilder(track) {
+    console.log(track)
+    modalist.innerHTML = ""
+     playlists.forEach(element => {
+         modalist.innerHTML += `
+         <li id="${element.id}" data-track=${track} data-PlaylistId=${element.id}">
+             <a href="#" class="text-decoration-none text-light">${element.id}</a>
+         </li>
+         `;
+     })
+
+
+     modalistItems.forEach(item => {
+        item.addEventListener("click", function (e) {
+            playlists.forEach(i => {
+                if (i.id === e.target.querySelector("a").value) {
+                    //pushare la traccia su cui si clicca il salva
+                    i.tracks.push(e.target.dataset.track);
+                    localStorage.setItem("playlists", JSON.stringify(playlists))
+                }
+            })
+        })
+    })
+   
+ }
+
+
+ function addTrackPlaylist(ciao) {
+    console.log(ciao)
+}
 
 
 // tracciare le tracce che vanno salvate
@@ -162,20 +216,13 @@ const convertDuration = function (seconds) {
 // })
 
 
-// modalistItems.forEach(item => {
-//     item.addEventListener(function (e) {
-//         listaPlaylist.forEach(i => {
-//             if (i[0] === e.target.value) {
-//                 //pushare la traccia su cui si clicca il salva
-//                 // nella playlist corretta                  
-//                 i.push();
-//             }
-//         })
-//     })
-// })
+
+
 
 
 
 window.playerCarousel = playerCarousel;
 window.playerTracks = playerTracks;
 window.initTracks = initTracks;
+window.salvaModal = salvaModal;
+window.addTrackPlaylist = addTrackPlaylist;

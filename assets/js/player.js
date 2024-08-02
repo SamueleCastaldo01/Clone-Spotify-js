@@ -4,12 +4,20 @@ export let flagShuffle = false;
 export let trackDataArray = [];  //variabili utili per la riproduzione delle tracce nel player, quando seleziono un album
 export let indexCurrentTrack = 0;
 export let tracks;
-let likePlaylist = JSON.parse(localStorage.getItem("likePlaylist")) || ["Preferiti"];
+let likePlaylist = JSON.parse(localStorage.getItem("likePlaylist")) || [];
+const ar = { id: "Preferiti0", namePlaylist: "Preferiti", tracks: [...likePlaylist] };
+let playlists = JSON.parse(localStorage.getItem("playlists"));
 
-localStorage.setItem("playlists", JSON.stringify([]))
-let playlists = JSON.parse(localStorage.getItem("playlists"))
-playlists.push(JSON.stringify(likePlaylist));
-console.log(playlists)
+if (!playlists) {
+    playlists = [ar];
+    localStorage.setItem("playlists", JSON.stringify(playlists));
+}
+console.log("playlists",playlists)
+
+//localStorage.setItem("playlists", JSON.stringify([]))
+//playlists = JSON.parse(localStorage.getItem("playlists"))
+//playlists.push(JSON.stringify(likePlaylist));
+//console.log(playlists)
 
 
 export function player() {
@@ -250,7 +258,7 @@ export function initArtist(artistId) {
 }
 
 export function initLikePlaylist() {
-    tracks = likePlaylist.slice(1);
+    tracks = likePlaylist;
     console.log(tracks)
     playPlayTrack()
 }
@@ -375,6 +383,7 @@ function fetchArtist(artistId) {
 }
 
 
+
 function playlistLike(track) {
     console.log("sono entrato baby")
     console.log(likePlaylist)
@@ -400,8 +409,9 @@ function playlistLike(track) {
         heart.classList.toggle('bi-heart-fill'); // Cambia l'icona a 'bi-heart-fill'
         heart.classList.toggle('bi-heart'); // Rimuovi l'icona 'bi-heart'
 
-        if (flagPresentPlayLike === false) {  //se non è presente allora me lo vai ad aggiungere
-            likePlaylist.push({
+        if (flagPresentPlayLike === false) {  // Se il brano non è presente in likePlaylist, aggiungilo
+            // Aggiungi il brano a likePlaylist
+            const newTrack = {
                 id: track.id,
                 title_short: track.title_short,
                 preview: track.preview,
@@ -411,8 +421,15 @@ function playlistLike(track) {
                     id: track.artist.id,
                     name: track.artist.name
                 }
-            })
-            localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
+            };
+            likePlaylist.push(newTrack);
+            
+            // Aggiungi il brano alla prima playlist in playlists (Preferiti)
+            playlists[0].tracks.push(newTrack);
+            
+            // Aggiorna localStorage per salvare le modifiche
+            localStorage.setItem("likePlaylist", JSON.stringify(likePlaylist));
+            localStorage.setItem("playlists", JSON.stringify(playlists));
         } else {  //se è presente allora me lo vai ad elimnare
             const index = likePlaylist.findIndex(item => item.id === idPlayLike);
 
@@ -427,5 +444,5 @@ function playlistLike(track) {
             localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
         }
     };
-    playlists[0] = JSON.stringify(likePlaylist);
+  
 }
