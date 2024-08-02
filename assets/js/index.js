@@ -187,6 +187,20 @@ function salvaModal(track) { //qunado premo il pulsante modal salva si apre e co
          </li>
          `;
      })
+
+
+     modalistItems.forEach(item => {
+        item.addEventListener("click", function (e) {
+            playlists.forEach(i => {
+                if (i.id === e.target.querySelector("a").value) {
+                    //pushare la traccia su cui si clicca il salva
+                    i.tracks.push(e.target.dataset.track);
+                    localStorage.setItem("playlists", JSON.stringify(playlists))
+                }
+            })
+        })
+    })
+   
  }
 
 
@@ -205,17 +219,8 @@ function salvaModal(track) { //qunado premo il pulsante modal salva si apre e co
 // })
 
 
- modalistItems.forEach(item => {
-     item.addEventListener(function (e) {
-         playlists.forEach(i => {
-             if (i.id === e.target.querySelector("a").value) {
-                 //pushare la traccia su cui si clicca il salva
-                              
-                 i.traks.push(e.target.dataset.track);
-             }
-         })
-     })
- })
+
+
 
 
 
