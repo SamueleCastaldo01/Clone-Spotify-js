@@ -21,17 +21,8 @@ playArtist.addEventListener("click", () => {
         const titleAlbum = document.getElementById('title');
         const artist = document.getElementById('artist');
         const trackList = document.getElementById('lists');
-
-    
-
         titleAlbum.innerText = truncate('brani che ti piacciono',20);
-
-
-    
-        
         trackList.innerHTML = '';
-    
-        
         let trackHTML = ''; 
         for(let i = 0; i< likePlaylist.length; i++) {
             trackHTML += `
