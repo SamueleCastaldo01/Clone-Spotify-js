@@ -193,16 +193,26 @@ function salvaModal(track) { //qunado premo il pulsante modal salva si apre e co
 
 
  function addTrackPlaylist(listItem, track) {
+    let flagAdd = false;
     const playlistId = listItem.getAttribute("data-playlist-id");
     console.log(playlistId);
     console.log(track)
     playlists.forEach((el) => {
-        if(el.id === playlistId) {
-            el.tracks.push(track)
+        if(el.id === playlistId) { //controllo id playlist, trova la playlist corrente
+            el.tracks.forEach((tr) => {  //mi vado a ciclare le tracce della playlist corrente
+                if(track.id === tr.id) {  //se è presente questa traccia
+                    flagAdd = true;
+                    return;
+                }
+            })
+            if(flagAdd === false) {
+                el.tracks.push(track)
+                console.log(playlists)
+                localStorage.setItem("playlists", JSON.stringify(playlists))
+            }
         }
     })
-   console.log(playlists)
-   localStorage.setItem("playlists", JSON.stringify(playlists))
+  
     // Resto della logica per aggiungere la traccia alla playlist
 }
 
