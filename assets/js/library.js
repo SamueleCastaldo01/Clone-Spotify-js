@@ -10,7 +10,7 @@ function creazionePlaylist() {
         playlists.forEach(element => {
             scopri.innerHTML += `
                 <div class="col-lg-4 col-sm-3 mt-3">
-                    <div class="bg-${coloreRandom} text-center p-4 rounded-3">
+                    <div class="bg-${coloreRandom()} text-center p-4 rounded-3">
                         <h6><a href="./playlistsDetail.html?listId=${element.id}" class="text-decoration-none text-light">${element.namePlaylist}</a></h6>
                     </div>
                 </div>
@@ -20,6 +20,6 @@ function creazionePlaylist() {
 }
 
 function coloreRandom() {
-    const colori = ["red", "primary", "primary-emphasis", "success", "success-emphasis", "danger", "warning", "warning-emphasis", "info", "info-emphasis"];
+    const colori = ["red", "primary", "primary", "success", "success", "danger", "warning", "warnings", "info", "info"];
     return colori[Math.floor(Math.random() * colori.length-1)]
 }

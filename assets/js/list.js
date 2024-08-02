@@ -9,7 +9,7 @@ function listBuilder() {
     listaPlaylist.forEach(element => {
         plist.innerHTML += `
         <li>
-            <a href="playlistsDetail.html?listId=${element[0]}" class="text-decoration-none text-light">${element[0]}</a>
+            <a href="playlistsDetail.html?listId=${element.id}" class="text-decoration-none text-light">${element.namePlaylist}</a>
         </li>
         `;
     })
