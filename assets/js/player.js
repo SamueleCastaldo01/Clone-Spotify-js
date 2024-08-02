@@ -5,8 +5,13 @@ export let trackDataArray = [];  //variabili utili per la riproduzione delle tra
 export let indexCurrentTrack = 0;
 export let tracks;
 let likePlaylist = JSON.parse(localStorage.getItem("likePlaylist")) || [];
-const ar = {id:"Preferiti0", namePlaylist: "Preferiti", trackers: [...likePlaylist]}
-let  playlists = JSON.parse(localStorage.getItem("playlists")) || [ar]
+const ar = { id: "Preferiti0", namePlaylist: "Preferiti", tracks: [...likePlaylist] };
+let playlists = JSON.parse(localStorage.getItem("playlists"));
+
+if (!playlists) {
+    playlists = [ar];
+    localStorage.setItem("playlists", JSON.stringify(playlists));
+}
 console.log("playlists",playlists)
 
 //localStorage.setItem("playlists", JSON.stringify([]))
@@ -420,7 +425,7 @@ function playlistLike(track) {
             likePlaylist.push(newTrack);
             
             // Aggiungi il brano alla prima playlist in playlists (Preferiti)
-            playlists[0].trackers.push(newTrack);
+            playlists[0].tracks.push(newTrack);
             
             // Aggiorna localStorage per salvare le modifiche
             localStorage.setItem("likePlaylist", JSON.stringify(likePlaylist));
