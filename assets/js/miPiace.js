@@ -1,4 +1,4 @@
-import { player, playerAlbumTrack, playArtistFunction, initLikePlaylist } from "./player.js";
+import { player, playerAlbumTrack, playArtistFunction, initLikePlaylist, initPlaylist } from "./player.js";
 let likePlaylist = JSON.parse(localStorage.getItem('likePlaylist')) || [];
 const urlParam = new URLSearchParams(location.search).get("listId");
 const playlists = JSON.parse(localStorage.getItem("playlists"));
@@ -8,8 +8,10 @@ const playArtist = document.getElementById("playArtist");
 
 window.onload = function () {
     displayAlbumDetails();
-    initLikePlaylist()
+    initPlaylist(urlParam)
     player();
+    //initLikePlaylist()
+
 }
 
 playArtist.addEventListener("click", () => {
