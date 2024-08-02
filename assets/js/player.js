@@ -7,6 +7,7 @@ export let tracks;
 let likePlaylist = JSON.parse(localStorage.getItem("likePlaylist")) || [];
 const ar = {id:"Preferiti0", namePlaylist: "Preferiti", trackers: [...likePlaylist]}
 let  playlists = JSON.parse(localStorage.getItem("playlists")) || [ar]
+console.log("playlists",playlists)
 
 //localStorage.setItem("playlists", JSON.stringify([]))
 //playlists = JSON.parse(localStorage.getItem("playlists"))
@@ -377,6 +378,7 @@ function fetchArtist(artistId) {
 }
 
 
+
 function playlistLike(track) {
     console.log("sono entrato baby")
     console.log(likePlaylist)
@@ -402,8 +404,9 @@ function playlistLike(track) {
         heart.classList.toggle('bi-heart-fill'); // Cambia l'icona a 'bi-heart-fill'
         heart.classList.toggle('bi-heart'); // Rimuovi l'icona 'bi-heart'
 
-        if (flagPresentPlayLike === false) {  //se non è presente allora me lo vai ad aggiungere
-            likePlaylist.push({
+        if (flagPresentPlayLike === false) {  // Se il brano non è presente in likePlaylist, aggiungilo
+            // Aggiungi il brano a likePlaylist
+            const newTrack = {
                 id: track.id,
                 title_short: track.title_short,
                 preview: track.preview,
@@ -413,8 +416,15 @@ function playlistLike(track) {
                     id: track.artist.id,
                     name: track.artist.name
                 }
-            })
-            localStorage.setItem('likePlaylist', JSON.stringify(likePlaylist));
+            };
+            likePlaylist.push(newTrack);
+            
+            // Aggiungi il brano alla prima playlist in playlists (Preferiti)
+            playlists[0].trackers.push(newTrack);
+            
+            // Aggiorna localStorage per salvare le modifiche
+            localStorage.setItem("likePlaylist", JSON.stringify(likePlaylist));
+            localStorage.setItem("playlists", JSON.stringify(playlists));
         } else {  //se è presente allora me lo vai ad elimnare
             const index = likePlaylist.findIndex(item => item.id === idPlayLike);
 
